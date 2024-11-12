@@ -138,7 +138,7 @@ int loadPigmentData(char* filename, struct Pigment *pArray, int* n){
 }
 
 
-int loadPaintData(char* filename, paint_t* pArray, int* n){ // n is number of entries not lines??
+int loadPaintData(char* filename, paint_t** pArray, int* n){ // n is number of entries not lines??
 
 	FILE* fp = fopen(filename, "r");
 	if(fp==NULL){
@@ -167,67 +167,66 @@ int loadPaintData(char* filename, paint_t* pArray, int* n){ // n is number of en
 		// reallocate if n > capacity of pArray
 		if(*n >= capacity){
 			capacity *= 2;
-			pArray = realloc(pArray, (capacity * sizeof(paint_t)));
-			printf("%i\n", capacity);
+			*pArray = realloc(*pArray, (capacity * sizeof(paint_t)));
 		}
 
 		// tokenize line and populate
 		// SOMETIMES THE MISSING VALUES ARE ',-,' SO WTF!!!
 		token = strtok(line, ","); // ciName
 		if(token!=NULL){
-			strcpy(pArray[*n].ciName, token);
+			strcpy((*pArray)[*n].ciName, token);
 		}
 
 		token = strtok(NULL, ","); // marketingName
 		if(token!=NULL){
-			strcpy(pArray[*n].marketingName, token);
+			strcpy((*pArray)[*n].marketingName, token);
 		}
 
 		token = strtok(NULL, ","); // manufacturer
         if(token!=NULL){
-			strcpy(pArray[*n].manufacturer, token);
+			strcpy((*pArray)[*n].manufacturer, token);
 		}
 
 		token = strtok(NULL, ","); // code (NOT LISTED IN STRUCT!)
 
 		token = strtok(NULL, ","); // transparency
         if(token!=NULL){
-			pArray[*n].transparency = atoi(token);
+			(*pArray)[*n].transparency = atoi(token);
 		}
 
 		token = strtok(NULL, ","); // staining
         if(token!=NULL){
-			pArray[*n].staining = atoi(token);
+			(*pArray)[*n].staining = atoi(token);
 		}
 
 		token = strtok(NULL, ","); // valueRange
         if(token!=NULL){
-			pArray[*n].valueRange = atoi(token);
+			(*pArray)[*n].valueRange = atoi(token);
 		}
 
 		token = strtok(NULL, ","); // granulating
 		if(token!=NULL){
-	        pArray[*n].granulating = atoi(token);
+	        (*pArray)[*n].granulating = atoi(token);
 		}
 
 		token = strtok(NULL, ","); // blossom
         if(token!=NULL){
-			pArray[*n].blossom = atoi(token);
+			(*pArray)[*n].blossom = atoi(token);
 		}
 
 		token = strtok(NULL, ","); // diffusion
         if(token!=NULL){
-			pArray[*n].diffusion = atoi(token);
+			(*pArray)[*n].diffusion = atoi(token);
 		}
 
 		token = strtok(NULL, ","); // hueAngle
         if(token!=NULL){
-			pArray[*n].hueAngle = atoi(token);
+			(*pArray)[*n].hueAngle = atoi(token);
 		}
 
 		token = strtok(NULL, ","); // hueShift
         if(token!=NULL){
-			pArray[*n].hueShift = atoi(token);
+			(*pArray)[*n].hueShift = atoi(token);
 			/*
 			if(token[0]=='-'){
 				pArray[*n].hueShift = -atoi(&token[1]);
@@ -241,7 +240,7 @@ int loadPaintData(char* filename, paint_t* pArray, int* n){ // n is number of en
 		token = strtok(NULL, "/"); // lightfast 1998
 		token = strtok(NULL, "\0"); // lightfast 2004
         if(token!=NULL && token[0]!='.'){
-			pArray[*n].lightfast = atoi(token);
+			(*pArray)[*n].lightfast = atoi(token);
 		}
 
 		// add entry to number of entries

@@ -12,7 +12,6 @@ struct Pigment{
 	float abHp[2]; 
 };
 
-
 typedef struct paint_template{
 	char ciName[20];
 	char marketingName[50];
@@ -31,4 +30,4 @@ typedef struct paint_template{
 // add documentation to functions!!
 int loadPigmentData(char* filename, struct Pigment *pArray, int* n);
 
-int loadPaintData(char* filename, paint_t* pArray, int* n);
+int loadPaintData(char* filename, paint_t** pArray, int* n);
