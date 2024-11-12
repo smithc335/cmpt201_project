@@ -34,7 +34,7 @@ int main(void){
         numlines++;
     }
 
-   struct Pigment *pArray = malloc((numlines) * sizeof(struct Pigment));
+   pigment_t *pArray = malloc((numlines) * sizeof(pigment_t));
 
 
     if ((loadPigmentData(filename, pArray, &numlines)) == 1){
@@ -43,11 +43,7 @@ int main(void){
     }
 
 
-
-	// printf("ciName = %s, pigmentname = %s, value = %d, chroma = %d, abvalue = [%d, %d], hueAngle = %d, huePurity = %.3f,
-	// 	 abHp = [%.3f, %.3f]\n", pArray[169].ciName, pArray[169].pigmentName, pArray[169].value, pArray[169].chroma,
-	// 	 pArray[169].abValue[0], pArray[169].abValue[1], pArray[169].hueAngle, pArray[169].huePurity, pArray[169].abHp[0], 
-	// 	 pArray[169].abHp[1]);
+	printf("ciName = %s, pigmentname = %s, value = %d, chroma = %d, abvalue = [%d, %d], hueAngle = %d, huePurity = %.3f, abHp = [%.3f, %.3f]\n", pArray[169].ciName, pArray[169].pigmentName, pArray[169].value, pArray[169].chroma, pArray[169].abValue[0], pArray[169].abValue[1], pArray[169].hueAngle, pArray[169].huePurity, pArray[169].abHp[0], pArray[169].abHp[1]);
 
 
     free(pArray);
