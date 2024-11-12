@@ -23,7 +23,7 @@ int main(void){
 	int paint_err = 0;
 	int r;
 
-	paint_array = malloc(10 * sizeof(paint_t)); // rework to take 1
+	paint_array = malloc(sizeof(paint_t)); // rework to take 1
 
 	paint_err = loadPaintData(paint_filename, paint_array, &paint_n);
 	r = rand() % paint_n;
@@ -40,10 +40,10 @@ int main(void){
 
 		// works when we return the pointer from the function
 
-		printf("%s, %s, %s, ", paint_array[1].ciName, paint_array[1].marketingName, paint_array[1].manufacturer);
-		printf("%i, %i, %i, ", paint_array[1].transparency, paint_array[1].staining, paint_array[1].valueRange);
-		printf("%i, %i, %i, ", paint_array[1].granulating, paint_array[1].blossom, paint_array[1].diffusion);
-		printf("%i, %i, %i\n", paint_array[1].hueAngle, paint_array[1].hueShift, paint_array[1].lightfast);
+		printf("%s, %s, %s, ", paint_array[0].ciName, paint_array[0].marketingName, paint_array[0].manufacturer);
+		printf("%i, %i, %i, ", paint_array[0].transparency, paint_array[0].staining, paint_array[0].valueRange);
+		printf("%i, %i, %i, ", paint_array[0].granulating, paint_array[0].blossom, paint_array[0].diffusion);
+		printf("%i, %i, %i\n", paint_array[0].hueAngle, paint_array[0].hueShift, paint_array[0].lightfast);
 		
 		/*
 		for(int i=0; i<10; i++){

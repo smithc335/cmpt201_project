@@ -1,6 +1,6 @@
 # Claire Smith and Matt Beaulieu
 # Makefile in src Directory
-# hello
+
 CC=gcc
 CFLAGS=-Wall -std=c11
 

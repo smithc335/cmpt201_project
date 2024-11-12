@@ -21,7 +21,7 @@ int loadPaintData(char* filename, paint_t* pArray, int* n){ // n is number of en
 
 	char line[140];
 	char* gets_err;
-	int capacity = 10;
+	int capacity = 1;
 	char* token;
 
 	*n = 0; // make sure entries starts at zero
@@ -37,11 +37,12 @@ int loadPaintData(char* filename, paint_t* pArray, int* n){ // n is number of en
 	// populate array
 	gets_err = fgets(line, 95, fp); // get first entry line from file
 
-	while(gets_err!=NULL){ // CHANGE BACK TO WHILE LOOP?
+	while(gets_err!=NULL){
 		// reallocate if n > capacity of pArray
 		if(*n >= capacity){
 			capacity *= 2;
 			pArray = realloc(pArray, (capacity * sizeof(paint_t)));
+			printf("%i\n", capacity);
 		}
 
 		// tokenize line and populate
@@ -124,10 +125,12 @@ int loadPaintData(char* filename, paint_t* pArray, int* n){ // n is number of en
 		gets_err = fgets(line, 95, fp);
 	}
 
+	/*
 	printf("%s, %s, %s, ", pArray[681].ciName, pArray[681].marketingName, pArray[681].manufacturer);
 	printf("%i, %i, %i, ", pArray[681].transparency, pArray[681].staining, pArray[681].valueRange);
 	printf("%i, %i, %i, ", pArray[681].granulating, pArray[681].blossom, pArray[681].diffusion);
 	printf("%i, %i, %i\n", pArray[681].hueAngle, pArray[681].hueShift, pArray[681].lightfast);
+	*/
 
 	fclose(fp);
 
