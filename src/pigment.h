@@ -15,7 +15,7 @@ typedef struct pigment_template{
 typedef struct paint_template{
 	char ciName[20];
 	char marketingName[50];
-	char manufacturer[50]; // dynamic memory for char arrays??
+	char manufacturer[50];
 	int transparency;
 	int staining;
 	int valueRange;
@@ -33,4 +33,4 @@ int loadPigmentData(char* filename, pigment_t *pArray, int* n);
 //Parameters: A string representing the filename, a dynamically allocated array of structures, and an integer pointer indicating the number of lines in the file containing pigments.
 //Returns: 0 if function was successful in assigning pigment values and 1 if the file was unable to open properly. 
 
-int loadPaintData(char* filename, paint_t** pArray, int* n);
+paint_t* loadPaintData(char* filename, paint_t* pArray, int* n);
