@@ -7,6 +7,8 @@
 #include "pigment.h"
 
 int loadPigmentData(char* filename, pigment_t *pArray, int* n){
+
+
     char* token = NULL;
     char strcatch[200];
     FILE *fp = NULL;
