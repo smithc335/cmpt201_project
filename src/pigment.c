@@ -139,7 +139,7 @@ int loadPigmentData(char* filename, pigment_t *pArray, int* n){
 }
 
 
-int loadPaintData(char* filename, paint_t** pArray, int* n){ // n is number of entries not lines??
+int loadPaintData(char* filename, paint_t** pArray, int* n){
 
 	FILE* fp = fopen(filename, "r");
 	if(fp==NULL){

@@ -1,7 +1,7 @@
 // Claire Smith and Matt Beaulieu
 // Project Milestone 1 Header File
 
-typedef struct Pigment_template{
+typedef struct pigment_template{
 	char ciName[50];
 	char pigmentName[50];
 	int value;

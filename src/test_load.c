@@ -76,13 +76,6 @@ int main(void){
 		printf("\nSample of loaded data from lines %i to %i:\n", r+13, r+22);
 		// printf("Rand int = %i\n", r);
 		printf("------------------------------------------------------------\n");
-
-		// works when we return the pointer from the function or pass in double pointer
-
-		// printf("%s, %s, %s, ", paint_array[0].ciName, paint_array[0].marketingName, paint_array[0].manufacturer);
-		// printf("%i, %i, %i, ", paint_array[0].transparency, paint_array[0].staining, paint_array[0].valueRange);
-		// printf("%i, %i, %i, ", paint_array[0].granulating, paint_array[0].blossom, paint_array[0].diffusion);
-		// printf("%i, %i, %i\n", paint_array[0].hueAngle, paint_array[0].hueShift, paint_array[0].lightfast);
 		
 		for(int i=0; i<10; i++){
 			printf("Line %i: ", r+i+13);
