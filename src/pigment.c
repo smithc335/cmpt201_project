@@ -6,7 +6,7 @@
 #include <string.h>
 #include "pigment.h"
 
-int loadPigmentData(char* filename, struct Pigment *pArray, int* n){
+int loadPigmentData(char* filename, pigment_t *pArray, int* n){
     char* token = NULL;
     char strcatch[200];
     FILE *fp = NULL;
@@ -75,7 +75,6 @@ int loadPigmentData(char* filename, struct Pigment *pArray, int* n){
             pArray[i].abValue[0]= 9999;
         }
         else{
-            printf("abvalue[0]token = %s\n", token);
             pArray[i].abValue[0] = atoi(token);
 
 

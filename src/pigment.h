@@ -1,7 +1,7 @@
 // Claire Smith and Matt Beaulieu
 // Project Milestone 1 Header File
 
-struct Pigment{
+typedef struct Pigment_template{
 	char ciName[50];
 	char pigmentName[50];
 	int value;
@@ -10,7 +10,7 @@ struct Pigment{
 	int hueAngle;
 	float huePurity;
 	float abHp[2]; 
-};
+} pigment_t;
 
 
 typedef struct paint_template{
@@ -29,6 +29,6 @@ typedef struct paint_template{
 } paint_t;
 
 // add documentation to functions!!
-int loadPigmentData(char* filename, struct Pigment *pArray, int* n);
+int loadPigmentData(char* filename, pigment_t *pArray, int* n);
 
 int loadPaintData(char* filename, paint_t* pArray, int* n);
