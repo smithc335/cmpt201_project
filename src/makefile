@@ -13,7 +13,7 @@ test_load: test_load.o pigment.o
 .PHONY: clean package
 
 clean:
-	rm -f test_load *.o
+	rm -f test_load pigment*.o
 
 package:
 	tar -czvf cmpt201_project_lab09_CS_MB.tar.gz *.c *.h makefile
