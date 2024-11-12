@@ -6,11 +6,137 @@
 #include <string.h>
 #include "pigment.h"
 
-/*
-int loadPigmentData(char* filename, pigment_t* pArray, int* n){
-	// Matt's function
+int loadPigmentData(char* filename, struct Pigment *pArray, int* n){
+    char* token = NULL;
+    char strcatch[200];
+    FILE *fp = NULL;
+
+    fp = fopen(filename, "r");
+    if (fp == NULL){
+        printf("Error: Failed to open file.\n");
+        return (1);
+    }
+
+
+    for(int i = 0; i < 9; i++){
+        //Check if finds end of file.
+        if (fgets(strcatch, 200, fp) == NULL){
+            return (1);
+        }
+    }
+
+
+    for (int i = 0; i < *n; i++){
+        //Check if finds end of file.
+        if (fgets(strcatch, 200, fp) == NULL){
+            return (1);
+        }
+
+
+        //ciNAME
+        if((token = strtok(strcatch, ",")) == NULL){
+            strcpy(pArray[i].ciName, "EMPTY");
+        }
+        else{
+            strcpy(pArray[i].ciName, token);
+
+        }
+        
+        //pigmentName
+        if((token = strtok(NULL, ",")) == NULL){
+            strcpy(pArray[i].pigmentName, "EMPTY");
+        }
+        else{
+            strcpy(pArray[i].pigmentName, token);
+
+        }
+
+        //value
+        if((token = strtok(NULL, ",")) == NULL){
+            pArray[i].value = 9999;
+        }
+        else{
+            pArray[i].value = atoi(token);
+
+        }
+
+        //chroma
+        if((token = strtok(NULL, ",")) == NULL){
+            pArray[i].chroma = 9999;
+        }
+        else{
+            pArray[i].chroma = atoi(token);
+
+        }
+
+
+        //abvalue[0]
+        if((token = strtok(NULL, ",")) == NULL){
+            pArray[i].abValue[0]= 9999;
+        }
+        else{
+            printf("abvalue[0]token = %s\n", token);
+            pArray[i].abValue[0] = atoi(token);
+
+
+        }
+
+        //abvalue[1]
+        if((token = strtok(NULL, ",")) == NULL){
+            pArray[i].abValue[1] = 9999;
+        }
+        else{
+            pArray[i].abValue[1] = atoi(token);
+        }
+
+        //hueAngle
+        if((token = strtok(NULL, ",")) == NULL){
+            pArray[i].hueAngle = 9999;
+        }
+        else{
+            pArray[i].hueAngle = atoi(token);
+        }
+
+        //huePurity
+        if((token = strtok(NULL, ",")) == NULL){
+            pArray[i].huePurity = 9999;
+        }
+        else{
+            pArray[i].huePurity = atof(token);
+
+        }
+
+        //abHp[1]
+        if((token = strtok(NULL, ",")) == NULL){
+            pArray[i].abHp[0]= 9999;
+        }
+        else{
+            pArray[i].abHp[0] = atof(token);
+        }
+
+        //abHp[1]
+        if((token = strtok(NULL, ",")) == NULL){
+            pArray[i].abHp[1]= 9999;
+        }
+        else{
+            pArray[i].abHp[1] = atof(token);
+        }
+
+        // printf("ciName = %s, ", pArray[i].ciName);
+        // printf("pigmentname = %s, ", pArray[i].pigmentName);
+        // printf("value = %d, ", pArray[i].value);
+        // printf("chroma = %d, ", pArray[i].chroma);
+        // printf("abvalue = [%d, %d], ", pArray[i].abValue[0], pArray[i].abValue[1]);
+        // printf("hueAngle = %d, ", pArray[i].hueAngle);
+        // printf("huePurity = %.3f, ", pArray[i].huePurity);
+        // printf("abHp = [%.3f, %.3f]\n", pArray[i].abHp[0], pArray[i].abHp[1]);
+
+    }
+
+    fclose(fp);
+    return (0);
 }
-*/
+
 
 int loadPaintData(char* filename, paint_t* pArray, int* n){ // n is number of entries not lines??
 
