@@ -67,36 +67,36 @@ int main(void){
 	int paint_err = 0;
 	int r;
 
-	paint_array = malloc(sizeof(paint_t)); // rework to take 1
+	paint_array = malloc(sizeof(paint_t));
 
-	paint_err = loadPaintData(paint_filename, paint_array, &paint_n);
-	r = rand() % paint_n;
+	paint_err = loadPaintData(paint_filename, &paint_array, &paint_n); // PASSING IN DOUBLE POINTER
+	r = rand() % (paint_n + 1);
 
 	if(paint_err==1){
 		printf("Function was unsuccessful.\n");
 	}
 	else{
-		printf("Number of entries in %s: %i\n", paint_filename, paint_n);
-		printf("\nSample data loaded into array:\n");
-		printf("Rand int = %i\n", r);
+		printf("Number of data entries in %s: %i\n", paint_filename, paint_n);
+		printf("\nSample of loaded data from lines %i to %i:\n", r+13, r+22);
+		// printf("Rand int = %i\n", r);
+		printf("------------------------------------------------------------\n");
 
-		//printf("%i\n", paint_array[1].transparency);
+		// works when we return the pointer from the function or pass in double pointer
 
-		// works when we return the pointer from the function
-
-		printf("%s, %s, %s, ", paint_array[0].ciName, paint_array[0].marketingName, paint_array[0].manufacturer);
-		printf("%i, %i, %i, ", paint_array[0].transparency, paint_array[0].staining, paint_array[0].valueRange);
-		printf("%i, %i, %i, ", paint_array[0].granulating, paint_array[0].blossom, paint_array[0].diffusion);
-		printf("%i, %i, %i\n", paint_array[0].hueAngle, paint_array[0].hueShift, paint_array[0].lightfast);
+		// printf("%s, %s, %s, ", paint_array[0].ciName, paint_array[0].marketingName, paint_array[0].manufacturer);
+		// printf("%i, %i, %i, ", paint_array[0].transparency, paint_array[0].staining, paint_array[0].valueRange);
+		// printf("%i, %i, %i, ", paint_array[0].granulating, paint_array[0].blossom, paint_array[0].diffusion);
+		// printf("%i, %i, %i\n", paint_array[0].hueAngle, paint_array[0].hueShift, paint_array[0].lightfast);
 		
-		/*
 		for(int i=0; i<10; i++){
+			printf("Line %i: ", r+i+13);
 			printf("%s, %s, %s, ", paint_array[r+i].ciName, paint_array[r+i].marketingName, paint_array[r+i].manufacturer);
 			printf("%i, %i, %i, ", paint_array[r+i].transparency, paint_array[r+i].staining, paint_array[r+i].valueRange);
 			printf("%i, %i, %i, ", paint_array[r+i].granulating, paint_array[r+i].blossom, paint_array[r+i].diffusion);
-			printf("%i, %i, %i\n'", paint_array[r+i].hueAngle, paint_array[r+i].hueShift, paint_array[r+i].lightfast);
+			printf("%i, %i, %i\n", paint_array[r+i].hueAngle, paint_array[r+i].hueShift, paint_array[r+i].lightfast);
 		}
-		*/
+
+		printf("------------------------------------------------------------\n");
 
 	// deallocate memory
 	free(paint_array);
