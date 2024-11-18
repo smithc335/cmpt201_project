@@ -3,7 +3,7 @@ Claire Smith and Matt Beaulieu
 
 # COMPILATION
 
-To run file, type - make test_load - in the commandline. Then type - ./test_load - into the commandline. This will display several test lines from the program pigment.c. 
+To run file, type - make test_load - in the commandline. Then type - ./test_load - into the commandline. This will display several test lines from the program pigment.c
 
 
 # VARIABLES
