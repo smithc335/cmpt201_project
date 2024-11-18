@@ -6,32 +6,51 @@
 #include <string.h>
 #include "pigment.h"
 
-int loadPigmentData(char* filename, pigment_t *pArray, int* n){
+pigment_t* loadPigmentData(char* filename, pigment_t *pArray, int* n){
 
 
     char* token = NULL;
     char strcatch[200];
-    FILE *fp = NULL;
-
-    fp = fopen(filename, "r");
-    if (fp == NULL){
-        printf("Error: Failed to open file.\n");
-        return (1);
-    }
+    FILE* fp = fopen(filename, "r");
+    int i = 0;
 
 
+    //Getting rid of first 9 lines of file.
     for(int i = 0; i < 9; i++){
         //Check if finds end of file.
         if (fgets(strcatch, 200, fp) == NULL){
-            return (1);
+            printf("Error: Reached end of file.\n");
+            return(NULL);
         }
     }
 
 
-    for (int i = 0; i < *n; i++){
-        //Check if finds end of file.
-        if (fgets(strcatch, 200, fp) == NULL){
-            return (1);
+    if (fp == NULL){
+        printf("Error: Failed to open file.\n");
+        return (NULL);
+    }
+
+    //Allocate space for array
+    pArray = malloc((*n) * sizeof(pigment_t));
+    if (pArray == NULL){
+        return NULL;
+    }
+
+
+    while(fgets(strcatch, 200, fp) != NULL){
+
+        //Checking if need to realloc.
+        if (i == *n){
+            *n = (*n) * 2; 
+            //Checking if realloc succeeds with a temp pointer.
+            pigment_t *tempArray = realloc(pArray, (*n) * sizeof(pigment_t));
+            if (tempArray == NULL){
+                printf("Error: Realloc Failed.\n");
+                return NULL;
+            }
+
+            pArray = tempArray;
+            tempArray = NULL;
         }
 
 
@@ -123,19 +142,13 @@ int loadPigmentData(char* filename, pigment_t *pArray, int* n){
             pArray[i].abHp[1] = atof(token);
         }
 
-        // printf("ciName = %s, ", pArray[i].ciName);
-        // printf("pigmentname = %s, ", pArray[i].pigmentName);
-        // printf("value = %d, ", pArray[i].value);
-        // printf("chroma = %d, ", pArray[i].chroma);
-        // printf("abvalue = [%d, %d], ", pArray[i].abValue[0], pArray[i].abValue[1]);
-        // printf("hueAngle = %d, ", pArray[i].hueAngle);
-        // printf("huePurity = %.3f, ", pArray[i].huePurity);
-        // printf("abHp = [%.3f, %.3f]\n", pArray[i].abHp[0], pArray[i].abHp[1]);
-
+        i++;
     }
 
+    *n = i;
     fclose(fp);
-    return (0);
+    return (pArray);
+
 }
 
 

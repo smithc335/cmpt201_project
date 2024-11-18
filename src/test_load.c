@@ -8,47 +8,33 @@
 
 int main(void){
 
+
 	// Tests for loadPigmentData
-	char filename[] = "pigments.dat";
-    FILE *fp = NULL;
-    char strcatch[200];
-    int numlines = 0;
+	printf("------------------------------------------------------------\n");
+	printf("Tests for loadPigmentData:\n");
+	printf("------------------------------------------------------------\n");
 
+    char filename[] = "pigments.dat";
+    int numlines = 10;
 
-    fp = fopen(filename, "r");
-    if (fp == NULL){
-        printf("Error: Failed to open file.\n");
+    pigment_t *pArray = NULL;
+
+    pArray = loadPigmentData(filename, pArray, &numlines);
+    if (pArray == NULL){
+        printf("Error: Function Failed.\n");
         exit(EXIT_FAILURE);
     }
 
-    //Getting rid of first 9 lines of file.
-    for(int i = 0; i < 9; i++){
-        if (fgets(strcatch, 200, fp) == NULL){
-            printf("Error: Reached end of file.\n");
-            exit(EXIT_FAILURE);
-        }
-    }
-
-    //Count number of lines in file.
-    while (fgets(strcatch, 200, fp)){
-        numlines++;
-    }
-
-   pigment_t *pArray = malloc((numlines) * sizeof(pigment_t));
-
-
-    if ((loadPigmentData(filename, pArray, &numlines)) == 1){
-        printf("Error: Function did not work.\n");
-        exit(EXIT_FAILURE);
-    }
-
-
-	printf("ciName = %s, pigmentname = %s, value = %d, chroma = %d, abvalue = [%d, %d], hueAngle = %d, huePurity = %.3f, abHp = [%.3f, %.3f]\n", pArray[169].ciName, pArray[169].pigmentName, pArray[169].value, pArray[169].chroma, pArray[169].abValue[0], pArray[169].abValue[1], pArray[169].hueAngle, pArray[169].huePurity, pArray[169].abHp[0], pArray[169].abHp[1]);
-
+	printf("Number of data entries in %s: %d\n", filename, numlines);
+    printf("\nLine 1: ciName = %s, pigmentname = %s, value = %d, chroma = %d, abvalue = [%d, %d], hueAngle = %d, huePurity = %.2f, abHp = [%.2f, %.2f]\n", pArray[0].ciName, pArray[0].pigmentName, pArray[0].value, pArray[0].chroma, pArray[0].abValue[0], pArray[0].abValue[1], pArray[0].hueAngle, pArray[0].huePurity, pArray[0].abHp[0], pArray[0].abHp[1]);
+    printf("Line 30: ciName = %s, pigmentname = %s, value = %d, chroma = %d, abvalue = [%d, %d], hueAngle = %d, huePurity = %.2f, abHp = [%.2f, %.2f]\n", pArray[29].ciName, pArray[29].pigmentName, pArray[29].value, pArray[29].chroma, pArray[29].abValue[0], pArray[29].abValue[1], pArray[29].hueAngle, pArray[29].huePurity, pArray[29].abHp[0], pArray[29].abHp[1]);
+    printf("Line 111: ciName = %s, pigmentname = %s, value = %d, chroma = %d, abvalue = [%d, %d], hueAngle = %d, huePurity = %.2f, abHp = [%.2f, %.2f]\n", pArray[110].ciName, pArray[110].pigmentName, pArray[110].value, pArray[110].chroma, pArray[110].abValue[0], pArray[110].abValue[1], pArray[110].hueAngle, pArray[110].huePurity, pArray[110].abHp[0], pArray[110].abHp[1]);
+    printf("Line 170: ciName = %s, pigmentname = %s, value = %d, chroma = %d, abvalue = [%d, %d], hueAngle = %d, huePurity = %.2f, abHp = [%.2f, %.2f]\n\n", pArray[169].ciName, pArray[169].pigmentName, pArray[169].value, pArray[169].chroma, pArray[169].abValue[0], pArray[169].abValue[1], pArray[169].hueAngle, pArray[169].huePurity, pArray[169].abHp[0], pArray[169].abHp[1]);
 
     free(pArray);
     pArray = NULL;
-    fclose(fp);
+
+
 
 	// Tests for loadPaintData
 	printf("------------------------------------------------------------\n");
