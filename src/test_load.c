@@ -44,17 +44,15 @@ int main(void){
 	srand(time(NULL));
 
 	char paint_filename[] = "paints.dat"; 
-	paint_t* paint_array;
+	paint_t* paint_array = NULL;
 	int paint_n;
-	int paint_err = 0;
+	// int paint_err = 0;
 	int r;
 
-	paint_array = malloc(sizeof(paint_t));
-
-	paint_err = loadPaintData(paint_filename, &paint_array, &paint_n); // PASSING IN DOUBLE POINTER
+	paint_array = loadPaintData(paint_filename, paint_array, &paint_n);
 	r = rand() % (paint_n + 1);
 
-	if(paint_err==1){
+	if(paint_array == NULL){
 		printf("Function was unsuccessful.\n");
 	}
 	else{
