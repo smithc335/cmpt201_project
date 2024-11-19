@@ -27,10 +27,27 @@ typedef struct paint_template{
 	int lightfast;
 } paint_t;
 
-// add documentation to functions!!
-pigment_t* loadPigmentData(char* filename, pigment_t *pArray, int* n);
-//Purpose: To open a file that contains pigment information and assign pigment values to structure members within a dynamically allocated array of structures. Each structure represents a different pigment.
-//Parameters: A string representing the filename, a dynamically allocated array of structures, and an integer pointer indicating the number of lines in the file containing pigments.
-//Returns: 0 if function was successful in assigning pigment values and 1 if the file was unable to open properly. 
+/*******************************************************************************
+* Purpose: To open a file that contains pigment information and assign pigment 
+*          values to structure members within a dynamically allocated array of 
+*          structures. Each structure represents a different pigment.
+* Parameters:
+*		char* filename - A string representing the filename.
+*		pigment_t* pArray - A dynamically allocated array of structures.
+*		int* n - An integer pointer indicating the number of lines in the file 
+*				 containing pigments.
+* Returns: pigment_t* - Pointer to the dynamically allocated array of structs.
+*******************************************************************************/
+pigment_t* loadPigmentData(char* filename, pigment_t* pArray, int* n);
 
+/*******************************************************************************
+* Purpose: Loads data from a given file into a dynamically allocated array of
+*		   paint structures. Each struct represents one paint or one line.
+* Parameters:
+*		char* filename - String representing the given filename.
+*		paint_t* pArray - Pointer to dynamically allocated array of structures.
+*		int* n - Integer pointer indicating the number of data lines read from
+*				 the given file.
+* Returns: paint_t* - Pointer to the dynamically allocated array of structs.
+*******************************************************************************/
 paint_t* loadPaintData(char* filename, paint_t* pArray, int* n);
