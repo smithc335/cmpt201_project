@@ -62,13 +62,13 @@ int main(void){
 
 	srand(time(NULL));
 
-	char paintFilename[] = "paints.dat"; 
+	char paintFilename[] = "../data/paints.dat"; 
 	paint_t* paintArray = NULL;
 	int paintN;
 	int r;
 
 	paintArray = loadPaintData(paintFilename, paintArray, &paintN);
-	r = rand() % (paintN + 1);
+	r = rand() % (paintN - 9); // min 0 max 686
 
 	if(paintArray == NULL){
 		printf("Function was unsuccessful.\n");

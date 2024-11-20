@@ -156,11 +156,12 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n){
 
 	FILE* fp = fopen(filename, "r");
 	if(fp==NULL){
+        printf("Error: Failed to open file.\n");
 		return (pArray); // returning array (array=NULL) for function failure
 	}
 
 	char line[140];
-	char* gets_err;
+	char* getsRetVal;
 	int capacity = 10;
 	char* token;
 
@@ -175,9 +176,9 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n){
 	pArray = malloc(capacity * sizeof(paint_t));
 
 	// populate array
-	gets_err = fgets(line, 95, fp); // get first entry line from file
+	getsRetVal = fgets(line, 95, fp); // get first entry line from file
 
-	while(gets_err!=NULL){
+	while(getsRetVal!=NULL){
 		// reallocate if n > capacity of pArray
 		if(*n>=capacity){
 			capacity *= 2;
@@ -185,9 +186,9 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n){
 		}
 
 		// tokenize line and populate
-        // currently catching missing values as both ",," (token==NULL) and "-"
+        // currently catching missing values as both ",," (token==NULL) and "—"
 		token = strtok(line, ","); // ciName
-		if(token==NULL || strcmp(token, "-")==0){
+		if(token==NULL || strcmp(token, "—")==0){
             strcpy(pArray[*n].ciName, "EMPTY");
         }
         else{
@@ -195,7 +196,7 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n){
 		}
 
 		token = strtok(NULL, ","); // marketingName
-		if(token==NULL || strcmp(token, "-")==0){
+		if(token==NULL || strcmp(token, "—")==0){
             strcpy(pArray[*n].marketingName, "EMPTY");
         }
         else{
@@ -203,7 +204,7 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n){
 		}
 
 		token = strtok(NULL, ","); // manufacturer
-        if(token==NULL || strcmp(token, "-")==0){
+        if(token==NULL || strcmp(token, "—")==0){
             strcpy(pArray[*n].manufacturer, "EMPTY");
         }
         else{
@@ -213,7 +214,7 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n){
 		token = strtok(NULL, ","); // code (NOT LISTED IN STRUCT!)
 
 		token = strtok(NULL, ","); // transparency
-        if(token==NULL || strcmp(token, "-")==0){
+        if(token==NULL || strcmp(token, "—")==0){
             pArray[*n].transparency = 999;
         }
         else{
@@ -221,7 +222,7 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n){
 		}
 
 		token = strtok(NULL, ","); // staining
-        if(token==NULL || strcmp(token, "-")==0){
+        if(token==NULL || strcmp(token, "—")==0){
             pArray[*n].staining = 999;
         }
         else{
@@ -229,7 +230,7 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n){
 		}
 
 		token = strtok(NULL, ","); // valueRange
-        if(token==NULL || strcmp(token, "-")==0){
+        if(token==NULL || strcmp(token, "—")==0){
             pArray[*n].valueRange = 999;
         }
         else{
@@ -237,7 +238,7 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n){
 		}
 
 		token = strtok(NULL, ","); // granulating
-		if(token==NULL || strcmp(token, "-")==0){
+		if(token==NULL || strcmp(token, "—")==0){
             pArray[*n].granulating = 999;
         }
         else{
@@ -245,7 +246,7 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n){
 		}
 
 		token = strtok(NULL, ","); // blossom
-        if(token==NULL || strcmp(token, "-")==0){
+        if(token==NULL || strcmp(token, "—")==0){
             pArray[*n].blossom = 999;
         }
         else{
@@ -253,7 +254,7 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n){
 		}
 
 		token = strtok(NULL, ","); // diffusion
-        if(token==NULL || strcmp(token, "-")==0){
+        if(token==NULL || strcmp(token, "—")==0){
             pArray[*n].diffusion = 999;
         }
         else{
@@ -261,7 +262,7 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n){
 		}
 
 		token = strtok(NULL, ","); // hueAngle
-        if(token==NULL || strcmp(token, "-")==0){
+        if(token==NULL || strcmp(token, "—")==0){
             pArray[*n].hueAngle = 999;
         }
         else{
@@ -269,7 +270,7 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n){
 		}
 
 		token = strtok(NULL, ","); // hueShift
-        if(token==NULL || strcmp(token, "-")==0){
+        if(token==NULL || strcmp(token, "—")==0){
             pArray[*n].hueShift = 999;
         }
         else{
@@ -287,7 +288,7 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n){
 
 		*n += 1; // add entry to number of entries
 
-		gets_err = fgets(line, 95, fp); // get next entry line from file
+		getsRetVal = fgets(line, 95, fp); // get next entry line from file
 	}
 
 	fclose(fp);
