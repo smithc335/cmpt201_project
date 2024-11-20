@@ -14,39 +14,40 @@ pigment_t* loadPigmentData(char* filename, pigment_t *pArray, int* n){
     FILE* fp = fopen(filename, "r");
     int i = 0;
 
+    //Testing if file opened 
+    if (fp == NULL){
+        printf("Error: Failed to open file.\n");
+        return (NULL);
+    }
+
 
     //Getting rid of first 9 lines of file.
     for(int i = 0; i < 9; i++){
         //Check if finds end of file.
         if (fgets(strcatch, 200, fp) == NULL){
             printf("Error: Reached end of file.\n");
-            return(NULL);
+            return (NULL);
         }
     }
 
 
-    if (fp == NULL){
-        printf("Error: Failed to open file.\n");
-        return (NULL);
-    }
-
     //Allocate space for array
     pArray = malloc((*n) * sizeof(pigment_t));
     if (pArray == NULL){
-        return NULL;
+        return (NULL);
     }
 
-
+    //Looping through file
     while(fgets(strcatch, 200, fp) != NULL){
 
         //Checking if need to realloc.
-        if (i == *n){
+        if(i == *n){
             *n = (*n) * 2; 
             //Checking if realloc succeeds with a temp pointer.
             pigment_t *tempArray = realloc(pArray, (*n) * sizeof(pigment_t));
-            if (tempArray == NULL){
+            if(tempArray == NULL){
                 printf("Error: Realloc Failed.\n");
-                return NULL;
+                return (NULL);
             }
 
             pArray = tempArray;
@@ -141,7 +142,6 @@ pigment_t* loadPigmentData(char* filename, pigment_t *pArray, int* n){
         else{
             pArray[i].abHp[1] = atof(token);
         }
-
         i++;
     }
 
