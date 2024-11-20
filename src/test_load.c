@@ -8,7 +8,6 @@
 
 int main(void){
 
-
 	// Tests for loadPigmentData
 	printf("------------------------------------------------------------\n");
 	printf("Tests for loadPigmentData:\n");
@@ -17,12 +16,11 @@ int main(void){
     char pigmentFilename[] = "../data/pigments.dat"; 
     int numLines = 10;
 	srand(time(NULL));
-    pigment_t *pArray = NULL;
+    pigment_t* pigmentArray = NULL;
 	int randomNum;
-
 	
-    pArray = loadPigmentData(pigmentFilename, pArray, &numLines);
-    if(pArray == NULL){
+    pigmentArray = loadPigmentData(pigmentFilename, pigmentArray, &numLines);
+    if(pigmentArray == NULL){
         printf("Function was unsuccessful.\n");
         exit(EXIT_FAILURE);
     }
@@ -30,25 +28,19 @@ int main(void){
 	randomNum = rand() % (numLines - 9);
 	printf("Number of data entries in %s: %d\n", pigmentFilename, numLines);
 	printf("\nSample of loaded data from lines %i to %i:\n", randomNum+10, randomNum+19);
-
-	
-
-
 	printf("------------------------------------------------------------\n");
 
 	for(int i=0; i<10; i++){
 		printf("Line %d: ", randomNum+10+i);
-		printf("%s, %s, %d, ", pArray[randomNum+i].ciName, pArray[randomNum+i].pigmentName, pArray[randomNum+i].value);
-		printf("%d, %d, %d, ", pArray[randomNum+i].chroma, pArray[randomNum+i].abValue[0], pArray[randomNum+i].abValue[1]);
-		printf("%d, %.2f, %.2f, %.2f\n", pArray[randomNum+i].hueAngle, pArray[randomNum+i].huePurity, pArray[randomNum+i].abHp[0], pArray[randomNum+i].abHp[1]);
-
+		printf("%s, %s, %d, ", pigmentArray[randomNum+i].ciName, pigmentArray[randomNum+i].pigmentName, pigmentArray[randomNum+i].value);
+		printf("%d, %d, %d, ", pigmentArray[randomNum+i].chroma, pigmentArray[randomNum+i].abValue[0], pigmentArray[randomNum+i].abValue[1]);
+		printf("%d, %.2f, %.2f, %.2f\n", pigmentArray[randomNum+i].hueAngle, pigmentArray[randomNum+i].huePurity, pigmentArray[randomNum+i].abHp[0], pigmentArray[randomNum+i].abHp[1]);
 	}
 
 	printf("------------------------------------------------------------\n");
 
-
-    free(pArray);
-    pArray = NULL;
+    free(pigmentArray);
+    pigmentArray = NULL;
 
 	// Tests for loadPaintData
 	printf("------------------------------------------------------------\n");
@@ -63,7 +55,7 @@ int main(void){
 	int r;
 
 	paintArray = loadPaintData(paintFilename, paintArray, &paintN);
-	r = rand() % (paintN - 9); // min 0 max 686
+	r = rand() % (paintN - 9); // min 0 and max 686 to account for printing 10 lines
 
 	if(paintArray == NULL){
 		printf("Function was unsuccessful.\n");

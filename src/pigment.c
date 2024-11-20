@@ -8,7 +8,6 @@
 
 pigment_t* loadPigmentData(char* filename, pigment_t *pArray, int* n){
 
-
     char* token = NULL;
     char strcatch[200];
     FILE* fp = fopen(filename, "r");
@@ -20,7 +19,6 @@ pigment_t* loadPigmentData(char* filename, pigment_t *pArray, int* n){
         return (NULL);
     }
 
-
     //Getting rid of first 9 lines of file.
     for(int i = 0; i < 9; i++){
         //Check if finds end of file.
@@ -29,7 +27,6 @@ pigment_t* loadPigmentData(char* filename, pigment_t *pArray, int* n){
             return (NULL);
         }
     }
-
 
     //Allocate space for array
     pArray = malloc((*n) * sizeof(pigment_t));
@@ -54,14 +51,12 @@ pigment_t* loadPigmentData(char* filename, pigment_t *pArray, int* n){
             tempArray = NULL;
         }
 
-
         //ciNAME
         if((token = strtok(strcatch, ",")) == NULL){
             strcpy(pArray[i].ciName, "EMPTY");
         }
         else{
             strcpy(pArray[i].ciName, token);
-
         }
         
         //pigmentName
@@ -70,7 +65,6 @@ pigment_t* loadPigmentData(char* filename, pigment_t *pArray, int* n){
         }
         else{
             strcpy(pArray[i].pigmentName, token);
-
         }
 
         //value
@@ -79,7 +73,6 @@ pigment_t* loadPigmentData(char* filename, pigment_t *pArray, int* n){
         }
         else{
             pArray[i].value = atoi(token);
-
         }
 
         //chroma
@@ -88,9 +81,7 @@ pigment_t* loadPigmentData(char* filename, pigment_t *pArray, int* n){
         }
         else{
             pArray[i].chroma = atoi(token);
-
         }
-
 
         //abvalue[0]
         if((token = strtok(NULL, ",")) == NULL){
@@ -98,8 +89,6 @@ pigment_t* loadPigmentData(char* filename, pigment_t *pArray, int* n){
         }
         else{
             pArray[i].abValue[0] = atoi(token);
-
-
         }
 
         //abvalue[1]
@@ -124,7 +113,6 @@ pigment_t* loadPigmentData(char* filename, pigment_t *pArray, int* n){
         }
         else{
             pArray[i].huePurity = atof(token);
-
         }
 
         //abHp[1]
@@ -142,13 +130,13 @@ pigment_t* loadPigmentData(char* filename, pigment_t *pArray, int* n){
         else{
             pArray[i].abHp[1] = atof(token);
         }
+
         i++;
     }
 
     *n = i;
     fclose(fp);
     return (pArray);
-
 }
 
 
@@ -211,7 +199,7 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n){
 			strcpy(pArray[*n].manufacturer, token);
 		}
 
-		token = strtok(NULL, ","); // code (NOT LISTED IN STRUCT!)
+		token = strtok(NULL, ","); // code (not listed as struct member to be loaded)
 
 		token = strtok(NULL, ","); // transparency
         if(token==NULL || strcmp(token, "—")==0){
@@ -287,7 +275,6 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n){
 		}
 
 		*n += 1; // add entry to number of entries
-
 		getsRetVal = fgets(line, 95, fp); // get next entry line from file
 	}
 

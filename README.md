@@ -3,13 +3,13 @@ Claire Smith and Matt Beaulieu
 
 # COMPILATION
 
-To run file, type "make test_load" in the commandline. Then type 
-"./test_load" into the commandline. This will display several test cases using
-functions implemented in the pigment.c file.
+To run file, type "make test_load" in the commandline while in the src 
+directory. Then type "./test_load" into the commandline. This will display
+several test cases using functions implemented in the pigment.c file.
 
 # VARIABLES
 
-pigments.dat: 
+In pigments.dat: 
     COLOR INDEX = generic C.I. name of the pigment (this is missing for 
                   convenience mixtures and unclassified mineral pigments)
     PIGMENT NAME = common pigment name or marketing name
@@ -23,7 +23,7 @@ pigments.dat:
     aHP, bHP = ab coordinates for pigment hue purity, scaled so that maximum
                possible hue purity equals 1.0
 
-paints.dat: 
+In paints.dat: 
     C.I.NAME = pigment
     MARKETING NAME = paint
     Manufacturer
