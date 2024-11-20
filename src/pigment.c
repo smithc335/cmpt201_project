@@ -185,67 +185,103 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n){
 		}
 
 		// tokenize line and populate
-		// SOMETIMES THE MISSING VALUES ARE ',-,' SO WTF!!!
+		// SOMETIMES THE MISSING VALUES ARE ',-,'
 		token = strtok(line, ","); // ciName
-		if(token!=NULL){
+		if(token==NULL || token[0]=='-'){
+            strcpy(pArray[*n].ciName, "EMPTY");
+        }
+        else{
 			strcpy(pArray[*n].ciName, token);
 		}
 
 		token = strtok(NULL, ","); // marketingName
-		if(token!=NULL){
+		if(token==NULL || token[0]=='-'){
+            strcpy(pArray[*n].marketingName, "EMPTY");
+        }
+        else{
 			strcpy(pArray[*n].marketingName, token);
 		}
 
 		token = strtok(NULL, ","); // manufacturer
-        if(token!=NULL){
+        if(token==NULL || token[0]=='-'){
+            strcpy(pArray[*n].manufacturer, "EMPTY");
+        }
+        else{
 			strcpy(pArray[*n].manufacturer, token);
 		}
 
 		token = strtok(NULL, ","); // code (NOT LISTED IN STRUCT!)
 
 		token = strtok(NULL, ","); // transparency
-        if(token!=NULL){
+        if(token==NULL || token[0]=='-'){
+            pArray[*n].transparency = 999;
+        }
+        else{
 			pArray[*n].transparency = atoi(token);
 		}
 
 		token = strtok(NULL, ","); // staining
-        if(token!=NULL){
+        if(token==NULL || token[0]=='-'){
+            pArray[*n].staining = 999;
+        }
+        else{
 			pArray[*n].staining = atoi(token);
 		}
 
 		token = strtok(NULL, ","); // valueRange
-        if(token!=NULL){
+        if(token==NULL || token[0]=='-'){
+            pArray[*n].valueRange = 999;
+        }
+        else{
 			pArray[*n].valueRange = atoi(token);
 		}
 
 		token = strtok(NULL, ","); // granulating
-		if(token!=NULL){
+		if(token==NULL || token[0]=='-'){
+            pArray[*n].granulating = 999;
+        }
+        else{
 			pArray[*n].granulating = atoi(token);
 		}
 
 		token = strtok(NULL, ","); // blossom
-        if(token!=NULL){
+        if(token==NULL || token[0]=='-'){
+            pArray[*n].blossom = 999;
+        }
+        else{
 			pArray[*n].blossom = atoi(token);
 		}
 
 		token = strtok(NULL, ","); // diffusion
-        if(token!=NULL){
+        if(token==NULL || token[0]=='-'){
+            pArray[*n].diffusion = 999;
+        }
+        else{
 			pArray[*n].diffusion = atoi(token);
 		}
 
 		token = strtok(NULL, ","); // hueAngle
-        if(token!=NULL){
+        if(token==NULL || token[0]=='-'){
+            pArray[*n].hueAngle = 999;
+        }
+        else{
 			pArray[*n].hueAngle = atoi(token);
 		}
 
 		token = strtok(NULL, ","); // hueShift
-        if(token!=NULL){
+        if(token==NULL || strcmp(token, "-")==0){
+            pArray[*n].hueShift = 999;
+        }
+        else{
 			pArray[*n].hueShift = atoi(token); // MAKE SURE NEGATIVES WORK
 		}
 
 		token = strtok(NULL, "/"); // lightfast 1998
 		token = strtok(NULL, "\0"); // lightfast 2004
-        if(token!=NULL && token[0]!='.'){
+        if(token==NULL || token[0]=='.'){
+            pArray[*n].lightfast = 999;
+        }
+        else{
 			pArray[*n].lightfast = atoi(token);
 		}
 
