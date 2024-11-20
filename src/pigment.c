@@ -172,15 +172,15 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n){
 		fgets(line, 140, fp);
 	}
 
-	// allocate memory for 10 entries first
-	pArray = malloc(capacity * sizeof(paint_t));
+	// allocate memory
+	pArray = malloc(capacity * sizeof(paint_t)); // allocate for 10 entries first
 
 	// populate array
 	getsRetVal = fgets(line, 95, fp); // get first entry line from file
 
 	while(getsRetVal!=NULL){
 		// reallocate if n > capacity of pArray
-		if(*n>=capacity){
+		if(*n >= capacity){
 			capacity *= 2;
 			pArray = realloc(pArray, (capacity * sizeof(paint_t)));
 		}
@@ -279,19 +279,24 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n){
 
 		token = strtok(NULL, "/"); // lightfast 1998
 		token = strtok(NULL, "\0"); // lightfast 2004
-        if(token==NULL || strcmp(token, ".")==0){
-            pArray[*n].lightfast = 999;
-        }
-        else{
+        if(token!=NULL && token[0]!='.'){
 			pArray[*n].lightfast = atoi(token);
 		}
 
-		*n += 1; // add entry to number of entries
+		// add entry to number of entries
+		*n += 1;
 
 		getsRetVal = fgets(line, 95, fp); // get next entry line from file
 	}
 
+	/*
+	printf("%s, %s, %s, ", pArray[681].ciName, pArray[681].marketingName, pArray[681].manufacturer);
+	printf("%i, %i, %i, ", pArray[681].transparency, pArray[681].staining, pArray[681].valueRange);
+	printf("%i, %i, %i, ", pArray[681].granulating, pArray[681].blossom, pArray[681].diffusion);
+	printf("%i, %i, %i\n", pArray[681].hueAngle, pArray[681].hueShift, pArray[681].lightfast);
+	*/
+
 	fclose(fp);
 
-	return (pArray); // function was successful
+	return pArray; // function was successful
 }
