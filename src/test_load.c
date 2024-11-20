@@ -34,8 +34,6 @@ int main(void){
     free(pArray);
     pArray = NULL;
 
-
-
 	// Tests for loadPaintData
 	printf("------------------------------------------------------------\n");
 	printf("Tests for loadPaintData:\n");
@@ -43,38 +41,37 @@ int main(void){
 
 	srand(time(NULL));
 
-	char paint_filename[] = "paints.dat"; 
-	paint_t* paint_array = NULL;
-	int paint_n;
-	// int paint_err = 0;
+	char paintFilename[] = "paints.dat"; 
+	paint_t* paintArray = NULL;
+	int paintN;
 	int r;
 
-	paint_array = loadPaintData(paint_filename, paint_array, &paint_n);
-	r = rand() % (paint_n + 1);
+	paintArray = loadPaintData(paintFilename, paintArray, &paintN);
+	r = rand() % (paintN + 1);
 
-	if(paint_array == NULL){
+	if(paintArray == NULL){
 		printf("Function was unsuccessful.\n");
+		exit(EXIT_FAILURE);
 	}
 	else{
-		printf("Number of data entries in %s: %i\n", paint_filename, paint_n);
+		printf("Number of data entries in %s: %i\n", paintFilename, paintN);
 		printf("\nSample of loaded data from lines %i to %i:\n", r+13, r+22);
-		// printf("Rand int = %i\n", r);
 		printf("------------------------------------------------------------\n");
 		
 		for(int i=0; i<10; i++){
 			printf("Line %i: ", r+i+13);
-			printf("%s, %s, %s, ", paint_array[r+i].ciName, paint_array[r+i].marketingName, paint_array[r+i].manufacturer);
-			printf("%i, %i, %i, ", paint_array[r+i].transparency, paint_array[r+i].staining, paint_array[r+i].valueRange);
-			printf("%i, %i, %i, ", paint_array[r+i].granulating, paint_array[r+i].blossom, paint_array[r+i].diffusion);
-			printf("%i, %i, %i\n", paint_array[r+i].hueAngle, paint_array[r+i].hueShift, paint_array[r+i].lightfast);
+			printf("%s, %s, %s, ", paintArray[r+i].ciName, paintArray[r+i].marketingName, paintArray[r+i].manufacturer);
+			printf("%i, %i, %i, ", paintArray[r+i].transparency, paintArray[r+i].staining, paintArray[r+i].valueRange);
+			printf("%i, %i, %i, ", paintArray[r+i].granulating, paintArray[r+i].blossom, paintArray[r+i].diffusion);
+			printf("%i, %i, %i\n", paintArray[r+i].hueAngle, paintArray[r+i].hueShift, paintArray[r+i].lightfast);
 		}
 
 		printf("------------------------------------------------------------\n");
 
 	// deallocate memory
-	free(paint_array);
-	paint_array = NULL;
+	free(paintArray);
+	paintArray = NULL;
 	}
 
-	return 0;
+	return (0);
 }
