@@ -402,5 +402,55 @@ int getFileRange(paint_t* pp, int npp, int* fmin, int* fmax, gRange_t getType){
 
 
 paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* nspp){ // MATT
+    paint_t* paintArray;
+    int capacity = 10;
+    int i = 0;
+    int j = 0;
+
+    //Allocate space for array
+    paintArray = malloc((capacity) * sizeof(paint_t));
+    if (paintArray == NULL){
+        return (NULL);
+    }
+
+    //Looping through file
+    while(i < 5){ //CHANGE TO *npp
+
+        //Checking if need to realloc.
+        if(i == capacity){
+            capacity = (capacity) * 2; 
+            //Checking if realloc succeeds with a temp pointer.
+            paint_t* tempArray = realloc(paintArray, (capacity) * sizeof(paint_t));
+            if(tempArray == NULL){
+                printf("Error: Realloc Failed.\n");
+                return (NULL);
+            }
+
+            paintArray = tempArray;
+            tempArray = NULL;
+
+
+
+        if ( strcmp (getType, MARKETINGNAME) == 0 ){
+
+            if( (strcmp(pp[i].marketingName, name)) == 0 ){
+                paintArray[j] = pp[i];
+                *nspp++;
+                j++;
+            }
+
+        }
+
+        i++;
+
+    }
+
+    return (paintArray)
+}
+
+
+
+
+
 
 }
