@@ -45,7 +45,9 @@ int main(void){
     }
 
 
-
+    // deallocate memory for paintArray
+	free(paintArray);
+	paintArray = NULL;
 
     exit(EXIT_SUCCESS);
 }
