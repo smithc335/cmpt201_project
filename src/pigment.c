@@ -1,10 +1,14 @@
 // Claire Smith and Matt Beaulieu
-// Project Milestone 1 Function Implementations
+// Project Function Implementations
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include "pigment.h"
+
+/*******************************************************************************
+* MILESTONE 1 FUNCTIONS
+*******************************************************************************/
 
 pigment_t* loadPigmentData(char* filename, pigment_t *pArray, int* n){
 
@@ -281,4 +285,27 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n){
 	fclose(fp);
 
 	return (pArray); // function was successful
+}
+
+/*******************************************************************************
+* MILESTONE 2 FUNCTIONS
+*******************************************************************************/
+
+int printPigment(pigment_t* pp, int i, int n){ // MATT
+
+}
+
+
+int printPaint(paint_t* pp, int i, int n){ // CLAIRE
+
+}
+
+
+paint* getPaintRange(paint_t* pp, int npp, float rmin, float rmax, gRange_t getType, int* nspp){ // CLAIRE
+
+}
+
+
+paint* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* nspp){ // MATT
+
 }

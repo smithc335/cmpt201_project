@@ -1,5 +1,5 @@
 // Claire Smith and Matt Beaulieu
-// Project Milestone 1 Header File
+// Project Header File
 
 typedef struct pigment_template{
 	char ciName[50];
@@ -40,6 +40,7 @@ typedef struct paint_template{
 *******************************************************************************/
 pigment_t* loadPigmentData(char* filename, pigment_t* pArray, int* n);
 
+
 /*******************************************************************************
 * Purpose: Loads data from a given file into a dynamically allocated array of
 *		   paint structures. Each struct represents one paint or one line.
@@ -51,3 +52,39 @@ pigment_t* loadPigmentData(char* filename, pigment_t* pArray, int* n);
 * Returns: paint_t* - Pointer to the dynamically allocated array of structs.
 *******************************************************************************/
 paint_t* loadPaintData(char* filename, paint_t* pArray, int* n);
+
+
+/*******************************************************************************
+* Purpose: 
+* Parameters:
+*
+* Returns: 
+*******************************************************************************/
+int printPigment(pigment_t* pp, int i, int n) // MATT
+
+
+/*******************************************************************************
+* Purpose: 
+* Parameters:
+*
+* Returns: 
+*******************************************************************************/
+int printPaint(paint_t* pp, int i, int n) // CLAIRE
+
+
+/*******************************************************************************
+* Purpose: 
+* Parameters:
+*
+* Returns: 
+*******************************************************************************/
+paint* getPaintRange(paint_t* pp, int npp, float rmin, float rmax, gRange_t getType, int* nspp) // CLAIRE
+
+
+/*******************************************************************************
+* Purpose: 
+* Parameters:
+*
+* Returns: 
+*******************************************************************************/
+paint* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* nspp) // MATT
