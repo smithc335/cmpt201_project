@@ -32,9 +32,7 @@ typedef enum{
 } gRange_t;
 
 typedef enum{
-
-	CINAME, MARKETINGNAME, MANUFACTURER;
-
+	CINAME, MARKETINGNAME, MANUFACTURER
 } gValue_t;
 
 /*******************************************************************************
@@ -70,7 +68,7 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n);
 *
 * Returns: 
 *******************************************************************************/
-int printPigment(pigment_t* pp, int i, int n) // MATT
+int printPigment(pigment_t* pp, int i, int n); // MATT
 
 
 /*******************************************************************************
@@ -79,7 +77,7 @@ int printPigment(pigment_t* pp, int i, int n) // MATT
 *
 * Returns: 
 *******************************************************************************/
-int printPaint(paint_t* pp, int i, int n) // CLAIRE
+int printPaint(paint_t* pp, int i, int n); // CLAIRE
 
 
 /*******************************************************************************
@@ -88,7 +86,7 @@ int printPaint(paint_t* pp, int i, int n) // CLAIRE
 *
 * Returns: 
 *******************************************************************************/
-paint_t* getPaintRange(paint_t* pp, int npp, float rmin, float rmax, gRange_t getType, int* nspp) // CLAIRE
+paint_t* getPaintRange(paint_t* pp, int npp, float rmin, float rmax, gRange_t getType, int* nspp); // CLAIRE
 
 
 /*******************************************************************************
@@ -97,4 +95,13 @@ paint_t* getPaintRange(paint_t* pp, int npp, float rmin, float rmax, gRange_t ge
 *
 * Returns: 
 *******************************************************************************/
-paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* nspp) // MATT
+int getFileRange(paint_t* pp, int npp, int* fmin, int* fmax, gRange_t getType);
+
+
+/*******************************************************************************
+* Purpose: 
+* Parameters:
+*
+* Returns: 
+*******************************************************************************/
+paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* nspp); // MATT

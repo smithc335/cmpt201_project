@@ -8,8 +8,14 @@
 int main(void){
 
     // Tests for printPigment (MATT)
+    printf("------------------------------------------------------------\n");
+	printf("Tests for printPigment:\n");
+	printf("------------------------------------------------------------\n");
 
     // Tests for printPaint (CLAIRE)
+    printf("------------------------------------------------------------\n");
+	printf("Tests for printPaint:\n");
+	printf("------------------------------------------------------------\n");
 
     char paintFilename[] = "../data/paints.dat"; 
 	paint_t* paintArray = NULL;
@@ -18,17 +24,28 @@ int main(void){
     paintArray = loadPaintData(paintFilename, paintArray, &paintN);
 
     // Tests for getPaintRange (CLAIRE)
+    printf("------------------------------------------------------------\n");
+	printf("Tests for getPaintRange:\n");
+	printf("------------------------------------------------------------\n");
 
-    // deallocate memory
-    // free(array);
-    // array = NULL;
+    paint_t* spaRange;
+    int spaRangeN;
+    float range[] = {0.5, 1};
+
+    spaRange = getPaintRange(paintArray, paintN, range[0], range[1], GRANULATING, &spaRangeN);
+
+    // deallocate memory for sub array
+    free(spaRange);
+    spaRange = NULL;
 
     // Tests for getPaintValue (MATT)
-
+    printf("------------------------------------------------------------\n");
+	printf("Tests for getPaintValue:\n");
+	printf("------------------------------------------------------------\n");
  
 
     paint_t* paintPoint;
-    char name[] = "cerulean blue"
+    char name[] = "cerulean blue";
     int* numResult = 0;
 
 

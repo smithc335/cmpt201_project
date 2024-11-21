@@ -338,6 +338,11 @@ paint_t* getPaintRange(paint_t* pp, int npp, float rmin, float rmax, gRange_t ge
     xlow = fmin + rmin * (fmax - fmin);
     xhigh = fmin + rmax * (fmax - fmin);
 
+    printf("File Min: %d\n", fmin);
+    printf("File Max: %d\n", fmax);
+    printf("xLow: %.3f\n", xlow);
+    printf("xHigh: %.3f\n", xhigh);
+
     // allocate memory
     spa = malloc(capacity * sizeof(paint_t));
 
