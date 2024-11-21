@@ -11,7 +11,17 @@ int main(void){
 
     // Tests for printPaint (CLAIRE)
 
+    char paintFilename[] = "../data/paints.dat"; 
+	paint_t* paintArray = NULL;
+	int paintN;
+
+    paintArray = loadPaintData(paintFilename, paintArray, &paintN);
+
     // Tests for getPaintRange (CLAIRE)
+
+    // deallocate memory
+    // free(array);
+    // array = NULL;
 
     // Tests for getPaintValue (MATT)
 

@@ -28,7 +28,7 @@ typedef struct paint_template{
 } paint_t;
 
 typedef enum{
-
+	HUE, VALUE, GRANULATING, TRANSPARENT, STAINING, BLOOM, LIGHTFAST
 } gRange_t;
 
 typedef enum{

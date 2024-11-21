@@ -303,6 +303,101 @@ int printPaint(paint_t* pp, int i, int n){ // CLAIRE
 
 paint_t* getPaintRange(paint_t* pp, int npp, float rmin, float rmax, gRange_t getType, int* nspp){ // CLAIRE
 
+    int capacity = 10;
+    int fmin = 0;
+    int fmax = 0;
+    int err;
+    float xlow, xhigh;
+    paint_t* spa = NULL;
+    
+    // check input (returning NULL pointer for failure)
+    if(pp==NULL){
+        printf("Error: Passed in empty array.\n");
+        return (spa);
+    }
+    else if(rmin<0 || rmin>1 || rmax<0 || rmax>1){
+        printf("Error: Passed in invalid range value(s).\n");
+        return (spa);
+    }
+    else if(rmin>rmax){ // passing in equal values is valid
+        printf("Error: rmin is greater than rmax.\n");
+        return (spa);
+    }
+
+    *nspp = 0; // start count of valid entries at 0
+
+    // get min and max values from file
+    err = getFileRange(pp, npp, &fmin, &fmax, getType);
+
+    if(err==1){
+        printf("Error: Could not retrieve file range values.\n");
+        return (spa);
+    }
+
+    // calculate xlow and xhigh from file min and max values
+    xlow = fmin + rmin * (fmax - fmin);
+    xhigh = fmin + rmax * (fmax - fmin);
+
+    // allocate memory
+    spa = malloc(capacity * sizeof(paint_t));
+
+    // loop through main paint array and load valid entries into subarray
+    // reallocate subarray if entries reaches capacity
+    // increment nspp to count valid entries
+
+    // set subarray pointer to NULL and return if no valid entries were found (nspp==0)
+
+    return (spa); // return subarray
+}
+
+int getFileRange(paint_t* pp, int npp, int* fmin, int* fmax, gRange_t getType){
+
+    if(pp==NULL){
+        printf("Error: Passed in empty array.\n");
+        return (1); // failure
+    }
+
+    char element[12];
+
+    switch(getType){
+        case(0):
+            strcpy(element, "hueAngle");
+            break;
+        case(1):
+            strcpy(element, "valueRange");
+            break;
+        case(2):
+            strcpy(element, "granulating");
+            break;
+        case(3):
+            strcpy(element, "transparency");
+            break;
+        case(4):
+            strcpy(element, "staining");
+            break;
+        case(5):
+            strcpy(element, "blossom");
+            break;
+        case(6):
+            strcpy(element, "lightfast");
+            break;
+    }
+
+    // loop through main array to find min and max
+    *fmin = pp[0].element;
+    *fmax = pp[0].element;
+
+    for(int i=0; i<npp; i++){
+        if(pp[i].element < *fmin){
+            *fmin = pp[i].element;
+        }
+
+        if(pp[i].element > *fmax){
+            *fmax = pp[i].element;
+        }
+    }
+
+    return (0); // success
 }
 
 
