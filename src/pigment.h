@@ -27,6 +27,14 @@ typedef struct paint_template{
 	int lightfast;
 } paint_t;
 
+typedef enum{
+
+} gRange_t;
+
+typedef enum{
+
+} gValue_t;
+
 /*******************************************************************************
 * Purpose: To open a file that contains pigment information and assign pigment 
 *          values to structure members within a dynamically allocated array of 
@@ -78,7 +86,7 @@ int printPaint(paint_t* pp, int i, int n) // CLAIRE
 *
 * Returns: 
 *******************************************************************************/
-paint* getPaintRange(paint_t* pp, int npp, float rmin, float rmax, gRange_t getType, int* nspp) // CLAIRE
+paint_t* getPaintRange(paint_t* pp, int npp, float rmin, float rmax, gRange_t getType, int* nspp) // CLAIRE
 
 
 /*******************************************************************************
@@ -87,4 +95,4 @@ paint* getPaintRange(paint_t* pp, int npp, float rmin, float rmax, gRange_t getT
 *
 * Returns: 
 *******************************************************************************/
-paint* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* nspp) // MATT
+paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* nspp) // MATT

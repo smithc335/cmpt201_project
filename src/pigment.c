@@ -301,11 +301,11 @@ int printPaint(paint_t* pp, int i, int n){ // CLAIRE
 }
 
 
-paint* getPaintRange(paint_t* pp, int npp, float rmin, float rmax, gRange_t getType, int* nspp){ // CLAIRE
+paint_t* getPaintRange(paint_t* pp, int npp, float rmin, float rmax, gRange_t getType, int* nspp){ // CLAIRE
 
 }
 
 
-paint* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* nspp){ // MATT
+paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* nspp){ // MATT
 
 }
