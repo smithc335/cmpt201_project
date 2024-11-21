@@ -32,7 +32,13 @@ int main(void){
     int spaRangeN;
     float range[] = {0.5, 1};
 
+    spaRange = getPaintRange(paintArray, paintN, range[0], range[1], HUE, &spaRangeN);
+    spaRange = getPaintRange(paintArray, paintN, range[0], range[1], VALUE, &spaRangeN);
     spaRange = getPaintRange(paintArray, paintN, range[0], range[1], GRANULATING, &spaRangeN);
+    spaRange = getPaintRange(paintArray, paintN, range[0], range[1], TRANSPARENT, &spaRangeN);
+    spaRange = getPaintRange(paintArray, paintN, range[0], range[1], STAINING, &spaRangeN);
+    spaRange = getPaintRange(paintArray, paintN, range[0], range[1], BLOOM, &spaRangeN);
+    spaRange = getPaintRange(paintArray, paintN, range[0], range[1], LIGHTFAST, &spaRangeN);
 
     // deallocate memory for sub array
     free(spaRange);

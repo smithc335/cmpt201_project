@@ -271,7 +271,7 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n){
 
 		token = strtok(NULL, "/"); // lightfast 1998
 		token = strtok(NULL, "\0"); // lightfast 2004
-        if(token==NULL || strcmp(token, ".")==0){
+        if(token==NULL || token[0] == '.'){
             pArray[*n].lightfast = 999;
         }
         else{
@@ -362,44 +362,127 @@ int getFileRange(paint_t* pp, int npp, int* fmin, int* fmax, gRange_t getType){
         return (1); // failure
     }
 
-    char element[12];
+    // HAVE TO CHECK FOR DUMMY VALUE AND NOT COMPARE THAT ONE
 
     switch(getType){
         case(0):
-            strcpy(element, "hueAngle");
+            *fmin = pp[0].hueAngle;
+            *fmax = pp[0].hueAngle;
+
+            for(int i=0; i<npp; i++){
+                if(pp[i].hueAngle != 999){
+                    if(pp[i].hueAngle < *fmin){
+                        *fmin = pp[i].hueAngle;
+                    }
+
+                    if(pp[i].hueAngle > *fmax){
+                        *fmax = pp[i].hueAngle;
+                    }
+                }
+            }
             break;
+
         case(1):
-            strcpy(element, "valueRange");
+            *fmin = pp[0].valueRange;
+            *fmax = pp[0].valueRange;
+
+            for(int i=0; i<npp; i++){
+                if(pp[i].valueRange != 999){
+                    if(pp[i].valueRange < *fmin){
+                        *fmin = pp[i].valueRange;
+                    }
+
+                    if(pp[i].valueRange > *fmax){
+                        *fmax = pp[i].valueRange;
+                    }
+                }
+            }
             break;
+
         case(2):
-            strcpy(element, "granulating");
+            *fmin = pp[0].granulating;
+            *fmax = pp[0].granulating;
+
+            for(int i=0; i<npp; i++){
+                if(pp[i].granulating != 999){
+                    if(pp[i].granulating < *fmin){
+                        *fmin = pp[i].granulating;
+                    }
+
+                    if(pp[i].granulating > *fmax){
+                        *fmax = pp[i].granulating;
+                    }
+                }
+            }
             break;
+
         case(3):
-            strcpy(element, "transparency");
+            *fmin = pp[0].transparency;
+            *fmax = pp[0].transparency;
+
+            for(int i=0; i<npp; i++){
+                if(pp[i].transparency != 999){
+                    if(pp[i].transparency < *fmin){
+                        *fmin = pp[i].transparency;
+                    }
+
+                    if(pp[i].transparency > *fmax){
+                        *fmax = pp[i].transparency;
+                    }
+                }
+            }
             break;
+
         case(4):
-            strcpy(element, "staining");
+            *fmin = pp[0].staining;
+            *fmax = pp[0].staining;
+
+            for(int i=0; i<npp; i++){
+                if(pp[i].staining != 999){
+                    if(pp[i].staining < *fmin){
+                        *fmin = pp[i].staining;
+                    }
+
+                    if(pp[i].staining > *fmax){
+                        *fmax = pp[i].staining;
+                    }
+                }
+            }
             break;
+
         case(5):
-            strcpy(element, "blossom");
+            *fmin = pp[0].blossom;
+            *fmax = pp[0].blossom;
+
+            for(int i=0; i<npp; i++){
+                if(pp[i].blossom != 999){
+                    if(pp[i].blossom < *fmin){
+                        *fmin = pp[i].blossom;
+                    }
+
+                    if(pp[i].blossom > *fmax){
+                        *fmax = pp[i].blossom;
+                    }
+                }
+            }
             break;
+
         case(6):
-            strcpy(element, "lightfast");
+            *fmin = pp[0].lightfast;
+            *fmax = pp[0].lightfast;
+
+            for(int i=0; i<npp; i++){
+                if(pp[i].lightfast != 999){
+                    if(pp[i].lightfast < *fmin){
+                        *fmin = pp[i].lightfast;
+                    }
+
+                    if(pp[i].lightfast > *fmax){
+                        *fmax = pp[i].lightfast;
+                    }
+                }
+            }
             break;
-    }
-
-    // loop through main array to find min and max
-    *fmin = pp[0].element;
-    *fmax = pp[0].element;
-
-    for(int i=0; i<npp; i++){
-        if(pp[i].element < *fmin){
-            *fmin = pp[i].element;
-        }
-
-        if(pp[i].element > *fmax){
-            *fmax = pp[i].element;
-        }
     }
 
     return (0); // success
