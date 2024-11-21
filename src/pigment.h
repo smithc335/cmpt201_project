@@ -33,6 +33,8 @@ typedef enum{
 
 typedef enum{
 
+	CINAME, MARKETINGNAME, MANUFACTURER;
+
 } gValue_t;
 
 /*******************************************************************************
