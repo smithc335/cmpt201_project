@@ -490,6 +490,7 @@ int getFileRange(paint_t* pp, int npp, int* fmin, int* fmax, gRange_t getType){
 
 
 paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* nspp){ // MATT
+
     paint_t* paintArray;
     int capacity = 10;
     int i = 0;
@@ -501,11 +502,13 @@ paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* 
         return (NULL);
     }
 
+
+
     //Looping through file
-    while(i < 5){ //CHANGE TO *npp
+    while(i < npp){ 
 
         //Checking if need to realloc.
-        if(i == capacity){
+        if(j == capacity){
             capacity = (capacity) * 2; 
             //Checking if realloc succeeds with a temp pointer.
             paint_t* tempArray = realloc(paintArray, (capacity) * sizeof(paint_t));
@@ -516,29 +519,47 @@ paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* 
 
             paintArray = tempArray;
             tempArray = NULL;
+        }
+
+        switch (getType){
+
+            // CINAME
+            case (0):
+                if( (strcmp(pp[i].ciName, name)) == 0 ){
+                    paintArray[j] = pp[i];
+                    *nspp = (*nspp) + 1;
+                    j++;
+                }
+                break;
+
+            //MARKETINGNAME
+            case (1):
+                if( (strcmp(pp[i].marketingName, name)) == 0 ){
+                    paintArray[j] = pp[i];
+                    *nspp = (*nspp) + 1;
+                    j++;
+                }
+                break;
+
+            //MANUFACTURER
+            case (2):
+                if( (strcmp(pp[i].manufacturer, name)) == 0 ){
+                    paintArray[j] = pp[i];
+                    *nspp = (*nspp) + 1;
+                    j++;
+                }
+                break;
 
 
-
-        if ( strcmp (getType, MARKETINGNAME) == 0 ){
-
-            if( (strcmp(pp[i].marketingName, name)) == 0 ){
-                paintArray[j] = pp[i];
-                *nspp++;
-                j++;
-            }
-
+            //???????????????????
+            default:
+                printf("default\n");
+                break;
         }
 
         i++;
 
     }
 
-    return (paintArray)
-}
-
-
-
-
-
-
+    return (paintArray);
 }

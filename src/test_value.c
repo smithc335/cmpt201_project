@@ -44,26 +44,39 @@ int main(void){
     free(spaRange);
     spaRange = NULL;
 
+
+
+
     // Tests for getPaintValue (MATT)
     printf("------------------------------------------------------------\n");
 	printf("Tests for getPaintValue:\n");
 	printf("------------------------------------------------------------\n");
  
 
-    paint_t* paintPoint;
-    char name[] = "cerulean blue";
-    int* numResult = 0;
+    paint_t* subPaint;
+    // char name[] = "cerulean blue";
+    // char name[] = "PBk9";
+    char name[] = "DaVinci";
+    int numResult = 0;
 
 
-    paintPoint = getPaintValue(paintArray, &paintN, name, MARKETINGNAME, &numResult);
+
+    // subPaint = getPaintValue(paintArray, paintN, name, MARKETINGNAME, &numResult);
+    // subPaint = getPaintValue(paintArray, paintN, name, CINAME, &numResult);
+    subPaint = getPaintValue(paintArray, paintN, name, MANUFACTURER, &numResult);
+    
+    if(subPaint == NULL){
+		printf("Function was unsuccessful.\n");
+		exit(EXIT_FAILURE);
+    }
 
     printf("The number of elements that have the name %s is %d\n", name, numResult);
 
     for (int i = 0; i < numResult ; i++){
-        printf("%s, %s, %s, ", paintPoint[i].ciName, paintPoint[i].marketingName, paintPoint[i].manufacturer);
-	    printf("%i, %i, %i, ", paintPoint[i].transparency, paintPoint[i].staining, paintPoint[i].valueRange);
-	    printf("%i, %i, %i, ", paintPoint[i].granulating, paintPoint[i].blossom, paintPoint[i].diffusion);
-	    printf("%i, %i, %i\n", paintPoint[i].hueAngle, paintPoint[i].hueShift, paintPoint[i].lightfast);
+        printf("%s, %s, %s, ", subPaint[i].ciName, subPaint[i].marketingName, subPaint[i].manufacturer);
+	    printf("%i, %i, %i, ", subPaint[i].transparency, subPaint[i].staining, subPaint[i].valueRange);
+	    printf("%i, %i, %i, ", subPaint[i].granulating, subPaint[i].blossom, subPaint[i].diffusion);
+	    printf("%i, %i, %i\n", subPaint[i].hueAngle, subPaint[i].hueShift, subPaint[i].lightfast);
 
     }
 
@@ -71,6 +84,9 @@ int main(void){
     // deallocate memory for paintArray
 	free(paintArray);
 	paintArray = NULL;
+    free(subPaint);
+    subPaint = NULL;
+
 
     exit(EXIT_SUCCESS);
 }
