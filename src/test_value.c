@@ -30,22 +30,27 @@ int main(void){
 
     paint_t* spaRange;
     int spaRangeN;
-    float range[] = {0.5, 1};
+    float range[] = {0, 0};
 
     spaRange = getPaintRange(paintArray, paintN, range[0], range[1], HUE, &spaRangeN);
-    spaRange = getPaintRange(paintArray, paintN, range[0], range[1], VALUE, &spaRangeN);
-    spaRange = getPaintRange(paintArray, paintN, range[0], range[1], GRANULATING, &spaRangeN);
-    spaRange = getPaintRange(paintArray, paintN, range[0], range[1], TRANSPARENT, &spaRangeN);
-    spaRange = getPaintRange(paintArray, paintN, range[0], range[1], STAINING, &spaRangeN);
-    spaRange = getPaintRange(paintArray, paintN, range[0], range[1], BLOOM, &spaRangeN);
-    spaRange = getPaintRange(paintArray, paintN, range[0], range[1], LIGHTFAST, &spaRangeN);
+    // spaRange = getPaintRange(paintArray, paintN, range[0], range[1], VALUE, &spaRangeN);
+    // spaRange = getPaintRange(paintArray, paintN, range[0], range[1], GRANULATING, &spaRangeN);
+    // spaRange = getPaintRange(paintArray, paintN, range[0], range[1], TRANSPARENT, &spaRangeN);
+    // spaRange = getPaintRange(paintArray, paintN, range[0], range[1], STAINING, &spaRangeN);
+    // spaRange = getPaintRange(paintArray, paintN, range[0], range[1], BLOOM, &spaRangeN);
+    // spaRange = getPaintRange(paintArray, paintN, range[0], range[1], LIGHTFAST, &spaRangeN);
+
+    printf("Number of HUE values in the range [%.1f, %.1f]: %i\n", range[0], range[1], spaRangeN);
+    for (int i=0; i<spaRangeN; i++){
+        printf("%s, %s, %s, ", spaRange[i].ciName, spaRange[i].marketingName, spaRange[i].manufacturer);
+	    printf("%i, %i, %i, ", spaRange[i].transparency, spaRange[i].staining, spaRange[i].valueRange);
+	    printf("%i, %i, %i, ", spaRange[i].granulating, spaRange[i].blossom, spaRange[i].diffusion);
+	    printf("%i, %i, %i\n", spaRange[i].hueAngle, spaRange[i].hueShift, spaRange[i].lightfast);
+    }
 
     // deallocate memory for sub array
     free(spaRange);
     spaRange = NULL;
-
-
-
 
     // Tests for getPaintValue (MATT)
     printf("------------------------------------------------------------\n");

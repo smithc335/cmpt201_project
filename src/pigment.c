@@ -338,21 +338,74 @@ paint_t* getPaintRange(paint_t* pp, int npp, float rmin, float rmax, gRange_t ge
     xlow = fmin + rmin * (fmax - fmin);
     xhigh = fmin + rmax * (fmax - fmin);
 
-    printf("File Min: %d\n", fmin);
-    printf("File Max: %d\n", fmax);
     printf("xLow: %.3f\n", xlow);
     printf("xHigh: %.3f\n", xhigh);
 
     // allocate memory
     spa = malloc(capacity * sizeof(paint_t));
 
-    // loop through main paint array and load valid entries into subarray
-    // reallocate subarray if entries reaches capacity
-    // increment nspp to count valid entries
+    // loop through main paint array
+    for(int i=0; i<npp; i++){
+        // reallocate subarray if entries reaches capacity
+		if(*nspp>=capacity){
+			capacity *= 2;
+			spa = realloc(spa, (capacity * sizeof(paint_t)));
+		}
 
-    // set subarray pointer to NULL and return if no valid entries were found (nspp==0)
+        // load valid entries into subarray
+        switch(getType){
+            case(0):
+                if(xlow <= pp[i].hueAngle && pp[i].hueAngle <= xhigh){
+                    spa[*nspp] = pp[i];
+                    *nspp += 1;
+                }
+                break;
 
-    return (spa); // return subarray
+            case(1):
+                if(xlow <= pp[i].valueRange && pp[i].valueRange <= xhigh){
+                    spa[*nspp] = pp[i];
+                    *nspp += 1;
+                }
+                break;
+
+            case(2):
+                if(xlow <= pp[i].granulating && pp[i].granulating <= xhigh){
+                    spa[*nspp] = pp[i];
+                    *nspp += 1;
+                }
+                break;
+
+            case(3):
+                if(xlow <= pp[i].transparency && pp[i].transparency <= xhigh){
+                    spa[*nspp] = pp[i];
+                    *nspp += 1;
+                }
+                break;
+            
+            case(4):
+                if(xlow <= pp[i].staining && pp[i].staining <= xhigh){
+                    spa[*nspp] = pp[i];
+                    *nspp += 1;
+                }
+                break;
+            
+            case(5):
+                if(xlow <= pp[i].blossom && pp[i].blossom <= xhigh){
+                    spa[*nspp] = pp[i];
+                    *nspp += 1;
+                }
+                break;
+            
+            case(6):
+                if(xlow <= pp[i].lightfast && pp[i].lightfast <= xhigh){
+                    spa[*nspp] = pp[i];
+                    *nspp += 1;
+                }
+                break;
+        }
+    }
+
+    return (spa); // return subarray (works even if no valid entries were found)
 }
 
 int getFileRange(paint_t* pp, int npp, int* fmin, int* fmax, gRange_t getType){
