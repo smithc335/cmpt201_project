@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 #include "pigment.h"
 
 int main(void){
@@ -17,11 +18,28 @@ int main(void){
 	printf("Tests for printPaint:\n");
 	printf("------------------------------------------------------------\n");
 
+    srand(time(NULL));
+
     char paintFilename[] = "../data/paints.dat"; 
 	paint_t* paintArray = NULL;
 	int paintN;
+    int inds[3] = {0, 0, 695};
+    int err;
+
+    // FOR SOME REASON RAND IS JUST SWITCHING BETWEEN 1 AND 2??
+    inds[1] = (rand() % (paintN - 2)) + 1; // min 1, max 694 to get a middle index
+    printf("inds = {%i, %i, %i}\n", inds[0], inds[1], inds[2]);
 
     paintArray = loadPaintData(paintFilename, paintArray, &paintN);
+
+    printf("Printing indexes %i, %i, and %i:\n", inds[0], inds[1], inds[2]);
+    for(int i=0; i<3; i++){
+        err = printPaint(paintArray, inds[i], paintN);
+        if(err==1){
+            printf("Function was unsuccessful.\n");
+            exit(EXIT_FAILURE);
+        }
+    }
 
     // Tests for getPaintRange (CLAIRE)
     printf("------------------------------------------------------------\n");

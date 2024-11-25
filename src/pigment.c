@@ -298,6 +298,50 @@ int printPigment(pigment_t* pp, int i, int n){ // MATT
 
 int printPaint(paint_t* pp, int i, int n){ // CLAIRE
 
+    // check input (return 1 for failure)
+    if(pp==NULL){
+        printf("Error: Passed in empty array.\n");
+        return (1);
+    }
+    else if(i<-1 || i>=n){
+        printf("Error: Invalid index.\n");
+        return (1);
+    }
+
+    if(i==-1){
+        for(int j=0; j<n; j++){
+            printf("--------------\n");
+            printf("ciName       : %s\n", pp[j].ciName);
+            printf("marketingName: %s\n", pp[j].marketingName);
+            printf("manufacturer : %s\n", pp[j].manufacturer);
+            printf("transparency : %i\n", pp[j].transparency);
+            printf("staining     : %i\n", pp[j].staining);
+            printf("valueRange   : %i\n", pp[j].valueRange);
+            printf("granulating  : %i\n", pp[j].granulating);
+            printf("blossom      : %i\n", pp[j].blossom);
+            printf("diffusion    : %i\n", pp[j].diffusion);
+            printf("hueAngle     : %i\n", pp[j].hueAngle);
+            printf("hueShift     : %i\n", pp[j].hueShift);
+            printf("lightfast    : %i\n", pp[j].lightfast);
+        }
+    }
+    else{
+        printf("--------------\n");
+        printf("ciName       : %s\n", pp[i].ciName);
+        printf("marketingName: %s\n", pp[i].marketingName);
+        printf("manufacturer : %s\n", pp[i].manufacturer);
+        printf("transparency : %i\n", pp[i].transparency);
+        printf("staining     : %i\n", pp[i].staining);
+        printf("valueRange   : %i\n", pp[i].valueRange);
+        printf("granulating  : %i\n", pp[i].granulating);
+        printf("blossom      : %i\n", pp[i].blossom);
+        printf("diffusion    : %i\n", pp[i].diffusion);
+        printf("hueAngle     : %i\n", pp[i].hueAngle);
+        printf("hueShift     : %i\n", pp[i].hueShift);
+        printf("lightfast    : %i\n", pp[i].lightfast);
+    }
+
+    return (0);
 }
 
 
