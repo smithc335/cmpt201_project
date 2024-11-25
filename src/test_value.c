@@ -57,14 +57,11 @@ int main(void){
 	printf("Tests for getPaintValue:\n");
 	printf("------------------------------------------------------------\n");
  
-
     paint_t* subPaint;
     // char name[] = "cerulean blue";
     // char name[] = "PBk9";
     char name[] = "DaVinci";
     int numResult = 0;
-
-
 
     // subPaint = getPaintValue(paintArray, paintN, name, MARKETINGNAME, &numResult);
     // subPaint = getPaintValue(paintArray, paintN, name, CINAME, &numResult);
@@ -82,16 +79,13 @@ int main(void){
 	    printf("%i, %i, %i, ", subPaint[i].transparency, subPaint[i].staining, subPaint[i].valueRange);
 	    printf("%i, %i, %i, ", subPaint[i].granulating, subPaint[i].blossom, subPaint[i].diffusion);
 	    printf("%i, %i, %i\n", subPaint[i].hueAngle, subPaint[i].hueShift, subPaint[i].lightfast);
-
     }
-
 
     // deallocate memory for paintArray
 	free(paintArray);
 	paintArray = NULL;
     free(subPaint);
     subPaint = NULL;
-
 
     exit(EXIT_SUCCESS);
 }

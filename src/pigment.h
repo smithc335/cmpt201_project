@@ -95,7 +95,7 @@ paint_t* getPaintRange(paint_t* pp, int npp, float rmin, float rmax, gRange_t ge
 *
 * Returns: 
 *******************************************************************************/
-int getFileRange(paint_t* pp, int npp, int* fmin, int* fmax, gRange_t getType);
+int getFileRange(paint_t* pp, int npp, int* fmin, int* fmax, gRange_t getType); // CLAIRE
 
 
 /*******************************************************************************

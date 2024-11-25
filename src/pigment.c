@@ -408,7 +408,8 @@ paint_t* getPaintRange(paint_t* pp, int npp, float rmin, float rmax, gRange_t ge
     return (spa); // return subarray (works even if no valid entries were found)
 }
 
-int getFileRange(paint_t* pp, int npp, int* fmin, int* fmax, gRange_t getType){
+
+int getFileRange(paint_t* pp, int npp, int* fmin, int* fmax, gRange_t getType){ // CLAIRE
 
     if(pp==NULL){
         printf("Error: Passed in empty array.\n");
@@ -555,8 +556,6 @@ paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* 
         return (NULL);
     }
 
-
-
     //Looping through file
     while(i < npp){ 
 
@@ -611,7 +610,6 @@ paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* 
         }
 
         i++;
-
     }
 
     return (paintArray);

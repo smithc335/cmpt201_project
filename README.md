@@ -3,9 +3,14 @@ Claire Smith and Matt Beaulieu
 
 # COMPILATION
 
-To run file, type "make test_load" in the commandline while in the src 
-directory. Then type "./test_load" into the commandline. This will display
-several test cases using functions implemented in the pigment.c file.
+To run file, type "make" or "make project" in the commandline while in the main 
+directory. Then type "./project" into the commandline. This will display
+several test cases using functions implemented in the pigment.c file. 
+
+The "make" or "make project" commands will create executables and object files.
+Executables are placed in the bin directory and object files are placed in the
+obj directory. To remove all executables and object files, run "make clean"
+while in the main directory.
 
 # VARIABLES
 
