@@ -293,6 +293,35 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n){
 
 int printPigment(pigment_t* pp, int i, int n){ // MATT
 
+    // Checking if array was created previously.
+    if (pp == NULL){
+        printf("Error: Passed in empty array.\n");
+        return (1);
+    }
+
+    // Function should not accept indices less than -1 or greater or equal to the number of indices in the array.
+    if ( (i < (-1)) || (i >= n) ) {
+        printf("Error: Index out of range.\n");
+        //Should we have a usage statment???????????????????????????????
+        return (1);
+    }
+
+    // if (i == -1){
+
+
+    // }
+
+    printf("--------------\n");
+    printf("ciName       : %s\n", pp[i].ciName);
+    printf("pigmentName  : %s\n", pp[i].pigmentName);
+    printf("value        : %d\n", pp[i].value);
+    printf("chroma       : %d\n", pp[i].chroma);
+    printf("(a,b)        : (%d,%d)\n", pp[i].abValue[0], pp[i].abValue[1]);
+    printf("hue [degrees]: %d\n", pp[i].hueAngle);
+    printf("huePurity    : %.2f\n", pp[i].huePurity);
+    printf("(ahp,ahp)    : (%.2f,%.2f)\n", pp[i].abHp[0], pp[i].abHp[1]);
+
+    return (0);
 }
 
 

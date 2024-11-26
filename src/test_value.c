@@ -13,6 +13,32 @@ int main(void){
 	printf("Tests for printPigment:\n");
 	printf("------------------------------------------------------------\n");
 
+    char pigmentFilename[] = "../data/pigments.dat"; 
+    int numLines = 10;
+    pigment_t* pigmentArray = NULL;
+    int indexN = 5;
+    int errN = 1;
+	// srand(time(NULL));
+	// int randomNum;
+	
+    pigmentArray = loadPigmentData(pigmentFilename, pigmentArray, &numLines);
+    if(pigmentArray == NULL){
+        printf("Error: Function [pigmentArray] failed.\n");
+        exit(EXIT_FAILURE);
+    }
+
+   errN = printPigment(pigmentArray, indexN, numLines);
+     if (errN == 1){
+        printf("Error: Function [printPigment] failed.\n");
+        exit(EXIT_FAILURE);
+    }
+
+
+
+
+
+
+
     // Tests for printPaint (CLAIRE)
     printf("------------------------------------------------------------\n");
 	printf("Tests for printPaint:\n");
