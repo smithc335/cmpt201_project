@@ -4,8 +4,8 @@ Claire Smith and Matt Beaulieu
 # COMPILATION
 
 To compile the test file, type "make" or "make project" in the commandline
-while in the main project directory. To run the tests, type "./bin/project"
-into the commandline in the main project directory. This will display several
+while in the main project directory. To run the tests, type "./project"
+into the commandline while in the bin directory. This will display several
 test cases using functions implemented in the pigment.c file. 
 
 The "make" or "make project" commands will create executables and object files.
