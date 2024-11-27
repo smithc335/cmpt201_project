@@ -1,6 +1,31 @@
 // Claire Smith and Matt Beaulieu
 // Project Header File
 
+#define RED_MIN 315
+#define RED_MAX 344
+#define RED_ORANGE_MIN 345 
+#define RED_ORANGE_MAX 14
+#define ORANGE_MIN 15
+#define ORANGE_MAX 44
+#define YELLOW_ORANGE_MIN 45 
+#define YELLOW_ORANGE_MAX 74
+#define YELLOW_MIN 75
+#define YELLOW_MAX 104
+#define YELLOW_GREEN_MIN 105 
+#define YELLOW_GREEN_MAX 134
+#define GREEN_MIN 135
+#define GREEN_MAX 164
+#define BLUE_GREEN_MIN 165 
+#define BLUE_GREEN_MAX 194
+#define BLUE_MIN 195
+#define BLUE_MAX 224
+#define BLUE_VIOLET_MIN 225
+#define BLUE_VIOLET_MAX 254
+#define VIOLET_MIN 255
+#define VIOLET_MAX 284
+#define RED_VIOLET_MIN 285
+#define RED_VIOLET_MAX 314
+
 typedef struct pigment_template{
 	char ciName[50];
 	char pigmentName[50];
