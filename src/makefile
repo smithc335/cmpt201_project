@@ -13,10 +13,7 @@ test_value: test_value.o pigment.o
 %.o: %.c
 	$(CC) $(CFLAGS) -c $<
 
-.PHONY: clean package
+.PHONY: clean
 
 clean:
 	rm -f test_load test_value *.o
-
-package:
-	tar -czvf cmpt201_project_lab10_CS_MB.tar.gz *.c *.h makefile

@@ -424,9 +424,6 @@ paint_t* getPaintRange(paint_t* pp, int npp, float rmin, float rmax, gRange_t ge
     xlow = fmin + rmin * (fmax - fmin);
     xhigh = fmin + rmax * (fmax - fmin);
 
-    printf("xLow: %.3f\n", xlow);
-    printf("xHigh: %.3f\n", xhigh);
-
     // allocate memory
     spa = malloc(capacity * sizeof(paint_t));
 
@@ -502,19 +499,16 @@ int getFileRange(paint_t* pp, int npp, int* fmin, int* fmax, gRange_t getType){ 
         return (1); // failure
     }
 
-    // HAVE TO CHECK FOR DUMMY VALUE AND NOT COMPARE THAT ONE
-
     switch(getType){
         case(0):
             *fmin = pp[0].hueAngle;
             *fmax = pp[0].hueAngle;
 
             for(int i=0; i<npp; i++){
-                if(pp[i].hueAngle != 999){
+                if(pp[i].hueAngle != 999){ // check for dummy value to leave out of comparisons
                     if(pp[i].hueAngle < *fmin){
                         *fmin = pp[i].hueAngle;
                     }
-
                     if(pp[i].hueAngle > *fmax){
                         *fmax = pp[i].hueAngle;
                     }
@@ -531,7 +525,6 @@ int getFileRange(paint_t* pp, int npp, int* fmin, int* fmax, gRange_t getType){ 
                     if(pp[i].valueRange < *fmin){
                         *fmin = pp[i].valueRange;
                     }
-
                     if(pp[i].valueRange > *fmax){
                         *fmax = pp[i].valueRange;
                     }
@@ -548,7 +541,6 @@ int getFileRange(paint_t* pp, int npp, int* fmin, int* fmax, gRange_t getType){ 
                     if(pp[i].granulating < *fmin){
                         *fmin = pp[i].granulating;
                     }
-
                     if(pp[i].granulating > *fmax){
                         *fmax = pp[i].granulating;
                     }
@@ -565,7 +557,6 @@ int getFileRange(paint_t* pp, int npp, int* fmin, int* fmax, gRange_t getType){ 
                     if(pp[i].transparency < *fmin){
                         *fmin = pp[i].transparency;
                     }
-
                     if(pp[i].transparency > *fmax){
                         *fmax = pp[i].transparency;
                     }
@@ -582,7 +573,6 @@ int getFileRange(paint_t* pp, int npp, int* fmin, int* fmax, gRange_t getType){ 
                     if(pp[i].staining < *fmin){
                         *fmin = pp[i].staining;
                     }
-
                     if(pp[i].staining > *fmax){
                         *fmax = pp[i].staining;
                     }
@@ -599,7 +589,6 @@ int getFileRange(paint_t* pp, int npp, int* fmin, int* fmax, gRange_t getType){ 
                     if(pp[i].blossom < *fmin){
                         *fmin = pp[i].blossom;
                     }
-
                     if(pp[i].blossom > *fmax){
                         *fmax = pp[i].blossom;
                     }
@@ -616,7 +605,6 @@ int getFileRange(paint_t* pp, int npp, int* fmin, int* fmax, gRange_t getType){ 
                     if(pp[i].lightfast < *fmin){
                         *fmin = pp[i].lightfast;
                     }
-
                     if(pp[i].lightfast > *fmax){
                         *fmax = pp[i].lightfast;
                     }

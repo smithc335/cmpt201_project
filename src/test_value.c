@@ -14,7 +14,7 @@ int main(void){
 	printf("Tests for printPigment:\n");
 	printf("------------------------------------------------------------\n");
 
-    char pigmentFilename[] = "../data/pigments.dat"; 
+    char pigmentFilename[] = "../cmpt201_project/data/pigments.dat"; 
     int numLines = 10;
     pigment_t* pigmentArray = NULL;
    // int indexN = -1;
@@ -47,28 +47,24 @@ int main(void){
     free(pigmentArray);
     pigmentArray = NULL;
 
-
-
-
-
     // Tests for printPaint (CLAIRE)
-    printf("------------------------------------------------------------\n");
+    printf("\n------------------------------------------------------------\n");
 	printf("Tests for printPaint:\n");
 	printf("------------------------------------------------------------\n");
 
     srand(time(NULL));
 
-    char paintFilename[] = "../data/paints.dat"; 
+    // CHANGED FILENAME MEANS THAT SRC MAKEFILE DOESN'T WORK
+        // HAVE TO CHANGE TO BIN DIRECTORY TO RUN PROJECT????????????
+    char paintFilename[] = "../cmpt201_project/data/paints.dat";
 	paint_t* paintArray = NULL;
 	int paintN;
     int inds[3] = {0, 0, 695};
     int err;
 
-    // FOR SOME REASON RAND IS JUST SWITCHING BETWEEN 1 AND 2??
-    inds[1] = (rand() % (paintN - 2)) + 1; // min 1, max 694 to get a middle index
-    printf("inds = {%i, %i, %i}\n", inds[0], inds[1], inds[2]);
-
     paintArray = loadPaintData(paintFilename, paintArray, &paintN);
+
+    inds[1] = (rand() % (paintN - 2)) + 1; // min 1, max 694 to get a middle index
 
     printf("Printing indexes %i, %i, and %i:\n", inds[0], inds[1], inds[2]);
     for(int i=0; i<3; i++){
@@ -80,28 +76,34 @@ int main(void){
     }
 
     // Tests for getPaintRange (CLAIRE)
-    printf("------------------------------------------------------------\n");
+    printf("\n------------------------------------------------------------\n");
 	printf("Tests for getPaintRange:\n");
-	printf("------------------------------------------------------------\n");
 
     paint_t* spaRange;
     int spaRangeN;
-    float range[] = {0, 0};
+    float ranges[2][2] = {{0.0, 0.0}, {0.4, 0.5}};
+    // gRange_t paintMember;
+    
+    // paintMember = rand() % 7; // min 0, max 6 to get which value to search from enumeration
 
-    spaRange = getPaintRange(paintArray, paintN, range[0], range[1], HUE, &spaRangeN);
-    // spaRange = getPaintRange(paintArray, paintN, range[0], range[1], VALUE, &spaRangeN);
-    // spaRange = getPaintRange(paintArray, paintN, range[0], range[1], GRANULATING, &spaRangeN);
-    // spaRange = getPaintRange(paintArray, paintN, range[0], range[1], TRANSPARENT, &spaRangeN);
-    // spaRange = getPaintRange(paintArray, paintN, range[0], range[1], STAINING, &spaRangeN);
-    // spaRange = getPaintRange(paintArray, paintN, range[0], range[1], BLOOM, &spaRangeN);
-    // spaRange = getPaintRange(paintArray, paintN, range[0], range[1], LIGHTFAST, &spaRangeN);
+    for(int i=0; i<(sizeof(ranges)/sizeof(float[2])); i++){
+        spaRange = getPaintRange(paintArray, paintN, ranges[i][0], ranges[i][1], LIGHTFAST, &spaRangeN);
 
-    printf("Number of HUE values in the range [%.1f, %.1f]: %i\n", range[0], range[1], spaRangeN);
-    for (int i=0; i<spaRangeN; i++){
-        printf("%s, %s, %s, ", spaRange[i].ciName, spaRange[i].marketingName, spaRange[i].manufacturer);
-	    printf("%i, %i, %i, ", spaRange[i].transparency, spaRange[i].staining, spaRange[i].valueRange);
-	    printf("%i, %i, %i, ", spaRange[i].granulating, spaRange[i].blossom, spaRange[i].diffusion);
-	    printf("%i, %i, %i\n", spaRange[i].hueAngle, spaRange[i].hueShift, spaRange[i].lightfast);
+        printf("------------------------------------------------------------\n");
+        printf("Number of LIGHTFAST values in the range [%.1f, %.1f]: %i\n", ranges[i][0], ranges[i][1], spaRangeN);
+        printf("------------------------------------------------------------\n");
+
+        for (int j=0; j<spaRangeN; j++){
+            // err = printPaint(spaRange, j, paintN);
+            // if(err==1){
+            //     printf("Function was unsuccessful.\n");
+            //     exit(EXIT_FAILURE);
+            // }
+            printf("%s, %s, %s, ", spaRange[j].ciName, spaRange[j].marketingName, spaRange[j].manufacturer);
+            printf("%i, %i, %i, ", spaRange[j].transparency, spaRange[j].staining, spaRange[j].valueRange);
+            printf("%i, %i, %i, ", spaRange[j].granulating, spaRange[j].blossom, spaRange[j].diffusion);
+            printf("%i, %i, %i\n", spaRange[j].hueAngle, spaRange[j].hueShift, spaRange[j].lightfast);
+        }
     }
 
     // deallocate memory for sub array
@@ -112,7 +114,7 @@ int main(void){
 
 
     // Tests for getPaintValue (MATT)
-    printf("------------------------------------------------------------\n");
+    printf("\n------------------------------------------------------------\n");
 	printf("Tests for getPaintValue:\n");
 	printf("------------------------------------------------------------\n");
  
@@ -160,6 +162,8 @@ int main(void){
     }
 
     // printf("The number of elements that have the marketing name %s is %d\n", markName, numResult1);
+    printf("The number of elements that have the name %s is %d.\n", name, numResult);
+    printf("------------------------------------------------------------\n");
 
     // for (int i = 0; i < numResult1 ; i++){
     //     printf("%s, %s, %s, ", subPaint1[i].ciName, subPaint1[i].marketingName, subPaint1[i].manufacturer);
@@ -187,9 +191,7 @@ int main(void){
 	    printf("%i, %i, %i\n", subPaint3[i].hueAngle, subPaint3[i].hueShift, subPaint3[i].lightfast);
     }
 
-    // deallocate memory for paintArray
-
-
+    // deallocate memory for paintArray and sub array
 	free(paintArray);
 	paintArray = NULL;
     free(subPaint1);

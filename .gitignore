@@ -1,0 +1,5 @@
+bin/
+obj/
+src/*.o
+src/test_load
+src/test_value
