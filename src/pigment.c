@@ -691,7 +691,7 @@ paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* 
 
             //???????????????????
             default:
-                printf("default\n");
+                printf("Error: Incorrect value inputted");
                 break;
         }
 
