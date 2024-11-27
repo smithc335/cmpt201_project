@@ -9,6 +9,8 @@
 
 int main(void){
 
+    srand(time(NULL)); 
+
     // Tests for printPigment (MATT)
     printf("------------------------------------------------------------\n");
 	printf("Tests for printPigment:\n");
@@ -19,8 +21,7 @@ int main(void){
     pigment_t* pigmentArray = NULL;
    // int indexN = -1;
     int errN = 1;
-	srand(time(NULL)); // We probably only need one of these
-	int randomNum;
+    int randomNum;
     int randomind[3];
 	
 	
@@ -120,34 +121,34 @@ int main(void){
  
     int ranN;
     ranN = rand() % (paintN);
-    printf("Index tested = %d\n", ranN);
+    // printf("Index tested = %d\n", ranN);
 
-    // paint_t* subPaint1;
+    paint_t* subPaint1;
     paint_t* subPaint2;
     paint_t* subPaint3;
 
-    // char markName[100];
+    char markName[100];
     char manName[100];
     char cName[100];
 
-    // int numResult1 = 0;
-    // int numResult2 = 0;
+    int numResult1 = 0;
+    int numResult2 = 0;
     int numResult3 = 0;
 
-    // strcpy(markName, paintArray[ranN].marketingName);
+    strcpy(markName, paintArray[ranN].marketingName);
     strcpy(manName, paintArray[ranN].manufacturer);
 	strcpy(cName, paintArray[ranN].ciName);
 
-    // printf("markName is %s.\n", markName);
-    printf("manName is %s.\n", manName);
-    printf("cName is %s.\n", cName);
+    printf("Marketing Name tested is %s.\n", markName);
+    printf("Manufacture Name tested is %s.\n", manName);
+    printf("C.I. Name tested is %s.\n", cName);
 
 
-    // subPaint1 = getPaintValue(paintArray, paintN, markName, MARKETINGNAME, &numResult1);
-    // if(subPaint1 == NULL){
-	// 	printf("Function was unsuccessful.\n");
-	// 	exit(EXIT_FAILURE);
-    // }
+    subPaint1 = getPaintValue(paintArray, paintN, markName, MARKETINGNAME, &numResult1);
+    if(subPaint1 == NULL){
+		printf("Function was unsuccessful.\n");
+		exit(EXIT_FAILURE);
+    }
 
     subPaint2 = getPaintValue(paintArray, paintN, manName, MANUFACTURER, &numResult2);
     if(subPaint2 == NULL){
@@ -161,15 +162,17 @@ int main(void){
 		exit(EXIT_FAILURE);
     }
 
-    // printf("The number of elements that have the marketing name %s is %d\n", markName, numResult1);
+
     printf("------------------------------------------------------------\n");
 
-    // for (int i = 0; i < numResult1 ; i++){
-    //     printf("%s, %s, %s, ", subPaint1[i].ciName, subPaint1[i].marketingName, subPaint1[i].manufacturer);
-	//     printf("%i, %i, %i, ", subPaint1[i].transparency, subPaint1[i].staining, subPaint1[i].valueRange);
-	//     printf("%i, %i, %i, ", subPaint1[i].granulating, subPaint1[i].blossom, subPaint1[i].diffusion);
-	//     printf("%i, %i, %i\n", subPaint1[i].hueAngle, subPaint1[i].hueShift, subPaint1[i].lightfast);
-    // }
+    printf("The number of elements that have the marketing name %s is %d\n", markName, numResult1);
+
+    for (int i = 0; i < numResult1 ; i++){
+        printf("%s, %s, %s, ", subPaint1[i].ciName, subPaint1[i].marketingName, subPaint1[i].manufacturer);
+	    printf("%i, %i, %i, ", subPaint1[i].transparency, subPaint1[i].staining, subPaint1[i].valueRange);
+	    printf("%i, %i, %i, ", subPaint1[i].granulating, subPaint1[i].blossom, subPaint1[i].diffusion);
+	    printf("%i, %i, %i\n", subPaint1[i].hueAngle, subPaint1[i].hueShift, subPaint1[i].lightfast);
+    }
 
     printf("The number of elements that have the manufacturer name %s is %d\n", manName, numResult2);
 
@@ -193,8 +196,8 @@ int main(void){
     // deallocate memory for paintArray and sub array
 	free(paintArray);
 	paintArray = NULL;
-    // free(subPaint1);
-    // subPaint1 = NULL;
+    free(subPaint1);
+    subPaint1 = NULL;
     free(subPaint2);
     subPaint2 = NULL;
     free(subPaint3);
