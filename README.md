@@ -3,14 +3,18 @@ Claire Smith and Matt Beaulieu
 
 # COMPILATION
 
-To run file, type "make" or "make project" in the commandline while in the main 
-directory. Then type "./project" into the commandline. This will display
-several test cases using functions implemented in the pigment.c file. 
+To compile the test file, type "make" or "make project" in the commandline
+while in the main project directory. To run the tests, type "./bin/project"
+into the commandline in the main project directory. This will display several
+test cases using functions implemented in the pigment.c file. 
 
 The "make" or "make project" commands will create executables and object files.
 Executables are placed in the bin directory and object files are placed in the
 obj directory. To remove all executables and object files, run "make clean"
 while in the main directory.
+
+Executables and object files will be ignored during committing and pushing to
+the remote repository due to being specified in the .gitignore file.
 
 # VARIABLES
 
