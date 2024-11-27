@@ -302,7 +302,6 @@ int printPigment(pigment_t* pp, int i, int n){ // MATT
     // Function should not accept indices less than -1 or greater or equal to the number of indices in the array.
     if ( (i < (-1)) || (i >= n) ) {
         printf("Error: Index out of range.\n");
-        //Should we have a usage statment???????????????????????????????
         return (1);
     }
 

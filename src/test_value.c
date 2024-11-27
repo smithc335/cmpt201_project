@@ -34,7 +34,13 @@ int main(void){
         randomNum = rand() % (numLines);
         randomind[i] = randomNum;
     }
-    printf("Printing indexes %d, %d, and %d.\n", randomind[0], randomind[1], randomind[2]);
+    printf("Printing indexes  0, %d, %d, %d, and %d.\n", randomind[0], randomind[1], randomind[2], numLines);
+
+        errN = printPigment(pigmentArray, 0, numLines);
+        if (errN == 1){
+            printf("Error: Function [printPigment] failed.\n");
+            exit(EXIT_FAILURE);
+        }
 
     for (int i = 0; i < 3; i++){
         errN = printPigment(pigmentArray, randomind[i], numLines);
@@ -42,6 +48,12 @@ int main(void){
             printf("Error: Function [printPigment] failed.\n");
             exit(EXIT_FAILURE);
         }
+    }
+
+    errN = printPigment(pigmentArray, (numLines - 1), numLines);
+    if (errN == 1){
+        printf("Error: Function [printPigment] failed.\n");
+        exit(EXIT_FAILURE);
     }
 
     free(pigmentArray);
