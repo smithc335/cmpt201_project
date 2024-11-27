@@ -16,7 +16,7 @@ int main(void){
     char pigmentFilename[] = "../data/pigments.dat"; 
     int numLines = 10;
     pigment_t* pigmentArray = NULL;
-    int indexN = 5;
+    int indexN = -1;
     int errN = 1;
 	// srand(time(NULL));
 	// int randomNum;
@@ -33,7 +33,8 @@ int main(void){
         exit(EXIT_FAILURE);
     }
 
-
+    free(pigmentArray);
+    pigmentArray = NULL;
 
 
 
@@ -126,6 +127,8 @@ int main(void){
     }
 
     // deallocate memory for paintArray
+
+
 	free(paintArray);
 	paintArray = NULL;
     free(subPaint);

@@ -306,20 +306,33 @@ int printPigment(pigment_t* pp, int i, int n){ // MATT
         return (1);
     }
 
-    // if (i == -1){
+    if (i == -1){
 
+        for (int j = 0; j < n; j++){
 
-    // }
+            printf("--------------\n");
+            printf("ciName       : %s\n", pp[j].ciName);
+            printf("pigmentName  : %s\n", pp[j].pigmentName);
+            printf("value        : %d\n", pp[j].value);
+            printf("chroma       : %d\n", pp[j].chroma);
+            printf("(a,b)        : (%d,%d)\n", pp[j].abValue[0], pp[j].abValue[1]);
+            printf("hue [degrees]: %d\n", pp[j].hueAngle);
+            printf("huePurity    : %.2f\n", pp[j].huePurity);
+            printf("(ahp,ahp)    : (%.2f,%.2f)\n", pp[j].abHp[0], pp[j].abHp[1]);
+        }
 
-    printf("--------------\n");
-    printf("ciName       : %s\n", pp[i].ciName);
-    printf("pigmentName  : %s\n", pp[i].pigmentName);
-    printf("value        : %d\n", pp[i].value);
-    printf("chroma       : %d\n", pp[i].chroma);
-    printf("(a,b)        : (%d,%d)\n", pp[i].abValue[0], pp[i].abValue[1]);
-    printf("hue [degrees]: %d\n", pp[i].hueAngle);
-    printf("huePurity    : %.2f\n", pp[i].huePurity);
-    printf("(ahp,ahp)    : (%.2f,%.2f)\n", pp[i].abHp[0], pp[i].abHp[1]);
+    }
+    else{ 
+        printf("--------------\n");
+        printf("ciName       : %s\n", pp[i].ciName);
+        printf("pigmentName  : %s\n", pp[i].pigmentName);
+        printf("value        : %d\n", pp[i].value);
+        printf("chroma       : %d\n", pp[i].chroma);
+        printf("(a,b)        : (%d,%d)\n", pp[i].abValue[0], pp[i].abValue[1]);
+        printf("hue [degrees]: %d\n", pp[i].hueAngle);
+        printf("huePurity    : %.2f\n", pp[i].huePurity);
+        printf("(ahp,ahp)    : (%.2f,%.2f)\n", pp[i].abHp[0], pp[i].abHp[1]);
+    }
 
     return (0);
 }
