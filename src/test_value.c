@@ -16,7 +16,7 @@ int main(void){
 	printf("Tests for printPigment:\n");
 	printf("------------------------------------------------------------\n");
 
-    char pigmentFilename[] = "../cmpt201_project/data/pigments.dat"; 
+    char pigmentFilename[] = "../data/pigments.dat"; 
     int numLines = 10;
     pigment_t* pigmentArray = NULL;
    // int indexN = -1;
@@ -55,9 +55,7 @@ int main(void){
 
     srand(time(NULL));
 
-    // CHANGED FILENAME MEANS THAT SRC MAKEFILE DOESN'T WORK
-        // HAVE TO CHANGE TO BIN DIRECTORY TO RUN PROJECT????????????
-    char paintFilename[] = "../cmpt201_project/data/paints.dat";
+    char paintFilename[] = "../data/paints.dat";
 	paint_t* paintArray = NULL;
 	int paintN;
     int inds[3] = {0, 0, 695};
