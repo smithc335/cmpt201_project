@@ -673,3 +673,13 @@ paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* 
 
     return (paintArray);
 }
+
+
+paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour){ // MATT
+
+}
+
+
+paint_t* getPalette(paint_t* pp, int* n, type*, properties*){ // CLAIRE
+
+}
