@@ -680,6 +680,159 @@ paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour){ // MATT
 }
 
 
-paint_t* getPalette(paint_t* pp, int* n, type*, properties*){ // CLAIRE
+paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIRE
 
+    // paletteType: full = 0, triad = 1, complimentary = 2, split_complimentary = 3
+    // propertyType: transparency = 0, staining = 1, blossom = 2
+
+    // PASS IN A TEMP POINTER FOR n WHICH CONTAINS DUPLICATE OF PAINTARRAY SIZE
+        // will be overwritten by size of new array after function is over
+
+    char* token;
+    int paletteType;
+    colour_t paletteColor;
+    int propertyType;
+    int propertyValue;
+    int capacity = 10;
+    int paletteN = 0;
+    paint_t* paletteArray = NULL;
+    
+    // check input and return NULL pointer for failure
+        // MOVE ERROR CHECKS TO HELPER FUNCTIONS
+    // check if array is empty
+    if(pp==NULL){
+        printf("Error: Passed in empty array.\n");
+        return (paletteArray);
+    }
+
+    // check type parameter
+    token = strtok(type, ":"); // should return the palette type
+    if(strcmp(token, "full")==0){
+        paletteType = 0;
+    }
+    else if(strcmp(token, "triad")==0){
+        paletteType = 1;
+    }
+    else if(strcmp(token, "complimentary")==0){
+        paletteType = 2;
+    }
+    else if(strcmp(token, "split_complimentary")==0){
+        paletteType = 3;
+    }
+    else{
+        printf("Error: Format of type (palette name) is invalid.\n");
+        return (paletteArray);
+    }
+
+    token = strtok(NULL, "\0"); // should return the palette color
+    if(strcmp(token, "red")==0){
+        paletteColor = 0;
+    }
+    else if(strcmp(token, "red_orange")==0){
+        paletteColor = 1;
+    }
+    else if(strcmp(token, "orange")==0){
+        paletteColor = 2;
+    }
+    else if(strcmp(token, "yellow_orange")==0){
+        paletteColor = 3;
+    }
+    else if(strcmp(token, "yellow")==0){
+        paletteColor = 4;
+    }
+    else if(strcmp(token, "yellow_green")==0){
+        paletteColor = 5;
+    }
+    else if(strcmp(token, "green")==0){
+        paletteColor = 6;
+    }
+    else if(strcmp(token, "blue_green")==0){
+        paletteColor = 7;
+    }
+    else if(strcmp(token, "blue")==0){
+        paletteColor = 8;
+    }
+    else if(strcmp(token, "blue_violet")==0){
+        paletteColor = 9;
+    }
+    else if(strcmp(token, "violet")==0){
+        paletteColor = 10;
+    }
+    else if(strcmp(token, "red_violet")==0){
+        paletteColor = 11;
+    }
+    else{
+        printf("Error: Format of type (color) is invalid.\n");
+        return (paletteArray);
+    }
+
+    // check properties parameter
+    token = strtok(properties, ":"); // should return the property type
+    if(strcmp(token, "transparency")==0){
+        propertyType = 0;
+    }
+    else if(strcmp(token, "staining")==0){
+        propertyType = 1;
+    }
+    else if(strcmp(token, "blossom")==0){
+        propertyType = 2;
+    }
+    else{
+        printf("Error: Format of properties (property type) is invalid.\n");
+        return (paletteArray);
+    }
+
+    token = strtok(NULL, "\0"); // should return the property value
+    if(isdigit(token)!=0){
+        printf("Error: Format of properties (property value) is invalid.\n");
+        return (paletteArray);
+    }
+    else{
+        propertyValue = atoi(token);
+        if(propertyValue<0 || propertyValue>4){
+            printf("Error: Format of properties (property value) is invalid.\n");
+            return (paletteArray);
+        }
+    }
+
+    // allocate memory
+    paletteArray = malloc(capacity * sizeof(paint_t));
+
+    // for(int i=0; i<*n; i++){
+    //     // reallocate subarray if entries reaches capacity
+    //     if(paletteN>=capacity){
+    //         capacity *= 2;
+    //         paletteArray = realloc(paletteArray, (capacity * sizeof(paint_t)));
+    //     }
+        
+    // }
+
+    // looking for hueAngle in [ranges]
+
+    // looking for [property] that equals [value]
+
+    // calculate which colors to pull based on palette type
+        // test for property as looping through (helper function)
+    switch(paletteType){
+        case(0): // full
+            break;
+
+        case(1): // triad
+            break;
+
+        case(2): // complimentary
+            break;
+
+        case(3): // split complimentary
+            break;
+    }
+
+    // get subarrays of each paint color using getPaintHue
+
+    // loop through subarrays to sort out values that match the properties parameter
+        // check if NULL to skip this step
+
+    // combine valid values from each subarray into larger array (to be returned)
+
+    return ()
 }

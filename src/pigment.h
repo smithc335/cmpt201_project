@@ -69,18 +69,18 @@ typedef enum{
 } gValue_t;
 
 typedef enum{
-	RED, 
-	RED_ORANGE, 
-	ORANGE, 
-	YELLOW_ORANGE, 
-	YELLOW, 
-	YELLOW_GREEN, 
-	GREEN, 
-	BLUE_GREEN, 
-	BLUE, 
-	BLUE_VIOLET, 
-	VIOLET, 
-	RED_VIOLET 
+	RED,           // 0
+	RED_ORANGE,    // 1 
+	ORANGE,        // 2
+	YELLOW_ORANGE, // 3
+	YELLOW,        // 4
+	YELLOW_GREEN,  // 5
+	GREEN,         // 6
+	BLUE_GREEN,    // 7
+	BLUE,          // 8
+	BLUE_VIOLET,   // 9
+	VIOLET,        // 10
+	RED_VIOLET     // 11
 } colour_t;
 
 /*******************************************************************************
@@ -198,4 +198,4 @@ paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour); // MATT
 *		
 * Returns: 
 *******************************************************************************/
-paint_t* getPalette(paint_t* pp, int* n, type*, properties*); // CLAIRE
+paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties); // CLAIRE
