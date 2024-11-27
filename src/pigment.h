@@ -28,12 +28,35 @@ typedef struct paint_template{
 } paint_t;
 
 typedef enum{
-	HUE, VALUE, GRANULATING, TRANSPARENT, STAINING, BLOOM, LIGHTFAST
+	HUE, 
+	VALUE, 
+	GRANULATING, 
+	TRANSPARENT, 
+	STAINING, 
+	BLOOM, 
+	LIGHTFAST
 } gRange_t;
 
 typedef enum{
-	CINAME, MARKETINGNAME, MANUFACTURER
+	CINAME, 
+	MARKETINGNAME, 
+	MANUFACTURER
 } gValue_t;
+
+typedef enum{
+	RED, 
+	RED_ORANGE, 
+	ORANGE, 
+	YELLOW_ORANGE, 
+	YELLOW, 
+	YELLOW_GREEN, 
+	GREEN, 
+	BLUE_GREEN, 
+	BLUE, 
+	BLUE_VIOLET, 
+	VIOLET, 
+	RED_VIOLET 
+} colour_t;
 
 /*******************************************************************************
 * Purpose: To open a file that contains pigment information and assign pigment
@@ -133,3 +156,21 @@ int getFileRange(paint_t* pp, int npp, int* fmin, int* fmax, gRange_t getType);
 *		   the function failed.
 *******************************************************************************/
 paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* nspp);
+
+
+/*******************************************************************************
+* Purpose: 
+* Parameters:
+*		
+* Returns: 
+*******************************************************************************/
+paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour); // MATT
+
+
+/*******************************************************************************
+* Purpose: 
+* Parameters:
+*		
+* Returns: 
+*******************************************************************************/
+paint_t* getPalette(paint_t* pp, int* n, type*, properties*); // CLAIRE

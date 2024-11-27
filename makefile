@@ -4,7 +4,7 @@
 CC=gcc
 CFLAGS=-Wall -std=c11
 
-project: test_value.o pigment.o
+project: test_palette.o pigment.o
 	$(CC) $(CFLAGS) $^ -o $@
 	mv *.o obj
 	mv $@ bin
@@ -19,4 +19,4 @@ clean:
 	rm -f bin/*
 
 package:
-	tar -czvf cmpt201_project_lab10_CS_MB.tar.gz README.md bin data makefile obj src
+	tar -czvf cmpt201_project_lab11_CS_MB.tar.gz README.md bin data makefile obj src
