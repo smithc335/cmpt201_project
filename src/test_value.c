@@ -53,8 +53,6 @@ int main(void){
 	printf("Tests for printPaint:\n");
 	printf("------------------------------------------------------------\n");
 
-    srand(time(NULL));
-
     char paintFilename[] = "../data/paints.dat";
 	paint_t* paintArray = NULL;
 	int paintN;
