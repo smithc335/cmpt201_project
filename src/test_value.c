@@ -11,7 +11,7 @@ int main(void){
 
     srand(time(NULL)); 
 
-    // Tests for printPigment (MATT)
+    // Tests for printPigment
     printf("------------------------------------------------------------\n");
 	printf("Tests for printPigment:\n");
 	printf("------------------------------------------------------------\n");
@@ -65,7 +65,7 @@ int main(void){
     pigmentArray = NULL;
 
 
-    // Tests for printPaint (CLAIRE)
+    // Tests for printPaint
     printf("\n------------------------------------------------------------\n");
 	printf("Tests for printPaint:\n");
 	printf("------------------------------------------------------------\n");
@@ -89,16 +89,14 @@ int main(void){
         }
     }
 
-    // Tests for getPaintRange (CLAIRE)
+
+    // Tests for getPaintRange
     printf("\n------------------------------------------------------------\n");
 	printf("Tests for getPaintRange:\n");
 
     paint_t* spaRange;
     int spaRangeN;
     float ranges[2][2] = {{0.0, 0.0}, {0.4, 0.5}};
-    // gRange_t paintMember;
-    
-    // paintMember = rand() % 7; // min 0, max 6 to get which value to search from enumeration
 
     for(int i=0; i<(sizeof(ranges)/sizeof(float[2])); i++){
         spaRange = getPaintRange(paintArray, paintN, ranges[i][0], ranges[i][1], LIGHTFAST, &spaRangeN);
@@ -108,11 +106,6 @@ int main(void){
         printf("------------------------------------------------------------\n");
 
         for (int j=0; j<spaRangeN; j++){
-            // err = printPaint(spaRange, j, paintN);
-            // if(err==1){
-            //     printf("Function was unsuccessful.\n");
-            //     exit(EXIT_FAILURE);
-            // }
             printf("%s, %s, %s, ", spaRange[j].ciName, spaRange[j].marketingName, spaRange[j].manufacturer);
             printf("%i, %i, %i, ", spaRange[j].transparency, spaRange[j].staining, spaRange[j].valueRange);
             printf("%i, %i, %i, ", spaRange[j].granulating, spaRange[j].blossom, spaRange[j].diffusion);
@@ -125,9 +118,7 @@ int main(void){
     spaRange = NULL;
 
 
-
-
-    // Tests for getPaintValue (MATT)
+    // Tests for getPaintValue 
     printf("\n------------------------------------------------------------\n");
 	printf("Tests for getPaintValue:\n");
 	printf("------------------------------------------------------------\n");
@@ -158,7 +149,6 @@ int main(void){
     printf("Manufacture Name tested is %s.\n", manName);
     printf("C.I. Name tested is %s.\n", cName);
 
-
     subPaint1 = getPaintValue(paintArray, paintN, markName, MARKETINGNAME, &numResult1);
     if(subPaint1 == NULL){
 		printf("Function was unsuccessful.\n");
@@ -176,7 +166,6 @@ int main(void){
 		printf("Function was unsuccessful.\n");
 		exit(EXIT_FAILURE);
     }
-
 
     printf("\n------------------------------------------------------------\n");
     printf("The number of elements that have the marketing name %s is %d.\n", markName, numResult1);
@@ -211,15 +200,17 @@ int main(void){
 	    printf("%i, %i, %i\n", subPaint3[i].hueAngle, subPaint3[i].hueShift, subPaint3[i].lightfast);
     }
 
-    // deallocate memory for paintArray and sub array
-	free(paintArray);
-	paintArray = NULL;
+    // deallocate memory for sub arrays
     free(subPaint1);
     subPaint1 = NULL;
     free(subPaint2);
     subPaint2 = NULL;
     free(subPaint3);
     subPaint3 = NULL;
+
+    // deallocate memory for paintArray
+    free(paintArray);
+	paintArray = NULL;
 
     exit(EXIT_SUCCESS);
 }

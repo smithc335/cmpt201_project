@@ -291,7 +291,7 @@ paint_t* loadPaintData(char* filename, paint_t* pArray, int* n){
 * MILESTONE 2 FUNCTIONS
 *******************************************************************************/
 
-int printPigment(pigment_t* pp, int i, int n){ // MATT
+int printPigment(pigment_t* pp, int i, int n){
 
     // Checking if array was created previously.
     if (pp == NULL){
@@ -306,7 +306,6 @@ int printPigment(pigment_t* pp, int i, int n){ // MATT
     }
 
     if (i == -1){
-
         for (int j = 0; j < n; j++){
 
             printf("--------------\n");
@@ -319,7 +318,6 @@ int printPigment(pigment_t* pp, int i, int n){ // MATT
             printf("huePurity    : %.2f\n", pp[j].huePurity);
             printf("(ahp,ahp)    : (%.2f,%.2f)\n", pp[j].abHp[0], pp[j].abHp[1]);
         }
-
     }
     else{ 
         printf("--------------\n");
@@ -337,7 +335,7 @@ int printPigment(pigment_t* pp, int i, int n){ // MATT
 }
 
 
-int printPaint(paint_t* pp, int i, int n){ // CLAIRE
+int printPaint(paint_t* pp, int i, int n){
 
     // check input (return 1 for failure)
     if(pp==NULL){
@@ -386,7 +384,7 @@ int printPaint(paint_t* pp, int i, int n){ // CLAIRE
 }
 
 
-paint_t* getPaintRange(paint_t* pp, int npp, float rmin, float rmax, gRange_t getType, int* nspp){ // CLAIRE
+paint_t* getPaintRange(paint_t* pp, int npp, float rmin, float rmax, gRange_t getType, int* nspp){
 
     int capacity = 10;
     int fmin = 0;
@@ -413,7 +411,6 @@ paint_t* getPaintRange(paint_t* pp, int npp, float rmin, float rmax, gRange_t ge
 
     // get min and max values from file
     err = getFileRange(pp, npp, &fmin, &fmax, getType);
-
     if(err==1){
         printf("Error: Could not retrieve file range values.\n");
         return (spa);
@@ -442,42 +439,36 @@ paint_t* getPaintRange(paint_t* pp, int npp, float rmin, float rmax, gRange_t ge
                     *nspp += 1;
                 }
                 break;
-
             case(1):
                 if(xlow <= pp[i].valueRange && pp[i].valueRange <= xhigh){
                     spa[*nspp] = pp[i];
                     *nspp += 1;
                 }
                 break;
-
             case(2):
                 if(xlow <= pp[i].granulating && pp[i].granulating <= xhigh){
                     spa[*nspp] = pp[i];
                     *nspp += 1;
                 }
                 break;
-
             case(3):
                 if(xlow <= pp[i].transparency && pp[i].transparency <= xhigh){
                     spa[*nspp] = pp[i];
                     *nspp += 1;
                 }
                 break;
-            
             case(4):
                 if(xlow <= pp[i].staining && pp[i].staining <= xhigh){
                     spa[*nspp] = pp[i];
                     *nspp += 1;
                 }
                 break;
-            
             case(5):
                 if(xlow <= pp[i].blossom && pp[i].blossom <= xhigh){
                     spa[*nspp] = pp[i];
                     *nspp += 1;
                 }
                 break;
-            
             case(6):
                 if(xlow <= pp[i].lightfast && pp[i].lightfast <= xhigh){
                     spa[*nspp] = pp[i];
@@ -491,7 +482,7 @@ paint_t* getPaintRange(paint_t* pp, int npp, float rmin, float rmax, gRange_t ge
 }
 
 
-int getFileRange(paint_t* pp, int npp, int* fmin, int* fmax, gRange_t getType){ // CLAIRE
+int getFileRange(paint_t* pp, int npp, int* fmin, int* fmax, gRange_t getType){
 
     if(pp==NULL){
         printf("Error: Passed in empty array.\n");
@@ -616,7 +607,7 @@ int getFileRange(paint_t* pp, int npp, int* fmin, int* fmax, gRange_t getType){ 
 }
 
 
-paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* nspp){ // MATT
+paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* nspp){
 
     paint_t* paintArray;
     int capacity = 10;
@@ -632,7 +623,6 @@ paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* 
 
     //Looping through file
     while(i < npp){ 
-
         //Checking if need to realloc.
         if(*nspp == capacity){
             capacity = (capacity) * 2; 
@@ -648,7 +638,6 @@ paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* 
         }
 
         switch (getType){
-
             // CINAME
             case (0):
                 if( (strcmp(pp[i].ciName, name)) == 0 ){
