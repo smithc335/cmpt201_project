@@ -622,7 +622,6 @@ paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* 
     paint_t* paintArray;
     int capacity = 10;
     int i = 0;
-    int j = 0;
 
     //Allocate space for array
     paintArray = malloc((capacity) * sizeof(paint_t));
@@ -630,11 +629,13 @@ paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* 
         return (NULL);
     }
 
+    *nspp = 0; // start count of valid entries at 0
+
     //Looping through file
     while(i < npp){ 
 
         //Checking if need to realloc.
-        if(j == capacity){
+        if(*nspp == capacity){
             capacity = (capacity) * 2; 
             //Checking if realloc succeeds with a temp pointer.
             paint_t* tempArray = realloc(paintArray, (capacity) * sizeof(paint_t));
@@ -652,30 +653,26 @@ paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* 
             // CINAME
             case (0):
                 if( (strcmp(pp[i].ciName, name)) == 0 ){
-                    paintArray[j] = pp[i];
-                    *nspp = (*nspp) + 1;
-                    j++;
+                    paintArray[*nspp] = pp[i];
+                    *nspp += 1;
                 }
                 break;
 
             //MARKETINGNAME
             case (1):
                 if( (strcmp(pp[i].marketingName, name)) == 0 ){
-                    paintArray[j] = pp[i];
-                    *nspp = (*nspp) + 1;
-                    j++;
+                    paintArray[*nspp] = pp[i];
+                    *nspp += 1;
                 }
                 break;
 
             //MANUFACTURER
             case (2):
                 if( (strcmp(pp[i].manufacturer, name)) == 0 ){
-                    paintArray[j] = pp[i];
-                    *nspp = (*nspp) + 1;
-                    j++;
+                    paintArray[*nspp] = pp[i];
+                    *nspp += 1;
                 }
                 break;
-
 
             //???????????????????
             default:
