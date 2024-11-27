@@ -162,7 +162,6 @@ int main(void){
     }
 
     // printf("The number of elements that have the marketing name %s is %d\n", markName, numResult1);
-    printf("The number of elements that have the name %s is %d.\n", name, numResult);
     printf("------------------------------------------------------------\n");
 
     // for (int i = 0; i < numResult1 ; i++){
