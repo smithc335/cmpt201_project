@@ -19,7 +19,6 @@ int main(void){
     char pigmentFilename[] = "../data/pigments.dat"; 
     int numLines = 10;
     pigment_t* pigmentArray = NULL;
-   // int indexN = -1;
     int errN = 1;
     int randomNum;
     int randomind[3];
@@ -35,7 +34,7 @@ int main(void){
         randomNum = rand() % (numLines);
         randomind[i] = randomNum;
     }
-    printf("Indices tested are: {%d, %d, %d}.\n", randomind[0], randomind[1], randomind[2]);
+    printf("Printing indexes %d, %d, and %d.\n", randomind[0], randomind[1], randomind[2]);
 
     for (int i = 0; i < 3; i++){
         errN = printPigment(pigmentArray, randomind[i], numLines);
@@ -47,6 +46,7 @@ int main(void){
 
     free(pigmentArray);
     pigmentArray = NULL;
+
 
     // Tests for printPaint (CLAIRE)
     printf("\n------------------------------------------------------------\n");
@@ -119,7 +119,6 @@ int main(void){
  
     int ranN;
     ranN = rand() % (paintN);
-    // printf("Index tested = %d\n", ranN);
 
     paint_t* subPaint1;
     paint_t* subPaint2;
@@ -161,9 +160,9 @@ int main(void){
     }
 
 
+    printf("\n------------------------------------------------------------\n");
+    printf("The number of elements that have the marketing name %s is %d.\n", markName, numResult1);
     printf("------------------------------------------------------------\n");
-
-    printf("The number of elements that have the marketing name %s is %d\n", markName, numResult1);
 
     for (int i = 0; i < numResult1 ; i++){
         printf("%s, %s, %s, ", subPaint1[i].ciName, subPaint1[i].marketingName, subPaint1[i].manufacturer);
@@ -171,9 +170,9 @@ int main(void){
 	    printf("%i, %i, %i, ", subPaint1[i].granulating, subPaint1[i].blossom, subPaint1[i].diffusion);
 	    printf("%i, %i, %i\n", subPaint1[i].hueAngle, subPaint1[i].hueShift, subPaint1[i].lightfast);
     }
-
-    printf("The number of elements that have the manufacturer name %s is %d\n", manName, numResult2);
-
+    printf("\n------------------------------------------------------------\n");
+    printf("The number of elements that have the manufacturer name %s is %d.\n", manName, numResult2);
+    printf("------------------------------------------------------------\n");
     for (int i = 0; i < numResult2 ; i++){
         printf("%s, %s, %s, ", subPaint2[i].ciName, subPaint2[i].marketingName, subPaint2[i].manufacturer);
 	    printf("%i, %i, %i, ", subPaint2[i].transparency, subPaint2[i].staining, subPaint2[i].valueRange);
@@ -181,8 +180,9 @@ int main(void){
 	    printf("%i, %i, %i\n", subPaint2[i].hueAngle, subPaint2[i].hueShift, subPaint2[i].lightfast);
     }
 
-
-    printf("The number of elements that have the ciname %s is %d\n", cName, numResult3);
+    printf("\n------------------------------------------------------------\n");
+    printf("The number of elements that have the ciname %s is %d.\n", cName, numResult3);
+    printf("------------------------------------------------------------\n");
 
     for (int i = 0; i < numResult3 ; i++){
         printf("%s, %s, %s, ", subPaint3[i].ciName, subPaint3[i].marketingName, subPaint3[i].manufacturer);
