@@ -665,7 +665,7 @@ paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* 
             default:
                 printf("Error: Incorrect value inputted");
                 return (NULL);
-                break;
+
         }
 
         i++;
@@ -675,7 +675,54 @@ paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* 
 }
 
 
+/*******************************************************************************
+* MILESTONE 3 FUNCTIONS
+*******************************************************************************/
+
+
 paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour){ // MATT
+
+    // paint_t* hueRange = NULL;
+    // int hueRangeN;
+    // int capacity = 10;
+    // fmin = 0; 
+    // fmax = 0;
+
+
+    // hueRange = malloc((capacity) * sizeof(paint_t));
+    // if (hueRange == NULL){
+    //     return (NULL);
+    // }
+
+    // xlow = fmin + rmin * (fmax - fmin);
+    // xhigh = fmin + rmax * (fmax - fmin);
+
+    
+
+    // //Determining which colour was chosen.
+    // switch (colour){
+    //     case (0):
+            
+    //         spaRange = getPaintRange(pp, *n, rmin, rmin, HUE, &spaRangeN);
+    //         printf("spaRangeN = %d.\n", spaRangeN);
+    //        // *n = spaRangeN;
+    //         break;
+
+    //     case (1):
+    //         printf("came here for some reason.\n");
+    //         // spaRange = getPaintRange(pp, *n, RED_MIN, RED_MAX, HUE, &spaRangeN);
+    //         break;
+
+    //     default:
+    //         printf("Defaulted for some reason.\n");
+    //         break;
+
+
+    // free(spaRange);
+    // spaRange = NULL;
+
+    // return (spaRange);
+
 
 }
 
