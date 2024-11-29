@@ -682,46 +682,119 @@ paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* 
 
 paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour){ // MATT
 
-    // paint_t* hueRange = NULL;
-    // int hueRangeN;
-    // int capacity = 10;
-    // fmin = 0; 
-    // fmax = 0;
+    paint_t* hueRange = NULL;
+    int capacity = 10;
+    int hueMin = 0;
+    int hueMax = 0;
+    int arrNum = 0;
 
 
-    // hueRange = malloc((capacity) * sizeof(paint_t));
-    // if (hueRange == NULL){
-    //     return (NULL);
-    // }
+    hueRange = malloc((capacity) * sizeof(paint_t));
+    if (hueRange == NULL){
+        return (NULL);
+    }
 
-    // xlow = fmin + rmin * (fmax - fmin);
-    // xhigh = fmin + rmax * (fmax - fmin);
 
+    //Determining which colour was chosen.
+    switch (colour){
+        case (0):
+            printf("RED.\n");
+            hueMin = RED_MIN;
+            hueMax = RED_MAX;
+            break;
+
+        case (1):
+            printf("RED_ORANGE.\n");
+            hueMin = RED_ORANGE_MIN;
+            hueMax = RED_ORANGE_MAX;
+            break;
+
+        case (2):
+            printf("ORANGE.\n");
+            hueMin = ORANGE_MIN;
+            hueMax = ORANGE_MAX;
+            break;
+
+        case (3):
+            printf("YELLOW_ORANGE.\n");
+            hueMin = YELLOW_ORANGE_MIN;
+            hueMax = YELLOW_ORANGE_MAX;
+            break;
+
+        case (4):
+            printf("YELLOW.\n");
+            hueMin = YELLOW_MIN;
+            hueMax = YELLOW_MAX;
+            break;
+
+        case (5):
+            printf("YELLOW_GREEN.\n");
+            hueMin = YELLOW_GREEN_MIN;
+            hueMax = YELLOW_GREEN_MAX;
+            break;
+
+        case (6):
+            printf("GREEN.\n");
+            hueMin = GREEN_MIN;
+            hueMax = GREEN_MAX;
+            break;
+
+        case (7):
+            printf("BLUE_GREEN.\n");
+            hueMin = BLUE_GREEN_MIN;
+            hueMax = BLUE_GREEN_MAX;
+            break;
+
+        case (8):
+            printf("BLUE.\n");
+            hueMin = BLUE_MIN;
+            hueMax = BLUE_MAX;
+            break;
+
+        case (9):
+            printf("BLUE_VIOLET.\n");
+            hueMin = BLUE_VIOLET_MIN;
+            hueMax = BLUE_VIOLET_MAX;
+            break;
+
+        case (10):
+            printf("VIOLET.\n");
+            hueMin = VIOLET_MIN;
+            hueMax = VIOLET_MAX;
+            break;
+
+        case (11):
+            printf("RED_VIOLET.\n");
+            hueMin = RED_VIOLET_MIN;
+            hueMax = RED_VIOLET_MAX;
+            break;
+
+        default:
+            printf("Error: Color not recognized.\n");
+            return (NULL);
+            
+    }
+        for (int i = 0; i < *n; i++){
+            if ( (pp[i].hueAngle >= hueMin) && (pp[i].hueAngle <= hueMax) ){
+
+                if(arrNum == capacity){
+                    capacity = (capacity) * 2; 
+                    //Checking if realloc succeeds with a temp pointer.
+                    paint_t* tempArray = realloc(hueRange, (capacity) * sizeof(paint_t));
+                    if(tempArray == NULL){
+                        printf("Error: Realloc Failed.\n");
+                        return (NULL);
+                    }
+                }
+
+                hueRange[arrNum] = pp[i];
+                arrNum++;
+            }
+
+        }
     
 
-    // //Determining which colour was chosen.
-    // switch (colour){
-    //     case (0):
-            
-    //         spaRange = getPaintRange(pp, *n, rmin, rmin, HUE, &spaRangeN);
-    //         printf("spaRangeN = %d.\n", spaRangeN);
-    //        // *n = spaRangeN;
-    //         break;
-
-    //     case (1):
-    //         printf("came here for some reason.\n");
-    //         // spaRange = getPaintRange(pp, *n, RED_MIN, RED_MAX, HUE, &spaRangeN);
-    //         break;
-
-    //     default:
-    //         printf("Defaulted for some reason.\n");
-    //         break;
-
-
-    // free(spaRange);
-    // spaRange = NULL;
-
-    // return (spaRange);
+    return (hueRange);
 
 
 }
