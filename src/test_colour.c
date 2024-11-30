@@ -65,7 +65,9 @@ int main(void){
         exit(EXIT_FAILURE);
     };
     
-
+    // deallocate memory for colourarr
+    free(colourarr);
+	colourarr = NULL;
 
     // deallocate memory for paintArray
     free(paintArray1);

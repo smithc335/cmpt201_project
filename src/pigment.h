@@ -198,7 +198,7 @@ paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour); // MATT
 *		
 * Returns: 
 *******************************************************************************/
-paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties); // CLAIRE
+int printHue(paint_t* subArr, int *subNum, int fullNum, colour_t colour); // MATT
 
 
 /*******************************************************************************
@@ -207,4 +207,4 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties); // CLAIR
 *		
 * Returns: 
 *******************************************************************************/
-int printHue(paint_t* subArr, int *subNum, int fullNum, colour_t colour); // MATT
+paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties); // CLAIRE

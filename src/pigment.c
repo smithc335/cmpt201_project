@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #include "pigment.h"
 
 /*******************************************************************************
@@ -845,17 +846,16 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
     // paletteType: full = 0, triad = 1, complimentary = 2, split_complimentary = 3
     // propertyType: transparency = 0, staining = 1, blossom = 2
 
-    // PASS IN A TEMP POINTER FOR n WHICH CONTAINS DUPLICATE OF PAINTARRAY SIZE
-        // will be overwritten by size of new array after function is over
-
     char* token;
+    char* token2;
     int paletteType;
     colour_t paletteColor;
     int propertyType;
     int propertyValue;
-    int capacity = 10;
+    // int capacity = 10;
     int paletteN = 0;
     paint_t* paletteArray = NULL;
+    int colors[12] = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
     
     // check input and return NULL pointer for failure
         // MOVE ERROR CHECKS TO HELPER FUNCTIONS
@@ -927,14 +927,14 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
     }
 
     // check properties parameter
-    token = strtok(properties, ":"); // should return the property type
-    if(strcmp(token, "transparency")==0){
+    token2 = strtok(properties, ":"); // should return the property type
+    if(strcmp(token2, "transparency")==0){
         propertyType = 0;
     }
-    else if(strcmp(token, "staining")==0){
+    else if(strcmp(token2, "staining")==0){
         propertyType = 1;
     }
-    else if(strcmp(token, "blossom")==0){
+    else if(strcmp(token2, "blossom")==0){
         propertyType = 2;
     }
     else{
@@ -942,59 +942,105 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
         return (paletteArray);
     }
 
-    token = strtok(NULL, "\0"); // should return the property value
-    if(isdigit(token)!=0){
-        printf("Error: Format of properties (property value) is invalid.\n");
-        return (paletteArray);
-    }
-    else{
-        propertyValue = atoi(token);
-        if(propertyValue<0 || propertyValue>4){
+    token2 = strtok(NULL, "\0"); // should return the property value
+    for(int i=0; i<strlen(token2); i++){
+        if(isdigit(token2[i])==0){
             printf("Error: Format of properties (property value) is invalid.\n");
             return (paletteArray);
         }
     }
+    propertyValue = atoi(token2);
+    if(propertyValue<0 || propertyValue>4){
+        printf("Error: Format of properties (property value) is invalid.\n");
+        return (paletteArray);
+    }
 
     // allocate memory
-    paletteArray = malloc(capacity * sizeof(paint_t));
-
-    // for(int i=0; i<*n; i++){
-    //     // reallocate subarray if entries reaches capacity
-    //     if(paletteN>=capacity){
-    //         capacity *= 2;
-    //         paletteArray = realloc(paletteArray, (capacity * sizeof(paint_t)));
-    //     }
-        
-    // }
+    // can malloc for total size of paintArray (will never be larger)
+    paletteArray = malloc(*n * sizeof(paint_t));
 
     // looking for hueAngle in [ranges]
-
     // looking for [property] that equals [value]
 
+    // switch(paletteType){
+    //     case(0): // full - want all hueAngles possible
+
+    //         for(int i=0; i<*n; i++){
+
+    //             switch(propertyType){
+    //                 case(0): // transparency
+    //                     if(pp[i].transparency==propertyValue){
+    //                         paletteArray[paletteN] = pp[i];
+    //                         paletteN += 1;
+    //                     }
+    //                     break;
+
+    //                 case(1): // staining
+    //                     if(pp[i].staining==propertyValue){
+    //                         paletteArray[paletteN] = pp[i];
+    //                         paletteN += 1;
+    //                     }
+    //                     break;
+
+    //                 case(3): // blossom
+    //                     if(pp[i].blossom==propertyValue){
+    //                         paletteArray[paletteN] = pp[i];
+    //                         paletteN += 1;
+    //                     }
+    //                     break;
+    //             }
+    //         }
+
+    //         break;
+
+    //     case(1): // triad - want hueAngle of three equidistant colors from paletteColor
+    //         break;
+
+    //     case(2): // complimentary - want hueAngle of direct opposite color from paletteColor
+    //         break;
+
+    //     case(3): // split complimentary - want hueAngle of two colors next to direct opposite from paletteColor
+    //         break;
+    // }
+
     // calculate which colors to pull based on palette type
-        // test for property as looping through (helper function)
+        // could replace paletteColor with colors[0]?? in error checks above too
     switch(paletteType){
-        case(0): // full
+        case(0):
+            for(int i=0; i<12; i++){
+                colors[i] = i;
+            }
             break;
 
         case(1): // triad
+            colors[0] = paletteColor;
+            colors[1] = (paletteColor + 4) % 12;
+            colors[2] = (paletteColor + 8) % 12;
             break;
 
         case(2): // complimentary
-            break;
+            colors[0] = paletteColor;
+            colors[1] = (paletteColor + 6) % 12;
+            break; 
 
         case(3): // split complimentary
+            colors[0] = paletteColor;
+            colors[1] = (paletteColor + 5) % 12;
+            colors[2] = (paletteColor + 7) % 12;
             break;
     }
 
     // get subarrays of each paint color using getPaintHue
+    
 
     // loop through subarrays to sort out values that match the properties parameter
         // check if NULL to skip this step
 
     // combine valid values from each subarray into larger array (to be returned)
 
-    return ()
+    *n = paletteN; // replace paintN with size of paletteArray
+
+    return (paletteArray);
 }
 
 
