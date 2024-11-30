@@ -1,13 +1,11 @@
 // Claire Smith and Matt Beaulieu
-// Project Milestone 3 Tests for Functions
+// Project Milestone 3 Tests for getPalette Function
 
 #include <stdlib.h>
 #include <stdio.h>
 #include "pigment.h"
 
 int main(void){
-
-    // srand(time(NULL)); 
 
     char paintFilename[] = "../data/paints.dat";
 	paint_t* paintArray = NULL;
@@ -21,24 +19,90 @@ int main(void){
 	printf("------------------------------------------------------------\n");
 
     paint_t* paletteArray = NULL;
-    char type[] = "complimentary:blue_green";
-    char property[] = "transparency:2";
-    int paletteN = paintN;
+    char type1[] = "triad:red_orange";
+    char type2[] = "complimentary:blue_green";
+    char type3[] = "split_complimentary:violet";
+    char type4[] = "full:blue";
+    char type5[] = "triad:red"; // blue_violet works, green and red_violet don't (fixed by changing realloc in Matt's function)
+    char property1[] = "transparency:2";
+    char property2[] = "staining:1";
+    char property3[] = "blossom:4";
+    char property4[] = "transparency:0";
+    int paletteN = paintN; // will be overwritten by size of paletteArray after function is over
+    int err;
+    
+    paletteArray = getPalette(paintArray, &paletteN, type1, property1);
+    printf("Palette for %s:red_orange with %s:2\n", type1, property1);
+    printf("---> Contains %i paints\n", paletteN);
+    printf("------------------------------------------------------------\n");
+    err = printArray(paletteArray, paletteN);
+    if(err==1){
+        printf("Error: printArray function failed.\n");
+        exit(EXIT_FAILURE);
+    }
 
-    printf("BEFORE: palette: %i paint: %i\n", paletteN, paintN);
+    // setup for next test
+    free(paletteArray);
+    paletteArray = NULL;
+    paletteN = paintN;
 
-    // PASS IN A TEMP POINTER FOR n WHICH CONTAINS DUPLICATE OF PAINTARRAY SIZE
-        // will be overwritten by size of new array after function is over
+    paletteArray = getPalette(paintArray, &paletteN, type2, property2);
+    printf("------------------------------------------------------------\n");
+    printf("Palette for %s:blue_green with %s:1\n", type2, property2);
+    printf("---> Contains %i paints\n", paletteN);
+    printf("------------------------------------------------------------\n");
+    err = printArray(paletteArray, paletteN);
+    if(err==1){
+        printf("Error: printArray function failed.\n");
+        exit(EXIT_FAILURE);
+    }
 
-    paletteArray = getPalette(paintArray, &paletteN, type, property);
+    // setup for next test
+    free(paletteArray);
+    paletteArray = NULL;
+    paletteN = paintN;
 
-    printf("AFTER: palette: %i paint: %i\n", paletteN, paintN);
+    paletteArray = getPalette(paintArray, &paletteN, type3, property3);
+    printf("------------------------------------------------------------\n");
+    printf("Palette for %s:violet with %s:4\n", type3, property3);
+    printf("---> Contains %i paints\n", paletteN);
+    printf("------------------------------------------------------------\n");
+    err = printArray(paletteArray, paletteN);
+    if(err==1){
+        printf("Error: printArray function failed.\n");
+        exit(EXIT_FAILURE);
+    }
 
-    for(int i=0; i<paletteN; i++){
-        printf("%s, %s, %s, ", paletteArray[i].ciName, paletteArray[i].marketingName, paletteArray[i].manufacturer);
-        printf("%i, %i, %i, ", paletteArray[i].transparency, paletteArray[i].staining, paletteArray[i].valueRange);
-        printf("%i, %i, %i, ", paletteArray[i].granulating, paletteArray[i].blossom, paletteArray[i].diffusion);
-        printf("%i, %i, %i\n", paletteArray[i].hueAngle, paletteArray[i].hueShift, paletteArray[i].lightfast);
+    // setup for next test
+    free(paletteArray);
+    paletteArray = NULL;
+    paletteN = paintN;
+
+    paletteArray = getPalette(paintArray, &paletteN, type4, property4);
+    printf("------------------------------------------------------------\n");
+    printf("Palette for %s:blue with %s:0\n", type4, property4);
+    printf("---> Contains %i paints\n", paletteN);
+    printf("------------------------------------------------------------\n");
+    err = printArray(paletteArray, paletteN);
+    if(err==1){
+        printf("Error: printArray function failed.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    // setup for next test
+    free(paletteArray);
+    paletteArray = NULL;
+    paletteN = paintN;
+
+    paletteArray = getPalette(paintArray, &paletteN, type5, NULL);
+    printf("------------------------------------------------------------\n");
+    printf("Palette for %s:red with no property specified\n", type5);
+    printf("---> Contains %i paints\n", paletteN);
+    printf("------------------------------------------------------------\n");
+    err = printArray(paletteArray, paletteN);
+    if(err==1){
+        printf("Error: printArray function failed.\n");
+        exit(EXIT_FAILURE);
     }
 
     // deallocate memory for paletteArray

@@ -235,3 +235,12 @@ paint_t* getValidStaining(paint_t* spa, int* n, int value); // CLAIRE
 * Returns: 
 *******************************************************************************/
 paint_t* getValidBlossom(paint_t* spa, int* n, int value); // CLAIRE
+
+
+/*******************************************************************************
+* Purpose: 
+* Parameters:
+*		
+* Returns: 
+*******************************************************************************/
+int printArray(paint_t* pArray, int n); // CLAIRE

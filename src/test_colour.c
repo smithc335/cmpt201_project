@@ -1,5 +1,5 @@
 // Claire Smith and Matt Beaulieu
-// Project Milestone 3 Test for Function getPaintHue
+// Project Milestone 3 Tests for getPaintHue Function
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -133,9 +133,73 @@ int main(void){
         exit(EXIT_FAILURE);
     };
 
-    
-    
-    // deallocate memory for colourarr 
+
+    // //TEST BLUE
+    // colourarr = getPaintHue(paintArray1, &pntN, BLUE);
+    // if(colourarr == NULL){
+    //     printf("Error: Function [colorarr] failed.\n");
+    //     exit(EXIT_FAILURE);
+    // }
+
+    // if ((printHue(colourarr, &pntN, pntN2, BLUE)) == 1){
+    //     printf("Error: Function [printHue] failed.\n");
+    //     exit(EXIT_FAILURE);
+    // };
+
+
+    // //TEST BLUE-VIOLET
+    // colourarr = getPaintHue(paintArray1, &pntN, BLUE_VIOLET);
+    // if(colourarr == NULL){
+    //     printf("Error: Function [colorarr] failed.\n");
+    //     exit(EXIT_FAILURE);
+    // }
+
+    // if ((printHue(colourarr, &pntN, pntN2, BLUE_VIOLET)) == 1){
+    //     printf("Error: Function [printHue] failed.\n");
+    //     exit(EXIT_FAILURE);
+    // };
+
+
+    // //TEST VIOLET
+    // colourarr = getPaintHue(paintArray1, &pntN, VIOLET);
+    // if(colourarr == NULL){
+    //     printf("Error: Function [colorarr] failed.\n");
+    //     exit(EXIT_FAILURE);
+    // }
+
+    // if ((printHue(colourarr, &pntN, pntN2, VIOLET)) == 1){
+    //     printf("Error: Function [printHue] failed.\n");
+    //     exit(EXIT_FAILURE);
+    // };
+
+
+    // //TEST RED-VIOLET
+    // colourarr = getPaintHue(paintArray1, &pntN, RED_VIOLET);
+    // if(colourarr == NULL){
+    //     printf("Error: Function [colorarr] failed.\n");
+    //     exit(EXIT_FAILURE);
+    // }
+
+    // if ((printHue(colourarr, &pntN, pntN2, RED_VIOLET)) == 1){
+    //     printf("Error: Function [printHue] failed.\n");
+    //     exit(EXIT_FAILURE);
+    // };
+
+
+    // //TEST RED
+    // colourarr = getPaintHue(paintArray1, &pntN, RED);
+    // if(colourarr == NULL){
+    //     printf("Error: Function [colorarr] failed.\n");
+    //     exit(EXIT_FAILURE);
+    // }
+
+    // if ((printHue(colourarr, &pntN, pntN2, RED)) == 1){
+    //     printf("Error: Function [printHue] failed.\n");
+    //     exit(EXIT_FAILURE);
+    // };
+
+
+    // deallocate memory for colourarr (FREED IN printHue)
 
 
     // deallocate memory for paintArray

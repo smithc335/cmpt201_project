@@ -697,73 +697,73 @@ paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour){ // MATT
     //Determining which colour was chosen.
     switch (colour){
         case (0):
-            printf("RED\n");
+            // printf("RED\n");
             hueMin = RED_MIN;
             hueMax = RED_MAX;
             break;
 
         case (1):
-            printf("RED_ORANGE\n");
+            // printf("RED_ORANGE\n");
             hueMin = RED_ORANGE_MIN;
             hueMax = RED_ORANGE_MAX;
             break;
 
         case (2):
-            printf("ORANGE\n");
+            // printf("ORANGE\n");
             hueMin = ORANGE_MIN;
             hueMax = ORANGE_MAX;
             break;
 
         case (3):
-            printf("YELLOW_ORANGE\n");
+            // printf("YELLOW_ORANGE\n");
             hueMin = YELLOW_ORANGE_MIN;
             hueMax = YELLOW_ORANGE_MAX;
             break;
 
         case (4):
-            printf("YELLOW\n");
+            // printf("YELLOW\n");
             hueMin = YELLOW_MIN;
             hueMax = YELLOW_MAX;
             break;
 
         case (5):
-            printf("YELLOW_GREEN\n");
+            // printf("YELLOW_GREEN\n");
             hueMin = YELLOW_GREEN_MIN;
             hueMax = YELLOW_GREEN_MAX;
             break;
 
         case (6):
-            printf("GREEN\n");
+            // printf("GREEN\n");
             hueMin = GREEN_MIN;
             hueMax = GREEN_MAX;
             break;
 
         case (7):
-            printf("BLUE_GREEN\n");
+            // printf("BLUE_GREEN\n");
             hueMin = BLUE_GREEN_MIN;
             hueMax = BLUE_GREEN_MAX;
             break;
 
         case (8):
-            printf("BLUE\n");
+            // printf("BLUE\n");
             hueMin = BLUE_MIN;
             hueMax = BLUE_MAX;
             break;
 
         case (9):
-            printf("BLUE_VIOLET\n");
+            // printf("BLUE_VIOLET\n");
             hueMin = BLUE_VIOLET_MIN;
             hueMax = BLUE_VIOLET_MAX;
             break;
 
         case (10):
-            printf("VIOLET\n");
+            // printf("VIOLET\n");
             hueMin = VIOLET_MIN;
             hueMax = VIOLET_MAX;
             break;
 
         case (11):
-            printf("RED_VIOLET\n");
+            // printf("RED_VIOLET\n");
             hueMin = RED_VIOLET_MIN;
             hueMax = RED_VIOLET_MAX;
             break;
@@ -782,11 +782,12 @@ paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour){ // MATT
 
                 capacity = (capacity) * 2; 
                 //Checking if realloc succeeds with a temp pointer.
-                paint_t* tempArray = realloc(hueRange, (capacity) * sizeof(paint_t));
-                if(tempArray == NULL){
-                    printf("Error: Realloc Failed.\n");
-                    return (NULL);
-                }
+                // paint_t* tempArray = realloc(hueRange, (capacity) * sizeof(paint_t));
+                // if(tempArray == NULL){
+                //     printf("Error: Realloc Failed.\n");
+                //     return (NULL);
+                // }
+                hueRange = realloc(hueRange, (capacity) * sizeof(paint_t)); // CLAIRE CHANGED
             }                
 
             //Checking if hue equals 0 or 360 as they can be used interchangeably.
@@ -820,11 +821,12 @@ paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour){ // MATT
                 if(arrNum == capacity){
                     capacity = (capacity) * 2; 
                     //Checking if realloc succeeds with a temp pointer.
-                    paint_t* tempArray = realloc(hueRange, (capacity) * sizeof(paint_t));
-                    if(tempArray == NULL){
-                        printf("Error: Realloc Failed.\n");
-                        return (NULL);
-                    }
+                    // paint_t* tempArray = realloc(hueRange, (capacity) * sizeof(paint_t));
+                    // if(tempArray == NULL){
+                    //     printf("Error: Realloc Failed.\n");
+                    //     return (NULL);
+                    // }
+                    hueRange = realloc(hueRange, (capacity) * sizeof(paint_t)); // CLAIRE CHANGED
                 }
                 hueRange[arrNum] = pp[i];
                 arrNum++;
@@ -877,10 +879,11 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
     paint_t* validHueArray = NULL;
     int paletteN = 0;
     paint_t* paletteArray = NULL;
-    int colors[12] = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    int colors[13] = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    // extra -1 value in array to signal end of array when all 12 paint colors loaded in
     
     // check input and return NULL pointer for failure
-        // MOVE ERROR CHECKS TO HELPER FUNCTIONS
+    // MOVE ERROR CHECKS TO HELPER FUNCTIONS
 
     // check if array is empty
     if(pp==NULL){
@@ -1014,14 +1017,8 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
     }    
 
     for(int i=0; colors[i]!=(-1); i++){
-        // if(hueArray==NULL){
-        //     printf("hueArray = NULL hueN = %i\n", hueN);
-        // }
-
         // get subarray of each paint color using getPaintHue (using Matt's function)
         hueArray = getPaintHue(pp, &hueN, colors[i]);
-
-        // printf("hueN = %i\n", hueN);
 
         // narrow hueArray down to valid property entries only
         switch(propertyType){
@@ -1129,4 +1126,22 @@ paint_t* getValidBlossom(paint_t* spa, int* n, int value){ // CLAIRE
 
     *n = validHuesN; // n is passed in as hueN and comes out as validHuesN
     return (validHues);
+}
+
+
+int printArray(paint_t* pArray, int n){ // CLAIRE
+
+    if(pArray==NULL){
+        printf("Error: Passed in empty array.\n");
+        return (1);
+    }
+
+    for(int i=0; i<n; i++){
+        printf("%s, %s, %s, ", pArray[i].ciName, pArray[i].marketingName, pArray[i].manufacturer);
+        printf("%i, %i, %i, ", pArray[i].transparency, pArray[i].staining, pArray[i].valueRange);
+        printf("%i, %i, %i, ", pArray[i].granulating, pArray[i].blossom, pArray[i].diffusion);
+        printf("%i, %i, %i\n", pArray[i].hueAngle, pArray[i].hueShift, pArray[i].lightfast);
+    }
+
+    return(0);
 }
