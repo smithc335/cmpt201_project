@@ -32,7 +32,7 @@ int main(void){
     int err;
     
     paletteArray = getPalette(paintArray, &paletteN, type1, property1);
-    printf("Palette for %s:red_orange with %s:2\n", type1, property1);
+    printf("\nPalette for %s:red_orange with %s:2\n", type1, property1);
     printf("---> Contains %i paints\n", paletteN);
     printf("------------------------------------------------------------\n");
     err = printArray(paletteArray, paletteN);
@@ -48,7 +48,7 @@ int main(void){
 
     paletteArray = getPalette(paintArray, &paletteN, type2, property2);
     printf("------------------------------------------------------------\n");
-    printf("Palette for %s:blue_green with %s:1\n", type2, property2);
+    printf("\nPalette for %s:blue_green with %s:1\n", type2, property2);
     printf("---> Contains %i paints\n", paletteN);
     printf("------------------------------------------------------------\n");
     err = printArray(paletteArray, paletteN);
@@ -64,7 +64,7 @@ int main(void){
 
     paletteArray = getPalette(paintArray, &paletteN, type3, property3);
     printf("------------------------------------------------------------\n");
-    printf("Palette for %s:violet with %s:4\n", type3, property3);
+    printf("\nPalette for %s:violet with %s:4\n", type3, property3);
     printf("---> Contains %i paints\n", paletteN);
     printf("------------------------------------------------------------\n");
     err = printArray(paletteArray, paletteN);
@@ -80,7 +80,7 @@ int main(void){
 
     paletteArray = getPalette(paintArray, &paletteN, type4, property4);
     printf("------------------------------------------------------------\n");
-    printf("Palette for %s:blue with %s:0\n", type4, property4);
+    printf("\nPalette for %s:blue with %s:0\n", type4, property4);
     printf("---> Contains %i paints\n", paletteN);
     printf("------------------------------------------------------------\n");
     err = printArray(paletteArray, paletteN);
@@ -96,7 +96,7 @@ int main(void){
 
     paletteArray = getPalette(paintArray, &paletteN, type5, NULL);
     printf("------------------------------------------------------------\n");
-    printf("Palette for %s:red with no property specified\n", type5);
+    printf("\nPalette for %s:red with no property specified\n", type5);
     printf("---> Contains %i paints\n", paletteN);
     printf("------------------------------------------------------------\n");
     err = printArray(paletteArray, paletteN);
@@ -104,6 +104,7 @@ int main(void){
         printf("Error: printArray function failed.\n");
         exit(EXIT_FAILURE);
     }
+    printf("------------------------------------------------------------\n");
 
     // deallocate memory for paletteArray
     free(paletteArray);
