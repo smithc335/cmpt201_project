@@ -689,12 +689,10 @@ paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour){ // MATT
     int hueMax = 0;
     int arrNum = 0;
 
-
     hueRange = malloc((capacity) * sizeof(paint_t));
     if (hueRange == NULL){
         return (NULL);
     }
-
 
     //Determining which colour was chosen.
     switch (colour){
@@ -773,15 +771,53 @@ paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour){ // MATT
         default:
             printf("Error: Color not recognized.\n");
             return (NULL);
-            
     }
-        if (colour == RED_ORANGE){
 
-            for (int i = 0; i < *n; i++){
+    if (colour == RED_ORANGE){
+
+        for (int i = 0; i < *n; i++){
+
+            //Checking if array has reach capacity.
+            if(arrNum == capacity){
+
+                capacity = (capacity) * 2; 
+                //Checking if realloc succeeds with a temp pointer.
+                paint_t* tempArray = realloc(hueRange, (capacity) * sizeof(paint_t));
+                if(tempArray == NULL){
+                    printf("Error: Realloc Failed.\n");
+                    return (NULL);
+                }
+            }                
+
+            //Checking if hue equals 0 or 360 as they can be used interchangeably.
+            if( (pp[i].hueAngle == 0) || (pp[i].hueAngle == 360) ){
+
+                hueRange[arrNum] = pp[i];
+                arrNum++;
+            }
+
+            else{
+                // #define RED_ORANGE_MIN 345 
+                // #define RED_ORANGE_MAX 14
+                if ( ((pp[i].hueAngle >= hueMin) && (pp[i].hueAngle <= 359)) || ((pp[i].hueAngle >= 1) && (pp[i].hueAngle <= hueMax)) ){
+
+                    hueRange[arrNum] = pp[i];
+                    arrNum++;
+                }
+            }
+        }
+        
+    }
+
+    //If the color is anything other than RED_ORANGE.
+    else{
+
+        for (int i = 0; i < *n; i++){
+
+            if ( (pp[i].hueAngle >= hueMin) && (pp[i].hueAngle <= hueMax) ){
 
                 //Checking if array has reach capacity.
                 if(arrNum == capacity){
-
                     capacity = (capacity) * 2; 
                     //Checking if realloc succeeds with a temp pointer.
                     paint_t* tempArray = realloc(hueRange, (capacity) * sizeof(paint_t));
@@ -789,62 +825,45 @@ paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour){ // MATT
                         printf("Error: Realloc Failed.\n");
                         return (NULL);
                     }
-                }                
-
-                //Checking if hue equals 0 or 360 as they can be used interchangeably.
-                if( (pp[i].hueAngle == 0) || (pp[i].hueAngle == 360) ){
-
-                    hueRange[arrNum] = pp[i];
-                    arrNum++;
                 }
-
-                else{
-                    // #define RED_ORANGE_MIN 345 
-                    // #define RED_ORANGE_MAX 14
-                    if ( ((pp[i].hueAngle >= hueMin) && (pp[i].hueAngle <= 359)) || ((pp[i].hueAngle >= 1) && (pp[i].hueAngle <= hueMax)) ){
-
-                        hueRange[arrNum] = pp[i];
-                        arrNum++;
-                    }
-                }
-            }
-            
-        }
-
-        //If the color is anything other than RED_ORANGE.
-        else{
-
-            for (int i = 0; i < *n; i++){
-
-                if ( (pp[i].hueAngle >= hueMin) && (pp[i].hueAngle <= hueMax) ){
-
-                    //Checking if array has reach capacity.
-                    if(arrNum == capacity){
-                        capacity = (capacity) * 2; 
-                        //Checking if realloc succeeds with a temp pointer.
-                        paint_t* tempArray = realloc(hueRange, (capacity) * sizeof(paint_t));
-                        if(tempArray == NULL){
-                            printf("Error: Realloc Failed.\n");
-                            return (NULL);
-                        }
-                    }
-                    hueRange[arrNum] = pp[i];
-                    arrNum++;
-                }
+                hueRange[arrNum] = pp[i];
+                arrNum++;
             }
         }
-        *n = arrNum;
+    }
+    *n = arrNum;
 
     return (hueRange);
+}
 
 
+int printHue(paint_t* subArr, int *subNum, int fullNum, colour_t colour){ // MATT
+
+    if(subArr == NULL){
+        printf("Error: Array parameter is empty.\n");
+        return (1);
+    }
+    printf("Number of paints in sub array : %d\n", *subNum);
+
+    for (int i = 0; i < *subNum; i++){
+        printf("%s, %s, %s, ", subArr[i].ciName, subArr[i].marketingName, subArr[i].manufacturer);
+        printf("%i, %i, %i, ", subArr[i].transparency, subArr[i].staining, subArr[i].valueRange);
+        printf("%i, %i, %i, ", subArr[i].granulating, subArr[i].blossom, subArr[i].diffusion);
+        printf("%i, %i, %i\n", subArr[i].hueAngle, subArr[i].hueShift, subArr[i].lightfast);
+    }
+
+    free(subArr);
+    subArr = NULL;
+    *subNum = fullNum;
+
+    return(0);
 }
 
 
 paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIRE
 
     // paletteType: full = 0, triad = 1, complimentary = 2, split_complimentary = 3
-    // propertyType: transparency = 0, staining = 1, blossom = 2
+    // propertyType: NULL = -1, transparency = 0, staining = 1, blossom = 2
 
     char* token;
     char* token2;
@@ -852,13 +871,17 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
     colour_t paletteColor;
     int propertyType;
     int propertyValue;
-    // int capacity = 10;
+    int capacity = 10;
+    int hueN = *n;
+    paint_t* hueArray = NULL;
+    paint_t* validHueArray = NULL;
     int paletteN = 0;
     paint_t* paletteArray = NULL;
     int colors[12] = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
     
     // check input and return NULL pointer for failure
         // MOVE ERROR CHECKS TO HELPER FUNCTIONS
+
     // check if array is empty
     if(pp==NULL){
         printf("Error: Passed in empty array.\n");
@@ -927,81 +950,41 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
     }
 
     // check properties parameter
-    token2 = strtok(properties, ":"); // should return the property type
-    if(strcmp(token2, "transparency")==0){
-        propertyType = 0;
-    }
-    else if(strcmp(token2, "staining")==0){
-        propertyType = 1;
-    }
-    else if(strcmp(token2, "blossom")==0){
-        propertyType = 2;
-    }
-    else{
-        printf("Error: Format of properties (property type) is invalid.\n");
-        return (paletteArray);
-    }
+    if(properties!=NULL){ // properties is allowed to be NULL
+        token2 = strtok(properties, ":"); // should return the property type
+        if(strcmp(token2, "transparency")==0){
+            propertyType = 0;
+        }
+        else if(strcmp(token2, "staining")==0){
+            propertyType = 1;
+        }
+        else if(strcmp(token2, "blossom")==0){
+            propertyType = 2;
+        }
+        else{
+            printf("Error: Format of properties (property type) is invalid.\n");
+            return (paletteArray);
+        }
 
-    token2 = strtok(NULL, "\0"); // should return the property value
-    for(int i=0; i<strlen(token2); i++){
-        if(isdigit(token2[i])==0){
+        token2 = strtok(NULL, "\0"); // should return the property value
+        for(int i=0; i<strlen(token2); i++){
+            if(isdigit(token2[i])==0){
+                printf("Error: Format of properties (property value) is invalid.\n");
+                return (paletteArray);
+            }
+        }
+        propertyValue = atoi(token2);
+        if(propertyValue<0 || propertyValue>4){
             printf("Error: Format of properties (property value) is invalid.\n");
             return (paletteArray);
         }
     }
-    propertyValue = atoi(token2);
-    if(propertyValue<0 || propertyValue>4){
-        printf("Error: Format of properties (property value) is invalid.\n");
-        return (paletteArray);
+    else{
+        propertyType = -1;
     }
 
     // allocate memory
-    // can malloc for total size of paintArray (will never be larger)
-    paletteArray = malloc(*n * sizeof(paint_t));
-
-    // looking for hueAngle in [ranges]
-    // looking for [property] that equals [value]
-
-    // switch(paletteType){
-    //     case(0): // full - want all hueAngles possible
-
-    //         for(int i=0; i<*n; i++){
-
-    //             switch(propertyType){
-    //                 case(0): // transparency
-    //                     if(pp[i].transparency==propertyValue){
-    //                         paletteArray[paletteN] = pp[i];
-    //                         paletteN += 1;
-    //                     }
-    //                     break;
-
-    //                 case(1): // staining
-    //                     if(pp[i].staining==propertyValue){
-    //                         paletteArray[paletteN] = pp[i];
-    //                         paletteN += 1;
-    //                     }
-    //                     break;
-
-    //                 case(3): // blossom
-    //                     if(pp[i].blossom==propertyValue){
-    //                         paletteArray[paletteN] = pp[i];
-    //                         paletteN += 1;
-    //                     }
-    //                     break;
-    //             }
-    //         }
-
-    //         break;
-
-    //     case(1): // triad - want hueAngle of three equidistant colors from paletteColor
-    //         break;
-
-    //     case(2): // complimentary - want hueAngle of direct opposite color from paletteColor
-    //         break;
-
-    //     case(3): // split complimentary - want hueAngle of two colors next to direct opposite from paletteColor
-    //         break;
-    // }
+    paletteArray = malloc(capacity * sizeof(paint_t));
 
     // calculate which colors to pull based on palette type
         // could replace paletteColor with colors[0]?? in error checks above too
@@ -1028,15 +1011,60 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
             colors[1] = (paletteColor + 5) % 12;
             colors[2] = (paletteColor + 7) % 12;
             break;
+    }    
+
+    for(int i=0; colors[i]!=(-1); i++){
+        // if(hueArray==NULL){
+        //     printf("hueArray = NULL hueN = %i\n", hueN);
+        // }
+
+        // get subarray of each paint color using getPaintHue (using Matt's function)
+        hueArray = getPaintHue(pp, &hueN, colors[i]);
+
+        // printf("hueN = %i\n", hueN);
+
+        // narrow hueArray down to valid property entries only
+        switch(propertyType){
+            case(-1): // no property testing
+                validHueArray = malloc(hueN * sizeof(paint_t));
+                for(int i=0; i<hueN; i++){
+                    validHueArray[i] = hueArray[i];
+                }
+                break;
+
+            case(0): // transparency
+                validHueArray = getValidTransparency(hueArray, &hueN, propertyValue);
+                break;
+
+            case(1): // staining
+                validHueArray = getValidStaining(hueArray, &hueN, propertyValue);
+                break;
+
+            case(2): // blossom
+                validHueArray = getValidBlossom(hueArray, &hueN, propertyValue);
+                break;
+        }
+
+        // add paints with valid values into paletteArray
+        for(int i=0; i<hueN; i++){
+            // reallocate paletteArray if entries reaches capacity
+            if(paletteN>=capacity){
+                capacity *= 2;
+                paletteArray = realloc(paletteArray, (capacity * sizeof(paint_t)));
+            }
+
+            paletteArray[paletteN] = validHueArray[i];
+            paletteN += 1;
+        }
+
+        hueN = *n; // reset hueN for next loop through
+
+        // deallocate subarrays
+        free(hueArray);
+        hueArray = NULL;
+        free(validHueArray);
+        validHueArray = NULL;
     }
-
-    // get subarrays of each paint color using getPaintHue
-    
-
-    // loop through subarrays to sort out values that match the properties parameter
-        // check if NULL to skip this step
-
-    // combine valid values from each subarray into larger array (to be returned)
 
     *n = paletteN; // replace paintN with size of paletteArray
 
@@ -1044,25 +1072,61 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
 }
 
 
-int printHue(paint_t* subArr, int *subNum, int fullNum, colour_t colour){
+paint_t* getValidTransparency(paint_t* spa, int* n, int value){ // CLAIRE
 
-    if(subArr == NULL){
-        printf("Error: Array parameter is empty.\n");
-        return (1);
-    }
-    printf("Number of paints in sub array : %d\n", *subNum);
+    int validHuesN = 0;
+    paint_t* validHues = NULL;
 
-    for (int i = 0; i < *subNum; i++){
-        printf("%s, %s, %s, ", subArr[i].ciName, subArr[i].marketingName, subArr[i].manufacturer);
-        printf("%i, %i, %i, ", subArr[i].transparency, subArr[i].staining, subArr[i].valueRange);
-        printf("%i, %i, %i, ", subArr[i].granulating, subArr[i].blossom, subArr[i].diffusion);
-        printf("%i, %i, %i\n", subArr[i].hueAngle, subArr[i].hueShift, subArr[i].lightfast);
-    }
+    validHues = malloc(*n * sizeof(paint_t)); // will be less than or equal to size of hueArray
 
-    free(subArr);
-    subArr = NULL;
-    *subNum = fullNum;
+    // loop through subarray and sort out valid paints
+    for(int i=0; i<*n; i++){
+        if(spa[i].transparency==value){
+            validHues[validHuesN] = spa[i];
+            validHuesN += 1;
+        }
+    } 
 
-    return(0);
+    *n = validHuesN; // n is passed in as hueN and comes out as validHuesN
+    return (validHues);
+}
 
+
+paint_t* getValidStaining(paint_t* spa, int* n, int value){ // CLAIRE
+
+    int validHuesN = 0;
+    paint_t* validHues = NULL;
+
+    validHues = malloc(*n * sizeof(paint_t)); // will be less than or equal to size of hueArray
+
+    // loop through subarray and sort out valid paints
+    for(int i=0; i<*n; i++){
+        if(spa[i].staining==value){
+            validHues[validHuesN] = spa[i];
+            validHuesN += 1;
+        }
+    } 
+
+    *n = validHuesN; // n is passed in as hueN and comes out as validHuesN
+    return (validHues);
+}
+
+ 
+paint_t* getValidBlossom(paint_t* spa, int* n, int value){ // CLAIRE
+
+    int validHuesN = 0;
+    paint_t* validHues = NULL;
+
+    validHues = malloc(*n * sizeof(paint_t)); // will be less than or equal to size of hueArray
+
+    // loop through subarray and sort out valid paints
+    for(int i=0; i<*n; i++){
+        if(spa[i].blossom==value){
+            validHues[validHuesN] = spa[i];
+            validHuesN += 1;
+        }
+    } 
+
+    *n = validHuesN; // n is passed in as hueN and comes out as validHuesN
+    return (validHues);
 }

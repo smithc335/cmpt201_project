@@ -21,8 +21,8 @@ int main(void){
 	printf("------------------------------------------------------------\n");
 
     paint_t* paletteArray = NULL;
-    char type[] = "full:yellow";
-    char property[] = "transparency:0";
+    char type[] = "complimentary:blue_green";
+    char property[] = "transparency:2";
     int paletteN = paintN;
 
     printf("BEFORE: palette: %i paint: %i\n", paletteN, paintN);
