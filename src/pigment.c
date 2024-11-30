@@ -697,73 +697,61 @@ paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour){ // MATT
     //Determining which colour was chosen.
     switch (colour){
         case (0):
-            // printf("RED\n");
             hueMin = RED_MIN;
             hueMax = RED_MAX;
             break;
 
         case (1):
-            // printf("RED_ORANGE\n");
             hueMin = RED_ORANGE_MIN;
             hueMax = RED_ORANGE_MAX;
             break;
 
         case (2):
-            // printf("ORANGE\n");
             hueMin = ORANGE_MIN;
             hueMax = ORANGE_MAX;
             break;
 
         case (3):
-            // printf("YELLOW_ORANGE\n");
             hueMin = YELLOW_ORANGE_MIN;
             hueMax = YELLOW_ORANGE_MAX;
             break;
 
         case (4):
-            // printf("YELLOW\n");
             hueMin = YELLOW_MIN;
             hueMax = YELLOW_MAX;
             break;
 
         case (5):
-            // printf("YELLOW_GREEN\n");
             hueMin = YELLOW_GREEN_MIN;
             hueMax = YELLOW_GREEN_MAX;
             break;
 
         case (6):
-            // printf("GREEN\n");
             hueMin = GREEN_MIN;
             hueMax = GREEN_MAX;
             break;
 
         case (7):
-            // printf("BLUE_GREEN\n");
             hueMin = BLUE_GREEN_MIN;
             hueMax = BLUE_GREEN_MAX;
             break;
 
         case (8):
-            // printf("BLUE\n");
             hueMin = BLUE_MIN;
             hueMax = BLUE_MAX;
             break;
 
         case (9):
-            // printf("BLUE_VIOLET\n");
             hueMin = BLUE_VIOLET_MIN;
             hueMax = BLUE_VIOLET_MAX;
             break;
 
         case (10):
-            // printf("VIOLET\n");
             hueMin = VIOLET_MIN;
             hueMax = VIOLET_MAX;
             break;
 
         case (11):
-            // printf("RED_VIOLET\n");
             hueMin = RED_VIOLET_MIN;
             hueMax = RED_VIOLET_MAX;
             break;
@@ -845,7 +833,63 @@ int printHue(paint_t* subArr, int *subNum, int fullNum, colour_t colour){ // MAT
         printf("Error: Array parameter is empty.\n");
         return (1);
     }
-    printf("Number of paints in sub array : %d\n", *subNum);
+
+        //Printing the color genre name for confirmation.
+    switch (colour){
+        case (0):
+            printf("\nPrinting Red Paints\n");
+            break;
+
+        case (1):
+            printf("\nPrinting Red-Orange Paints\n");
+            break;
+
+        case (2):
+            printf("\nPrinting Orange Paints\n");
+            break;
+
+        case (3):
+            printf("\nPrinting Yellow-Orange Paints\n");
+            break;
+
+        case (4):
+            printf("\nPrinting Yellow Paints\n");
+            break;
+
+        case (5):
+            printf("\nPrinting Yellow-Green Paints\n");
+            break;
+
+        case (6):
+            printf("\nPrinting Green Paints\n");
+            break;
+
+        case (7):
+            printf("\nPrinting Blue-Green Paints\n");
+            break;
+
+        case (8):
+            printf("\nPrinting Blue Paints\n");
+            break;
+
+        case (9):
+            printf("\nPrinting Blue-Violet Paints\n");
+            break;
+
+        case (10):
+            printf("\nPrinting Violet Paints\n");
+            break;
+
+        case (11):
+            printf("\nPrinting Red-Violet Paints\n");
+            break;
+
+        default:
+            printf("\nError: Color not recognized.\n");
+            return(1);
+    }
+    printf("Number of paints within selected color: %d\n", *subNum);
+    printf("------------------------------------------------------------\n");
 
     for (int i = 0; i < *subNum; i++){
         printf("%s, %s, %s, ", subArr[i].ciName, subArr[i].marketingName, subArr[i].manufacturer);
@@ -853,6 +897,7 @@ int printHue(paint_t* subArr, int *subNum, int fullNum, colour_t colour){ // MAT
         printf("%i, %i, %i, ", subArr[i].granulating, subArr[i].blossom, subArr[i].diffusion);
         printf("%i, %i, %i\n", subArr[i].hueAngle, subArr[i].hueShift, subArr[i].lightfast);
     }
+    printf("------------------------------------------------------------\n");
 
     free(subArr);
     subArr = NULL;
