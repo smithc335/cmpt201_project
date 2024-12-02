@@ -28,15 +28,16 @@ int main(void){
 
     pntN2 = pntN;
 
-    colourarr = getPaintHue(paintArray1, &pntN, RED);
+    colourarr = getPaintHue(paintArray1, &pntN, RED_ORANGE);
     if(colourarr == NULL){
         printf("Error: Function [colorarr] failed.\n");
         exit(EXIT_FAILURE);
     }
 
-    printf("%s, %s, %s, ", colourarr[0].ciName, colourarr[0].marketingName, colourarr[0].manufacturer);
+    for(int i = 0; i < pntN; i++){
+        printf("%s, %s, %s, %d\n ", colourarr[i].ciName, colourarr[i].marketingName, colourarr[i].manufacturer, colourarr[i].hueAngle);
+    }
     printf("Number of colors in colorarr: %d\n", pntN);
-
 
 
     free(colourarr);

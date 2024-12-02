@@ -774,10 +774,13 @@ paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour){ // MATT
             return (NULL);
             
     }
-        for (int i = 0; i < *n; i++){
-            if ( (pp[i].hueAngle >= hueMin) && (pp[i].hueAngle <= hueMax) ){
+        if (colour == RED_ORANGE){
 
+            for (int i = 0; i < *n; i++){
+
+                //Checking if array has reach capacity.
                 if(arrNum == capacity){
+
                     capacity = (capacity) * 2; 
                     //Checking if realloc succeeds with a temp pointer.
                     paint_t* tempArray = realloc(hueRange, (capacity) * sizeof(paint_t));
@@ -785,14 +788,50 @@ paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour){ // MATT
                         printf("Error: Realloc Failed.\n");
                         return (NULL);
                     }
+                }                
+
+                //Checking if hue equals 0 or 360 as they can be used interchangeably.
+                if( (pp[i].hueAngle == 0) || (pp[i].hueAngle == 360) ){
+
+                    hueRange[arrNum] = pp[i];
+                    arrNum++;
                 }
 
-                hueRange[arrNum] = pp[i];
-                arrNum++;
-            }
+                else{
+                    // #define RED_ORANGE_MIN 345 
+                    // #define RED_ORANGE_MAX 14
+                    if ( ((pp[i].hueAngle >= hueMin) && (pp[i].hueAngle <= 359)) || ((pp[i].hueAngle >= 1) && (pp[i].hueAngle <= hueMax)) ){
 
+                        hueRange[arrNum] = pp[i];
+                        arrNum++;
+                    }
+                }
+            }
         }
-    
+
+        //If the color is anything other than RED_ORANGE.
+        else{
+
+            for (int i = 0; i < *n; i++){
+
+                if ( (pp[i].hueAngle >= hueMin) && (pp[i].hueAngle <= hueMax) ){
+
+                    //Checking if array has reach capacity.
+                    if(arrNum == capacity){
+                        capacity = (capacity) * 2; 
+                        //Checking if realloc succeeds with a temp pointer.
+                        paint_t* tempArray = realloc(hueRange, (capacity) * sizeof(paint_t));
+                        if(tempArray == NULL){
+                            printf("Error: Realloc Failed.\n");
+                            return (NULL);
+                        }
+                    }
+                    hueRange[arrNum] = pp[i];
+                    arrNum++;
+                }
+            }
+        }
+        *n = arrNum;
 
     return (hueRange);
 
