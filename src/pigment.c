@@ -698,73 +698,73 @@ paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour){ // MATT
     //Determining which colour was chosen.
     switch (colour){
         case (0):
-            printf("RED.\n");
+            printf("RED\n");
             hueMin = RED_MIN;
             hueMax = RED_MAX;
             break;
 
         case (1):
-            printf("RED_ORANGE.\n");
+            printf("RED_ORANGE\n");
             hueMin = RED_ORANGE_MIN;
             hueMax = RED_ORANGE_MAX;
             break;
 
         case (2):
-            printf("ORANGE.\n");
+            printf("ORANGE\n");
             hueMin = ORANGE_MIN;
             hueMax = ORANGE_MAX;
             break;
 
         case (3):
-            printf("YELLOW_ORANGE.\n");
+            printf("YELLOW_ORANGE\n");
             hueMin = YELLOW_ORANGE_MIN;
             hueMax = YELLOW_ORANGE_MAX;
             break;
 
         case (4):
-            printf("YELLOW.\n");
+            printf("YELLOW\n");
             hueMin = YELLOW_MIN;
             hueMax = YELLOW_MAX;
             break;
 
         case (5):
-            printf("YELLOW_GREEN.\n");
+            printf("YELLOW_GREEN\n");
             hueMin = YELLOW_GREEN_MIN;
             hueMax = YELLOW_GREEN_MAX;
             break;
 
         case (6):
-            printf("GREEN.\n");
+            printf("GREEN\n");
             hueMin = GREEN_MIN;
             hueMax = GREEN_MAX;
             break;
 
         case (7):
-            printf("BLUE_GREEN.\n");
+            printf("BLUE_GREEN\n");
             hueMin = BLUE_GREEN_MIN;
             hueMax = BLUE_GREEN_MAX;
             break;
 
         case (8):
-            printf("BLUE.\n");
+            printf("BLUE\n");
             hueMin = BLUE_MIN;
             hueMax = BLUE_MAX;
             break;
 
         case (9):
-            printf("BLUE_VIOLET.\n");
+            printf("BLUE_VIOLET\n");
             hueMin = BLUE_VIOLET_MIN;
             hueMax = BLUE_VIOLET_MAX;
             break;
 
         case (10):
-            printf("VIOLET.\n");
+            printf("VIOLET\n");
             hueMin = VIOLET_MIN;
             hueMax = VIOLET_MAX;
             break;
 
         case (11):
-            printf("RED_VIOLET.\n");
+            printf("RED_VIOLET\n");
             hueMin = RED_VIOLET_MIN;
             hueMax = RED_VIOLET_MAX;
             break;
@@ -807,6 +807,7 @@ paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour){ // MATT
                     }
                 }
             }
+            
         }
 
         //If the color is anything other than RED_ORANGE.

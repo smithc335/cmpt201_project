@@ -8,45 +8,7 @@
 int main(void){
 
     srand(time(NULL)); 
-
-    // Tests for getPaintHue (MATT)
-    printf("------------------------------------------------------------\n");
-	printf("Tests for getPaintHue:\n");
-	printf("------------------------------------------------------------\n");
-
-    char paintFilename[] = "../data/paints.dat";
-	paint_t* paintArray1 = NULL;
-    paint_t* colourarr;
-	int pntN;
-    int pntN2; //Necessary????????????????????????????????????????
-
-    paintArray1 = loadPaintData(paintFilename, paintArray1, &pntN);
-    if(paintArray1 == NULL){
-        printf("Error: Function [paintArray1] failed.\n");
-        exit(EXIT_FAILURE);
-    }
-
-    pntN2 = pntN;
-
-    colourarr = getPaintHue(paintArray1, &pntN, RED_ORANGE);
-    if(colourarr == NULL){
-        printf("Error: Function [colorarr] failed.\n");
-        exit(EXIT_FAILURE);
-    }
-
-    for(int i = 0; i < pntN; i++){
-        printf("%s, %s, %s, %d\n ", colourarr[i].ciName, colourarr[i].marketingName, colourarr[i].manufacturer, colourarr[i].hueAngle);
-    }
-    printf("Number of colors in colorarr: %d\n", pntN);
-
-
-    free(colourarr);
-    colourarr = NULL;
- 
-    free(paintArray1);
-	paintArray1 = NULL;
-
-
+    //char paintFilename[] = "../data/paints.dat";
 
 
     // Tests for getPalette (CLAIRE)

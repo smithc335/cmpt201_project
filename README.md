@@ -49,3 +49,7 @@ In paints.dat:
          degrees of the CIELAB a*b* plane
     Lf = Lightfastness: 1 (very fugitive) to 8 (very lightfast) for paint in
          tint, full strength (1998 test/2004 test)
+
+# HUE MIN/MAX JUSTIFICATION
+For function paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour)
+In pigment.h

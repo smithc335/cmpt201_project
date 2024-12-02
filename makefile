@@ -9,6 +9,11 @@ project: test_palette.o pigment.o
 	mv *.o obj
 	mv $@ bin
 
+test_colour: test_colour.o pigment.o
+	$(CC) $(CFLAGS) $^ -o $@
+	mv *.o obj
+	mv $@ bin
+
 %.o: src/%.c
 	$(CC) $(CFLAGS) -c $<
 
