@@ -996,3 +996,27 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
 
     return ()
 }
+
+
+int printHue(paint_t* subArr, int *subNum, int fullNum, colour_t colour){
+
+    if(subArr == NULL){
+        printf("Error: Array parameter is empty.\n");
+        return (1);
+    }
+    printf("Number of paints in sub array : %d\n", *subNum);
+
+    for (int i = 0; i < *subNum; i++){
+        printf("%s, %s, %s, ", subArr[i].ciName, subArr[i].marketingName, subArr[i].manufacturer);
+        printf("%i, %i, %i, ", subArr[i].transparency, subArr[i].staining, subArr[i].valueRange);
+        printf("%i, %i, %i, ", subArr[i].granulating, subArr[i].blossom, subArr[i].diffusion);
+        printf("%i, %i, %i\n", subArr[i].hueAngle, subArr[i].hueShift, subArr[i].lightfast);
+    }
+
+    free(subArr);
+    subArr = NULL;
+    *subNum = fullNum;
+
+    return(0);
+
+}

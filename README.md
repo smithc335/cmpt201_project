@@ -51,5 +51,11 @@ In paints.dat:
          tint, full strength (1998 test/2004 test)
 
 # HUE MIN/MAX JUSTIFICATION
-For function paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour)
-In pigment.h
+For function:  paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour)
+
+In pigment.h, the minimum and maximum values for the colors red, red-orange, 
+orange, yellow-orange, yellow, yellow-green, green, blue-green, blue, 
+blue-violet, violet, and red-violet are defined. The min and max ranges are 
+based on a 15 degree window on either side of the aforementioned colours 
+respective of their placement on the colour wheel. Min and max ranges are 
+exclusive of eachother to prevent overlapping complications. 

@@ -16,7 +16,7 @@ int main(void){
 	paint_t* paintArray1 = NULL;
     paint_t* colourarr;
 	int pntN;
-    int pntN2; //Necessary????????????????????????????????????????
+    int pntN2; 
 
     paintArray1 = loadPaintData(paintFilename, paintArray1, &pntN);
     if(paintArray1 == NULL){
@@ -48,141 +48,25 @@ int main(void){
         exit(EXIT_FAILURE);
     }
 
-    // for(int i = 0; i < pntN; i++){
-    //     printf("%s, %s, %s, %d\n ", colourarr[i].ciName, colourarr[i].marketingName, colourarr[i].manufacturer, colourarr[i].hueAngle);
-    // }
-    printf("Number of colors in colorarr: %d\n", pntN);
+    if ((printHue(colourarr, &pntN, pntN2, RED_ORANGE)) == 1){
+        printf("Error: Function [printHue] failed.\n");
+        exit(EXIT_FAILURE);
+    };
 
-    free(colourarr);
-    colourarr = NULL;
-
-    //////////////////////////////////////////////////////////////////
-    pntN = pntN2;
 
     colourarr = getPaintHue(paintArray1, &pntN, ORANGE);
     if(colourarr == NULL){
         printf("Error: Function [colorarr] failed.\n");
         exit(EXIT_FAILURE);
     }
-    printf("Number of colors in colorarr: %d\n", pntN);
 
-    free(colourarr);
-    colourarr = NULL;
-    pntN = pntN2;
-
-    colourarr = getPaintHue(paintArray1, &pntN, YELLOW_ORANGE);
-    if(colourarr == NULL){
-        printf("Error: Function [colorarr] failed.\n");
+    if ((printHue(colourarr, &pntN, pntN2, ORANGE)) == 1){
+        printf("Error: Function [printHue] failed.\n");
         exit(EXIT_FAILURE);
-    }
-    printf("Number of colors in colorarr: %d\n", pntN);
-
-    free(colourarr);
-    colourarr = NULL;
-    pntN = pntN2;
-
-    colourarr = getPaintHue(paintArray1, &pntN, YELLOW);
-    if(colourarr == NULL){
-        printf("Error: Function [colorarr] failed.\n");
-        exit(EXIT_FAILURE);
-    }
-    printf("Number of colors in colorarr: %d\n", pntN);
-
-    free(colourarr);
-    colourarr = NULL;
-    pntN = pntN2;
-
-    colourarr = getPaintHue(paintArray1, &pntN, YELLOW_GREEN);
-    if(colourarr == NULL){
-        printf("Error: Function [colorarr] failed.\n");
-        exit(EXIT_FAILURE);
-    }
-    printf("Number of colors in colorarr: %d\n", pntN);
-
-    free(colourarr);
-    colourarr = NULL;
-    pntN = pntN2;
-
-    colourarr = getPaintHue(paintArray1, &pntN, GREEN);
-    if(colourarr == NULL){
-        printf("Error: Function [colorarr] failed.\n");
-        exit(EXIT_FAILURE);
-    }
-    printf("Number of colors in colorarr: %d\n", pntN);
-
-    free(colourarr);
-    colourarr = NULL;
-    pntN = pntN2;
-
-    colourarr = getPaintHue(paintArray1, &pntN, BLUE_GREEN);
-    if(colourarr == NULL){
-        printf("Error: Function [colorarr] failed.\n");
-        exit(EXIT_FAILURE);
-    }
-    printf("Number of colors in colorarr: %d\n", pntN);
-
-    free(colourarr);
-    colourarr = NULL;
-    pntN = pntN2;
-
-    colourarr = getPaintHue(paintArray1, &pntN, BLUE);
-    if(colourarr == NULL){
-        printf("Error: Function [colorarr] failed.\n");
-        exit(EXIT_FAILURE);
-    }
-    printf("Number of colors in colorarr: %d\n", pntN);
+    };
+    
 
 
-    free(colourarr);
-    colourarr = NULL;
-    pntN = pntN2;
-
-    colourarr = getPaintHue(paintArray1, &pntN, BLUE_VIOLET);
-    if(colourarr == NULL){
-        printf("Error: Function [colorarr] failed.\n");
-        exit(EXIT_FAILURE);
-    }
-    printf("Number of colors in colorarr: %d\n", pntN);
-
-    free(colourarr);
-    colourarr = NULL;
-    pntN = pntN2;
-
-    colourarr = getPaintHue(paintArray1, &pntN, VIOLET);
-    if(colourarr == NULL){
-        printf("Error: Function [colorarr] failed.\n");
-        exit(EXIT_FAILURE);
-    }
-    printf("Number of colors in colorarr: %d\n", pntN);
-
-    free(colourarr);
-    colourarr = NULL;
-    pntN = pntN2;
-
-    colourarr = getPaintHue(paintArray1, &pntN, RED_VIOLET);
-    if(colourarr == NULL){
-        printf("Error: Function [colorarr] failed.\n");
-        exit(EXIT_FAILURE);
-    }
-    printf("Number of colors in colorarr: %d\n", pntN);
-
-    free(colourarr);
-    colourarr = NULL;
-    pntN = pntN2;
-
-    colourarr = getPaintHue(paintArray1, &pntN, RED);
-    if(colourarr == NULL){
-        printf("Error: Function [colorarr] failed.\n");
-        exit(EXIT_FAILURE);
-    }
-    printf("Number of colors in colorarr: %d\n", pntN);
-
-///////////////////////////////////////////////////////////////////////////////
-
-
-    free(colourarr);
-    colourarr = NULL;
- 
     // deallocate memory for paintArray
     free(paintArray1);
 	paintArray1 = NULL;
