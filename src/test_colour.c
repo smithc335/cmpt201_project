@@ -42,6 +42,8 @@ int main(void){
 
     pntN2 = pntN;
 
+
+    //TEST RED-ORANGE
     colourarr = getPaintHue(paintArray1, &pntN, RED_ORANGE);
     if(colourarr == NULL){
         printf("Error: Function [colorarr] failed.\n");
@@ -54,6 +56,7 @@ int main(void){
     };
 
 
+    //TEST ORANGE
     colourarr = getPaintHue(paintArray1, &pntN, ORANGE);
     if(colourarr == NULL){
         printf("Error: Function [colorarr] failed.\n");
@@ -64,10 +67,76 @@ int main(void){
         printf("Error: Function [printHue] failed.\n");
         exit(EXIT_FAILURE);
     };
+
+
+    //TEST YELLOW-ORANGE
+    colourarr = getPaintHue(paintArray1, &pntN, YELLOW_ORANGE);
+    if(colourarr == NULL){
+        printf("Error: Function [colorarr] failed.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    if ((printHue(colourarr, &pntN, pntN2, YELLOW_ORANGE)) == 1){
+        printf("Error: Function [printHue] failed.\n");
+        exit(EXIT_FAILURE);
+    };
+
+
+    //TEST YELLOW
+    colourarr = getPaintHue(paintArray1, &pntN, YELLOW);
+    if(colourarr == NULL){
+        printf("Error: Function [colorarr] failed.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    if ((printHue(colourarr, &pntN, pntN2, YELLOW)) == 1){
+        printf("Error: Function [printHue] failed.\n");
+        exit(EXIT_FAILURE);
+    };
+
+
+    //TEST YELLOW-GREEN
+    colourarr = getPaintHue(paintArray1, &pntN, YELLOW_GREEN);
+    if(colourarr == NULL){
+        printf("Error: Function [colorarr] failed.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    if ((printHue(colourarr, &pntN, pntN2, YELLOW_GREEN)) == 1){
+        printf("Error: Function [printHue] failed.\n");
+        exit(EXIT_FAILURE);
+    };
+
+
+    //TEST GREEN
+    colourarr = getPaintHue(paintArray1, &pntN, GREEN);
+    if(colourarr == NULL){
+        printf("Error: Function [colorarr] failed.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    if ((printHue(colourarr, &pntN, pntN2, GREEN)) == 1){
+        printf("Error: Function [printHue] failed.\n");
+        exit(EXIT_FAILURE);
+    };
+
+
+    //TEST BLUE-GREEN
+    colourarr = getPaintHue(paintArray1, &pntN, BLUE_GREEN);
+    if(colourarr == NULL){
+        printf("Error: Function [colorarr] failed.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    if ((printHue(colourarr, &pntN, pntN2, BLUE_GREEN)) == 1){
+        printf("Error: Function [printHue] failed.\n");
+        exit(EXIT_FAILURE);
+    };
+
     
-    // deallocate memory for colourarr
-    free(colourarr);
-	colourarr = NULL;
+    
+    // deallocate memory for colourarr 
+
 
     // deallocate memory for paintArray
     free(paintArray1);
