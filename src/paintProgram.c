@@ -38,40 +38,51 @@ int main(void){
 
     printf("Welcome to Paints Program\n");
     printf("\nChoose one of the following:\n");
+    printf("0) Quit\n1) Enter a Palette type\n2) Enter a Palette Property\n3) Print Palette Choice\n4) Help\n");
+    
 
     menuN = atoi(getc(stdin));
+
+    while(menuN != 0){
+
     
-    switch(menuN){
-        case(1):
-            scanf("%s", &paletteT);
-            break;
+        switch(menuN){
+            case(1):
+                scanf("%s", &paletteT);
+                break;
 
-        case(2):
-            scanf("%s", &paletteP);
-            break;
-        case(3):
-            printf("Printing Palette Choice");
-            break;
-        case(4):
-            printf("Valid Palette Types:\n");
-            printf("\t-> full\n");
-            printf("\t-> triad\n");
-            printf("\t-> complimentary\n");
-            printf("\t-> split_complimentary\n");
+            case(2):
+                scanf("%s", &paletteP);
+                break;
+            case(3):
+                printf("Printing Palette Choice");
+                break;
+            case(4):
+                printf("Valid Palette Types:\n");
+                printf("\t-> full\n");
+                printf("\t-> triad\n");
+                printf("\t-> complimentary\n");
+                printf("\t-> split_complimentary\n");
 
-            printf("Valid Palette Properties:\n");
-            printf("\t-> transparency\n");
-            printf("\t-> staining\n");
-            printf("\t-> blossom\n");
+                printf("Valid Palette Properties:\n");
+                printf("\t-> transparency\n");
+                printf("\t-> staining\n");
+                printf("\t-> blossom\n");
+                break;
+            default:
+                printf("Invalid menu option\n");
+                break;
 
-            break;
+        }
+
+
+        printf("\nChoose one of the following:\n");
+        printf("0) Quit\n1) Enter a Palette type\n2) Enter a Palette Property\n3) Print Palette Choice\n4) Help\n");
+        menuN = atoi(getc(stdin));
+
+
+        break;
     }
-
-
-    // while(menuN != 0){
-
-    //     break;
-    // }
 
 
     exit(EXIT_SUCCESS);
