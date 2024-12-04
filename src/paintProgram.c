@@ -19,8 +19,8 @@ int main(void){
     int err;
 
     int menuN;
-    char paletteT[20] = "None";
-    char paletteP[20] = "None";
+    char paletteT[50] = "None";
+    char paletteP[50] = "None";
 
 
 
@@ -47,24 +47,36 @@ int main(void){
     printf("\nChoose one of the following: ");
 
     menuN = (getc(stdin) - '0');
-    printf("menuN = %d", menuN);
 
     while(menuN != 0){
-
-    
         switch(menuN){
             case(1):
+                printf("Enter Palette Type: ");
                 scanf("%s", paletteT);
+                // make helper function to check palette type name and message if wrong
                 break;
 
             case(2):
+                printf("Enter Property Type: ");
                 scanf("%s", paletteP);
+                // make helper function to check property type name and message if wrong
                 break;
+
             case(3):
                 printf("Printing Palette Choice\n");
-                if  ( (strcmp(paletteT, "None") == 0) || (strcmp(paletteP, "None") == 0) ) {
-                    printf("Please enter a palette type and a palette property.\n");
+                if  ( (strcmp(paletteT, "None") == 0) ) {
+                    printf("Please enter a palette type.\n");
                     break;
+                }
+                else if(strcmp(paletteP, "None") == 0){
+                    paletteArray = getPalette(paintArray, &paletteN, paletteT, NULL);
+                    printf("\nPalette for %s with no property specified\n", paletteT);
+                    printf("---> Contains %i paints\n", paletteN);
+                    printf("------------------------------------------------------------\n");
+                    err = printArray(paletteArray, paletteN);
+                    if(err==1){
+                        printf("Error: Function [printArray] was unsuccessful.\n");
+                        exit(EXIT_FAILURE);
                 }
                 else{
                     paletteArray = getPalette(paintArray, &paletteN, paletteT, paletteP);
