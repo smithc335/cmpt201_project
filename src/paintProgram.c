@@ -88,9 +88,9 @@ int main(void){
                         printf("Error: Function [printArray] was unsuccessful.\n");
                         exit(EXIT_FAILURE);
 
-                }
+                    }
 
-    }
+                }
                 break;
 
             case(4):
@@ -128,6 +128,7 @@ int main(void){
 
                 printf("\nProperty Number can be any integer in the range [0-4] inclusive.\n\n");
                 break;
+                
             default:
                 printf("Invalid menu option\n");
                 break;
