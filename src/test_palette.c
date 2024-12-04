@@ -28,6 +28,7 @@ int main(void){
     char property2[] = "staining:1";
     char property3[] = "blossom:4";
     char property4[] = "transparency:0";
+    char* property5 = NULL;
     int paletteN = paintN; // will be overwritten by size of paletteArray after function is over
     int err;
     
@@ -94,7 +95,7 @@ int main(void){
     paletteArray = NULL;
     paletteN = paintN;
 
-    paletteArray = getPalette(paintArray, &paletteN, type5, NULL);
+    paletteArray = getPalette(paintArray, &paletteN, type5, property5);
     printf("------------------------------------------------------------\n");
     printf("\nPalette for %s with no property specified\n", type5);
     printf("---> Contains %i paints\n", paletteN);

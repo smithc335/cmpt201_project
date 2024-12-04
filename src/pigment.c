@@ -912,8 +912,8 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
     // paletteType: full = 0, triad = 1, complimentary = 2, split_complimentary = 3
     // propertyType: NULL = -1, transparency = 0, staining = 1, blossom = 2
 
-    char typeCopy[strlen(type)+1];
-    char propertiesCopy[strlen(properties)+1];
+    char typeCopy[50];
+    char propertiesCopy[50];
     char* token;
     char* token2;
     int paletteType;
@@ -930,7 +930,9 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
     // extra -1 value in array to signal end of array when all 12 paint colors loaded in
 
     strcpy(typeCopy, type);
-    strcpy(propertiesCopy, properties);
+    if(properties!=NULL){
+        strcpy(propertiesCopy, properties);
+    }
     
     // check input and return NULL pointer for failure
     // MOVE ERROR CHECKS TO HELPER FUNCTIONS

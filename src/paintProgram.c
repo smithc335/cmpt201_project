@@ -80,7 +80,7 @@ int main(void){
                     printf("\nPlease enter a palette type.\n");
                     break;
                 }
-                else if(strcmp(paletteProperty, "none")==0){ // DOESN'T WORK WITH NO PROPERTY, CLAIRE TO FIX
+                else if(strcmp(paletteProperty, "none")==0){
                     paletteN = paintN; // reset before calling getPalette function
                     paletteArray = getPalette(paintArray, &paletteN, paletteType, NULL);
                     printf("\nPalette for %s with no property specified\n", paletteType);
@@ -92,6 +92,9 @@ int main(void){
                         printf("Error: Function [printArray] was unsuccessful.\n");
                         exit(EXIT_FAILURE);
                     }
+
+                    free(paletteArray);
+                    paletteArray = NULL;
                 }
                 else{
                     paletteN = paintN; // reset before calling getPalette function
@@ -105,6 +108,9 @@ int main(void){
                         printf("Error: Function [printArray] was unsuccessful.\n");
                         exit(EXIT_FAILURE);
                     }
+
+                    free(paletteArray);
+                    paletteArray = NULL;
                 }
                 break;
 
@@ -138,13 +144,14 @@ int main(void){
                 printf("\n--------------------------------------------------------------------------------\n");
                 printf("Valid Palette Property Entries:\n");
                 printf("--------------------------------------------------------------------------------\n");
+                printf("Property can be entered as \"none\" to not specify any properties.\n\n");
+
                 printf("Choices for [property]:\n");
                 printf("\t-> transparency\n");
                 printf("\t-> staining\n");
                 printf("\t-> blossom\n");
 
                 printf("\n[value] can be any integer in the range [0-4] inclusive.\n");
-                printf("Property can be entered as \"none\" to not specify any properties.\n");
                 break;
                 
             default:
@@ -166,8 +173,8 @@ int main(void){
     pigmentArray = NULL;
     free(paintArray);
     paintArray = NULL;
-    free(paletteArray);
-    paletteArray = NULL;
+    // free(paletteArray);
+    // paletteArray = NULL;
 
     exit(EXIT_SUCCESS);
 }

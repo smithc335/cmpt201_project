@@ -2,7 +2,7 @@
 # Makefile in src Directory
 
 CC=gcc
-CFLAGS=-Wall -std=c11
+CFLAGS=-Wall -std=c11 -g
 
 test_load: test_load.o pigment.o
 	$(CC) $(CFLAGS) $^ -o $@
