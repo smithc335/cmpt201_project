@@ -128,8 +128,6 @@ int main(void){
         printf("\nChoose one of the following: ");
         menuN = (getc(stdin) - '0');
 
-
-        break;
     }
 
 
