@@ -18,6 +18,7 @@ int main(void){
 	int pntN;
     int pntN2; 
 
+    //Load in the full paint array.
     paintArray1 = loadPaintData(paintFilename, paintArray1, &pntN);
     if(paintArray1 == NULL){
         printf("Error: Function [paintArray1] failed.\n");
@@ -125,7 +126,7 @@ int main(void){
     };
 
 
-      //TEST BLUE-GREEN
+    //TEST BLUE-GREEN
     colourarr = getPaintHue(paintArray1, &pntN, BLUE_GREEN);
     if(colourarr == NULL){
         printf("Error: Function [colorarr] failed.\n");
@@ -202,7 +203,6 @@ int main(void){
         exit(EXIT_FAILURE);
     };
     
-    // deallocate memory for colourarr 
 
 
     // deallocate memory for paintArray
