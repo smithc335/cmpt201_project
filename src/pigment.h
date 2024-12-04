@@ -216,33 +216,6 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties); // CLAIR
 *		
 * Returns: 
 *******************************************************************************/
-paint_t* getValidTransparency(paint_t* spa, int* n, int value); // CLAIRE
-
-
-/*******************************************************************************
-* Purpose: 
-* Parameters:
-*		
-* Returns: 
-*******************************************************************************/
-paint_t* getValidStaining(paint_t* spa, int* n, int value); // CLAIRE
-
-
-/*******************************************************************************
-* Purpose: 
-* Parameters:
-*		
-* Returns: 
-*******************************************************************************/
-paint_t* getValidBlossom(paint_t* spa, int* n, int value); // CLAIRE
-
-
-/*******************************************************************************
-* Purpose: 
-* Parameters:
-*		
-* Returns: 
-*******************************************************************************/
 int printArray(paint_t* pArray, int n); // CLAIRE
 
 

@@ -435,43 +435,43 @@ paint_t* getPaintRange(paint_t* pp, int npp, float rmin, float rmax, gRange_t ge
         // load valid entries into subarray
         switch(getType){
             case(0):
-                if(xlow <= pp[i].hueAngle && pp[i].hueAngle <= xhigh){
+                if((xlow <= pp[i].hueAngle) && (pp[i].hueAngle <= xhigh)){
                     spa[*nspp] = pp[i];
                     *nspp += 1;
                 }
                 break;
             case(1):
-                if(xlow <= pp[i].valueRange && pp[i].valueRange <= xhigh){
+                if((xlow <= pp[i].valueRange) && (pp[i].valueRange <= xhigh)){
                     spa[*nspp] = pp[i];
                     *nspp += 1;
                 }
                 break;
             case(2):
-                if(xlow <= pp[i].granulating && pp[i].granulating <= xhigh){
+                if((xlow <= pp[i].granulating) && (pp[i].granulating <= xhigh)){
                     spa[*nspp] = pp[i];
                     *nspp += 1;
                 }
                 break;
             case(3):
-                if(xlow <= pp[i].transparency && pp[i].transparency <= xhigh){
+                if((xlow <= pp[i].transparency) && (pp[i].transparency <= xhigh)){
                     spa[*nspp] = pp[i];
                     *nspp += 1;
                 }
                 break;
             case(4):
-                if(xlow <= pp[i].staining && pp[i].staining <= xhigh){
+                if((xlow <= pp[i].staining) && (pp[i].staining <= xhigh)){
                     spa[*nspp] = pp[i];
                     *nspp += 1;
                 }
                 break;
             case(5):
-                if(xlow <= pp[i].blossom && pp[i].blossom <= xhigh){
+                if((xlow <= pp[i].blossom) && (pp[i].blossom <= xhigh)){
                     spa[*nspp] = pp[i];
                     *nspp += 1;
                 }
                 break;
             case(6):
-                if(xlow <= pp[i].lightfast && pp[i].lightfast <= xhigh){
+                if((xlow <= pp[i].lightfast) && (pp[i].lightfast <= xhigh)){
                     spa[*nspp] = pp[i];
                     *nspp += 1;
                 }
@@ -917,17 +917,17 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
     char* token;
     char* token2;
     int paletteType;
-    colour_t paletteColor;
     int propertyType;
     int propertyValue;
     int capacity = 10;
     int hueN = *n;
-    paint_t* hueArray = NULL;
-    paint_t* validHueArray = NULL;
+    paint_t* propertyArray = NULL;
+    paint_t* validPaintArray = NULL;
     int paletteN = 0;
     paint_t* paletteArray = NULL;
-    int colors[13] = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
     // extra -1 value in array to signal end of array when all 12 paint colors loaded in
+    int colors[13] = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}; 
+    float valueRange[2] = {0.0, 1.0};
 
     strcpy(typeCopy, type);
     if(properties!=NULL){
@@ -935,8 +935,6 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
     }
     
     // check input and return NULL pointer for failure
-    // MOVE ERROR CHECKS TO HELPER FUNCTIONS
-
     // check if array is empty
     if(pp==NULL){
         printf("Error: Passed in empty array.\n");
@@ -964,40 +962,40 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
 
     token = strtok(NULL, "\0"); // should return the palette color
     if(strcmp(token, "red")==0){
-        paletteColor = 0;
+        colors[0] = 0;
     }
     else if(strcmp(token, "red_orange")==0){
-        paletteColor = 1;
+        colors[0] = 1;
     }
     else if(strcmp(token, "orange")==0){
-        paletteColor = 2;
+        colors[0] = 2;
     }
     else if(strcmp(token, "yellow_orange")==0){
-        paletteColor = 3;
+        colors[0] = 3;
     }
     else if(strcmp(token, "yellow")==0){
-        paletteColor = 4;
+        colors[0] = 4;
     }
     else if(strcmp(token, "yellow_green")==0){
-        paletteColor = 5;
+        colors[0] = 5;
     }
     else if(strcmp(token, "green")==0){
-        paletteColor = 6;
+        colors[0] = 6;
     }
     else if(strcmp(token, "blue_green")==0){
-        paletteColor = 7;
+        colors[0] = 7;
     }
     else if(strcmp(token, "blue")==0){
-        paletteColor = 8;
+        colors[0] = 8;
     }
     else if(strcmp(token, "blue_violet")==0){
-        paletteColor = 9;
+        colors[0] = 9;
     }
     else if(strcmp(token, "violet")==0){
-        paletteColor = 10;
+        colors[0] = 10;
     }
     else if(strcmp(token, "red_violet")==0){
-        paletteColor = 11;
+        colors[0] = 11;
     }
     else{
         printf("Error: Format of type (color) is invalid.\n");
@@ -1042,7 +1040,6 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
     paletteArray = malloc(capacity * sizeof(paint_t));
 
     // calculate which colors to pull based on palette type
-        // could replace paletteColor with colors[0]?? in error checks above too
     switch(paletteType){
         case(0):
             for(int i=0; i<12; i++){
@@ -1051,49 +1048,49 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
             break;
 
         case(1): // triad
-            colors[0] = paletteColor;
-            colors[1] = (paletteColor + 4) % 12;
-            colors[2] = (paletteColor + 8) % 12;
+            colors[1] = (colors[0] + 4) % 12;
+            colors[2] = (colors[0] + 8) % 12;
             break;
 
         case(2): // complimentary
-            colors[0] = paletteColor;
-            colors[1] = (paletteColor + 6) % 12;
+            colors[1] = (colors[0] + 6) % 12;
             break; 
 
         case(3): // split complimentary
-            colors[0] = paletteColor;
-            colors[1] = (paletteColor + 5) % 12;
-            colors[2] = (paletteColor + 7) % 12;
+            colors[1] = (colors[0] + 5) % 12;
+            colors[2] = (colors[0] + 7) % 12;
             break;
     }    
 
-    for(int i=0; colors[i]!=(-1); i++){
-        // get subarray of each paint color using getPaintHue (using Matt's function)
-        hueArray = getPaintHue(pp, &hueN, colors[i]);
+    // change valueRange to match propertyValue
+    if(propertyType!=-1){
+        valueRange[0] = propertyValue / 4.0;
+        valueRange[1] = valueRange[0];
+    }
 
-        // narrow hueArray down to valid property entries only
-        // COULD USE getPaintRange FUNCTION HERE INSTEAD OF HELPER FUNCTIONS STUPID!!
+    for(int i=0; colors[i]!=(-1); i++){
+        // narrow paintArray down to valid property entries only
         switch(propertyType){
             case(-1): // no property testing
-                validHueArray = malloc(hueN * sizeof(paint_t));
-                for(int i=0; i<hueN; i++){
-                    validHueArray[i] = hueArray[i];
-                }
+                // narrowing down to known values of HUE instead
+                propertyArray = getPaintRange(pp, *n, valueRange[0], valueRange[1], HUE, &hueN);
                 break;
 
             case(0): // transparency
-                validHueArray = getValidTransparency(hueArray, &hueN, propertyValue);
+                propertyArray = getPaintRange(pp, *n, valueRange[0], valueRange[1], TRANSPARENT, &hueN);
                 break;
 
             case(1): // staining
-                validHueArray = getValidStaining(hueArray, &hueN, propertyValue);
+                propertyArray = getPaintRange(pp, *n, valueRange[0], valueRange[1], STAINING, &hueN);
                 break;
 
             case(2): // blossom
-                validHueArray = getValidBlossom(hueArray, &hueN, propertyValue);
+                propertyArray = getPaintRange(pp, *n, valueRange[0], valueRange[1], BLOOM, &hueN);
                 break;
         }
+
+        // get subarray of specific paint color from valid propertyArray using getPaintHue
+        validPaintArray = getPaintHue(propertyArray, &hueN, colors[i]);
 
         // add paints with valid values into paletteArray
         for(int i=0; i<hueN; i++){
@@ -1102,83 +1099,22 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
                 capacity *= 2;
                 paletteArray = realloc(paletteArray, (capacity * sizeof(paint_t)));
             }
-
-            paletteArray[paletteN] = validHueArray[i];
+            paletteArray[paletteN] = validPaintArray[i];
             paletteN += 1;
         }
 
         hueN = *n; // reset hueN for next loop through
 
         // deallocate subarrays
-        free(hueArray);
-        hueArray = NULL;
-        free(validHueArray);
-        validHueArray = NULL;
+        free(propertyArray);
+        propertyArray = NULL;
+        free(validPaintArray);
+        validPaintArray = NULL;
     }
 
     *n = paletteN; // replace paintN with size of paletteArray
 
     return (paletteArray);
-}
-
-
-paint_t* getValidTransparency(paint_t* spa, int* n, int value){ // CLAIRE
-
-    int validHuesN = 0;
-    paint_t* validHues = NULL;
-
-    validHues = malloc(*n * sizeof(paint_t)); // will be less than or equal to size of hueArray
-
-    // loop through subarray and sort out valid paints
-    for(int i=0; i<*n; i++){
-        if(spa[i].transparency==value){
-            validHues[validHuesN] = spa[i];
-            validHuesN += 1;
-        }
-    } 
-
-    *n = validHuesN; // n is passed in as hueN and comes out as validHuesN
-    return (validHues);
-}
-
-
-paint_t* getValidStaining(paint_t* spa, int* n, int value){ // CLAIRE
-
-    int validHuesN = 0;
-    paint_t* validHues = NULL;
-
-    validHues = malloc(*n * sizeof(paint_t)); // will be less than or equal to size of hueArray
-
-    // loop through subarray and sort out valid paints
-    for(int i=0; i<*n; i++){
-        if(spa[i].staining==value){
-            validHues[validHuesN] = spa[i];
-            validHuesN += 1;
-        }
-    } 
-
-    *n = validHuesN; // n is passed in as hueN and comes out as validHuesN
-    return (validHues);
-}
-
- 
-paint_t* getValidBlossom(paint_t* spa, int* n, int value){ // CLAIRE
-
-    int validHuesN = 0;
-    paint_t* validHues = NULL;
-
-    validHues = malloc(*n * sizeof(paint_t)); // will be less than or equal to size of hueArray
-
-    // loop through subarray and sort out valid paints
-    for(int i=0; i<*n; i++){
-        if(spa[i].blossom==value){
-            validHues[validHuesN] = spa[i];
-            validHuesN += 1;
-        }
-    } 
-
-    *n = validHuesN; // n is passed in as hueN and comes out as validHuesN
-    return (validHues);
 }
 
 
@@ -1316,7 +1252,7 @@ int getPropertyInput(char* palettePropertyCopy, char* paletteProperty) { // help
     return (0);
 }
 
-// helper for case 3
+
 int printPalette(paint_t* paletteArray, paint_t* paintArray, int* paletteN, int paintN, char* paletteType, char* paletteProperty){
 
     // paletteType == "none" is checked in main program already
