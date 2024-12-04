@@ -42,9 +42,9 @@ int main(void){
 
 
     printf("Welcome to Paints Program\n");
-    printf("\nChoose one of the following:\n");
-    printf("0) Quit\n1) Enter a Palette type\n2) Enter a Palette Property\n3) Print Palette Choice\n4) Help\n");
     
+    printf("0) Quit\n1) Enter a Palette type\n2) Enter a Palette Property\n3) Print Palette Choice\n4) Help\n");
+    printf("\nChoose one of the following: ");
 
     menuN = (getc(stdin) - '0');
     printf("menuN = %d", menuN);
@@ -123,8 +123,9 @@ int main(void){
         }
 
 
-        printf("\nChoose one of the following:\n");
+        
         printf("0) Quit\n1) Enter a Palette type\n2) Enter a Palette Property\n3) Print Palette Choice\n4) Help\n");
+        printf("\nChoose one of the following: ");
         menuN = (getc(stdin) - '0');
 
 
