@@ -244,3 +244,21 @@ paint_t* getValidBlossom(paint_t* spa, int* n, int value); // CLAIRE
 * Returns: 
 *******************************************************************************/
 int printArray(paint_t* pArray, int n); // CLAIRE
+
+
+/*******************************************************************************
+* Purpose: 
+* Parameters:
+*		
+* Returns: 
+*******************************************************************************/
+int isValidTypeInput(char* input); // CLAIRE
+
+
+/*******************************************************************************
+* Purpose: 
+* Parameters:
+*		
+* Returns: 
+*******************************************************************************/
+int isValidPropertyInput(char* input); // CLAIRE

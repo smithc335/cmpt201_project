@@ -18,8 +18,10 @@ int main(void){
     int paletteN;
     int err;
     int menuChoice;
-    char paletteType[50] = "None";
-    char paletteProperty[50] = "None";
+    char paletteType[50] = "none";
+    char paletteProperty[50] = "none";
+    char paletteTypeCopy[50];
+    char palettePropertyCopy[50];
 
     // load pigment data
     pigmentArray = loadPigmentData(pigmentFilename, pigmentArray, &pigmentN);
@@ -50,27 +52,40 @@ int main(void){
     while(menuChoice != 0){
         switch(menuChoice){
             case(1):
+                strcpy(paletteTypeCopy, paletteType); // for reverting back if entry is invalid
                 printf("\nEnter Palette Type: ");
                 scanf("%s", paletteType);
-                // make helper function to check palette type name and message if wrong
+
+                err = isValidTypeInput(paletteType);
+                if(err==1){
+                    strcpy(paletteType, paletteTypeCopy);
+                    printf("Invalid entry for palette type. Please see Help Page for more information.\n");
+                }
                 break;
 
             case(2):
+                strcpy(palettePropertyCopy, paletteProperty); // for reverting back if entry is invalid
                 printf("\nEnter Palette Property: ");
                 scanf("%s", paletteProperty);
-                // make helper function to check property type name and message if wrong
+
+                err = isValidPropertyInput(paletteProperty);
+                if(err==1){
+                    strcpy(paletteProperty, palettePropertyCopy);
+                    printf("Invalid entry for palette property. Please see Help Page for more information.\n");
+                }
                 break;
 
             case(3):
-                if((strcmp(paletteType, "None")==0)){
+                if((strcmp(paletteType, "none")==0)){
                     printf("\nPlease enter a palette type.\n");
                     break;
                 }
-                else if(strcmp(paletteProperty, "None")==0){ // DOESN'T WORK WITH NO PROPERTY, CLAIRE TO FIX
+                else if(strcmp(paletteProperty, "none")==0){ // DOESN'T WORK WITH NO PROPERTY, CLAIRE TO FIX
                     paletteArray = getPalette(paintArray, &paletteN, paletteType, NULL);
                     printf("\nPalette for %s with no property specified\n", paletteType);
                     printf("\t-> Contains %i paints\n", paletteN);
                     printf("--------------------------------------------------------------------------------\n");
+
                     err = printArray(paletteArray, paletteN);
                     if(err==1){
                         printf("Error: Function [printArray] was unsuccessful.\n");
@@ -82,6 +97,7 @@ int main(void){
                     printf("\nPalette for %s with %s\n", paletteType, paletteProperty);
                     printf("\t-> Contains %i paints\n", paletteN);
                     printf("--------------------------------------------------------------------------------\n");
+
                     err = printArray(paletteArray, paletteN);
                     if(err==1){
                         printf("Error: Function [printArray] was unsuccessful.\n");
@@ -126,6 +142,7 @@ int main(void){
                 printf("\t-> blossom\n");
 
                 printf("\n[value] can be any integer in the range [0-4] inclusive.\n");
+                printf("Property can be entered as \"none\" to not specify any properties.\n");
                 break;
                 
             default:

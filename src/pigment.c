@@ -1071,6 +1071,7 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
         hueArray = getPaintHue(pp, &hueN, colors[i]);
 
         // narrow hueArray down to valid property entries only
+        // COULD USE getPaintRange FUNCTION HERE INSTEAD OF HELPER FUNCTIONS STUPID!!
         switch(propertyType){
             case(-1): // no property testing
                 validHueArray = malloc(hueN * sizeof(paint_t));
@@ -1191,6 +1192,102 @@ int printArray(paint_t* pArray, int n){ // CLAIRE
         printf("%i, %i, %i, ", pArray[i].transparency, pArray[i].staining, pArray[i].valueRange);
         printf("%i, %i, %i, ", pArray[i].granulating, pArray[i].blossom, pArray[i].diffusion);
         printf("%i, %i, %i\n", pArray[i].hueAngle, pArray[i].hueShift, pArray[i].lightfast);
+    }
+
+    return(0);
+}
+
+
+int isValidTypeInput(char* input){ // CLAIRE
+
+    char inputCopy[strlen(input)+1];
+    char* token;
+
+    strcpy(inputCopy, input);
+
+    token = strtok(inputCopy, ":"); // should return the palette type
+    if((strcmp(token, "full")!=0) && (strcmp(token, "triad")!=0) && (strcmp(token, "complimentary")!=0) && (strcmp(token, "split_complimentary")!=0)){
+        return (1);
+    }
+
+    token = strtok(NULL, "\0"); // should return the palette color
+    if(token == NULL){
+        return(1);
+    }
+    else if(strcmp(token, "red")==0){
+        return(0);
+    }
+    else if(strcmp(token, "red_orange")==0){
+        return(0);
+    }
+    else if(strcmp(token, "orange")==0){
+        return(0);
+    }
+    else if(strcmp(token, "yellow_orange")==0){
+        return(0);
+    }
+    else if(strcmp(token, "yellow")==0){
+        return(0);
+    }
+    else if(strcmp(token, "yellow_green")==0){
+        return(0);
+    }
+    else if(strcmp(token, "green")==0){
+        return(0);
+    }
+    else if(strcmp(token, "blue_green")==0){
+        return(0);
+    }
+    else if(strcmp(token, "blue")==0){
+        return(0);
+    }
+    else if(strcmp(token, "blue_violet")==0){
+        return(0);
+    }
+    else if(strcmp(token, "violet")==0){
+        return(0);
+    }
+    else if(strcmp(token, "red_violet")==0){
+        return(0);
+    }
+    else{
+        return(1);
+    }
+}
+
+
+int isValidPropertyInput(char* input){ // CLAIRE
+
+    char inputCopy[strlen(input)+1];
+    int inputValue;
+    char* token;
+
+    strcpy(inputCopy, input);
+
+    if(strcmp(input, "none")==0){ // properties is allowed to be "none"
+        return(0);
+    }
+    else{
+        token = strtok(inputCopy, ":"); // should return the property type
+        if((strcmp(token, "transparency")!=0) && (strcmp(token, "staining")!=0) && (strcmp(token, "blossom")!=0)){
+            return(1);
+        }
+
+        token = strtok(NULL, "\0"); // should return the property value
+        if(token==NULL){
+            return(1);
+        }
+
+        for(int i=0; i<strlen(token); i++){
+            if(isdigit(token[i])==0){
+                return (1);
+            }
+        }
+
+        inputValue = atoi(token);
+        if(inputValue<0 || inputValue>4){
+            return (1);
+        }
     }
 
     return(0);
