@@ -37,7 +37,7 @@ int main(void){
 		exit(EXIT_FAILURE);
     }
 
-    paletteN = paintN; // will be overwritten by size of paletteArray after function is over
+    // paletteN = paintN; // will be overwritten by size of paletteArray after function is over
 
     printf("********************************************************************************\n");
     printf("Welcome to Paints Program\n");
@@ -81,6 +81,7 @@ int main(void){
                     break;
                 }
                 else if(strcmp(paletteProperty, "none")==0){ // DOESN'T WORK WITH NO PROPERTY, CLAIRE TO FIX
+                    paletteN = paintN; // reset before calling getPalette function
                     paletteArray = getPalette(paintArray, &paletteN, paletteType, NULL);
                     printf("\nPalette for %s with no property specified\n", paletteType);
                     printf("\t-> Contains %i paints\n", paletteN);
@@ -93,6 +94,7 @@ int main(void){
                     }
                 }
                 else{
+                    paletteN = paintN; // reset before calling getPalette function
                     paletteArray = getPalette(paintArray, &paletteN, paletteType, paletteProperty);
                     printf("\nPalette for %s with %s\n", paletteType, paletteProperty);
                     printf("\t-> Contains %i paints\n", paletteN);
@@ -158,6 +160,14 @@ int main(void){
         scanf("%d", &menuChoice);
         printf("********************************************************************************\n");
     }
+
+    // deallocate memory and free pointers
+    free(pigmentArray);
+    pigmentArray = NULL;
+    free(paintArray);
+    paintArray = NULL;
+    free(paletteArray);
+    paletteArray = NULL;
 
     exit(EXIT_SUCCESS);
 }
