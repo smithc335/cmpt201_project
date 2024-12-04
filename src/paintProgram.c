@@ -39,7 +39,24 @@ int main(void){
     printf("Welcome to Paints Program\n");
     printf("\nChoose one of the following:\n");
 
+    menuN = atoi(getc(stdin));
+    
+    switch(menuN){
+        case(1):
+            scanf("%s", &paletteT);
+            break;
 
+        case(2):
+            scanf("%s", &paletteP);
+            break;
+        case(3):
+            printf("Printing Palette Choice");
+            break;
+        case(4);
+            printf("Valid Palette Types: ");
+            printf("Valid Palette Properties: ");
+            break;
+    }
 
 
     // while(menuN != 0){
