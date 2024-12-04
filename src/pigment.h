@@ -288,7 +288,7 @@ int isValidPropertyInput(char* input); // CLAIRE
 *		
 * Returns: 
 *******************************************************************************/
-// helper for case 3
+int printPalette(paint_t* paletteArray, paint_t* paintArray, int* paletteN, int paintN, char* paletteType, char* paletteProperty); // CLAIRE
 
 
 /*******************************************************************************
@@ -297,4 +297,4 @@ int isValidPropertyInput(char* input); // CLAIRE
 *		
 * Returns: 
 *******************************************************************************/
-// helper for case 4
+void printHelpPage(); // CLAIRE

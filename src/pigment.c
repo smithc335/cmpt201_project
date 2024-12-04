@@ -1306,7 +1306,83 @@ int isValidPropertyInput(char* input){ // CLAIRE
 
 
 // helper for case 3
+int printPalette(paint_t* paletteArray, paint_t* paintArray, int* paletteN, int paintN, char* paletteType, char* paletteProperty){
+
+    // paletteType == "none" is checked in main program already
+    int err;
+    
+    if(strcmp(paletteProperty, "none")==0){
+        *paletteN = paintN; // reset before calling getPalette function
+        paletteArray = getPalette(paintArray, paletteN, paletteType, NULL);
+        printf("\nPalette for %s with no property specified\n", paletteType);
+        printf("\t-> Contains %i paints\n", *paletteN);
+        printf("--------------------------------------------------------------------------------\n");
+
+        err = printArray(paletteArray, *paletteN);
+        if(err==1){
+            return(1);
+        }
+
+        free(paletteArray);
+        paletteArray = NULL;
+    }
+    else{
+        *paletteN = paintN; // reset before calling getPalette function
+        paletteArray = getPalette(paintArray, paletteN, paletteType, paletteProperty);
+        printf("\nPalette for %s with %s\n", paletteType, paletteProperty);
+        printf("\t-> Contains %i paints\n", *paletteN);
+        printf("--------------------------------------------------------------------------------\n");
+
+        err = printArray(paletteArray, *paletteN);
+        if(err==1){
+            return(1);
+        }
+
+        free(paletteArray);
+        paletteArray = NULL;
+    }
+
+    return(0);
+}
 
 
+void printHelpPage(){
 
-// helper for case 4
+    printf("\nPAINT PROGRAM HELP PAGE\n");
+    printf("--------------------------------------------------------------------------------\n");
+    printf("Please format palette type as [type]:[color] and\nproperty as [property]:[value].\n\n");
+    printf("--------------------------------------------------------------------------------\n");
+    printf("Valid Palette Type Entries\n");
+    printf("--------------------------------------------------------------------------------\n");
+    printf("Choices for [type]:\n");
+    printf("\t-> full\n");
+    printf("\t-> triad\n");
+    printf("\t-> complimentary\n");
+    printf("\t-> split_complimentary\n");
+
+    printf("\nChoices for [color]:\n");
+    printf("\t-> red\n");
+    printf("\t-> red_orange\n");
+    printf("\t-> orange\n");
+    printf("\t-> yellow_orange\n");
+    printf("\t-> yellow\n");
+    printf("\t-> yellow_green\n");
+    printf("\t-> green\n");
+    printf("\t-> blue_green\n");
+    printf("\t-> blue\n");
+    printf("\t-> blue_violet\n");
+    printf("\t-> violet\n");
+    printf("\t-> red_violet\n");
+
+    printf("\n--------------------------------------------------------------------------------\n");
+    printf("Valid Palette Property Entries:\n");
+    printf("--------------------------------------------------------------------------------\n");
+    printf("Property can be entered as \"none\" to not specify any properties.\n\n");
+
+    printf("Choices for [property]:\n");
+    printf("\t-> transparency\n");
+    printf("\t-> staining\n");
+    printf("\t-> blossom\n");
+
+    printf("\n[value] can be any integer in the range [0-4] inclusive.\n");
+}
