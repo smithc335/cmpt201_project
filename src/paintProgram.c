@@ -45,7 +45,10 @@ int main(void){
     printf("----------------------------------------------------------------------\n");
     printf("0) Quit\n1) Enter a Palette Type\n2) Enter a Palette Property\n3) Print Palette Choice\n4) Help\n");
     printf("\nChoose one of the above: ");
-    menuN = (getc(stdin) - '0');
+
+
+
+    scanf("%d", &menuN);
     printf("----------------------------------------------------------------------\n");
 
     while(menuN != 0){
@@ -54,12 +57,14 @@ int main(void){
                 printf("Enter Palette Type: ");
                 scanf("%s", paletteT);
                 // make helper function to check palette type name and message if wrong
+                printf("Entered Palette Type: %s\n", paletteT);
                 break;
 
             case(2):
-                printf("Enter Property Type: ");
+                printf("Enter Property Property: ");
                 scanf("%s", paletteP);
                 // make helper function to check property type name and message if wrong
+                printf("Entered Palette Property: %s\n", paletteP);
                 break;
 
             case(3):
@@ -137,12 +142,11 @@ int main(void){
         }
 
         printf("----------------------------------------------------------------------\n");
-        // printf("menuN = %i\n", menuN);
+
         printf("0) Quit\n1) Enter a Palette Type\n2) Enter a Palette Property\n3) Print Palette Choice\n4) Help\n");
         printf("\nChoose one of the above: ");
-        menuN = (getc(stdin) - '0');
-        // menuN = scanf("%d", &menuN);
-        // printf("menuN = %i\n", menuN);
+
+        scanf("%d", &menuN);
         printf("----------------------------------------------------------------------\n");
     }
 
