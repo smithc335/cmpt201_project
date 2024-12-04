@@ -68,7 +68,7 @@ int main(void){
                 }
                 else{
                     paletteArray = getPalette(paintArray, &paletteN, paletteT, paletteP);
-                    printf("\nPalette for %s: selected colour with %s:2\n", paletteT, paletteP);
+                    printf("\nPalette for %s with %s\n", paletteT, paletteP);
                     printf("---> Contains %i paints\n", paletteN);
                     printf("------------------------------------------------------------\n");
                     err = printArray(paletteArray, paletteN);
