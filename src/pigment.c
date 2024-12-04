@@ -1294,3 +1294,19 @@ int isValidPropertyInput(char* input){ // CLAIRE
 
     return(0);
 }
+
+
+
+// helper for case 1
+
+
+
+// helper for case 2
+
+
+
+// helper for case 3
+
+
+
+// helper for case 4
