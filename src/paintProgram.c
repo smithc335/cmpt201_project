@@ -18,7 +18,7 @@ int main(void){
     int paletteN;
     int err;
 
-    int menuN;
+    int menuN = 5;
     char paletteT[50] = "None";
     char paletteP[50] = "None";
 
@@ -40,13 +40,13 @@ int main(void){
 
     paletteN = paintN; // will be overwritten by size of paletteArray after function is over
 
-
+    printf("----------------------------------------------------------------------\n");
     printf("Welcome to Paints Program\n");
-    
-    printf("0) Quit\n1) Enter a Palette type\n2) Enter a Palette Property\n3) Print Palette Choice\n4) Help\n");
-    printf("\nChoose one of the following: ");
-
+    printf("----------------------------------------------------------------------\n");
+    printf("0) Quit\n1) Enter a Palette Type\n2) Enter a Palette Property\n3) Print Palette Choice\n4) Help\n");
+    printf("\nChoose one of the above: ");
     menuN = (getc(stdin) - '0');
+    printf("----------------------------------------------------------------------\n");
 
     while(menuN != 0){
         switch(menuN){
@@ -63,7 +63,7 @@ int main(void){
                 break;
 
             case(3):
-                printf("Printing Palette Choice\n");
+                // printf("Printing Palette Choice\n");
                 if  ( (strcmp(paletteT, "None") == 0) ) {
                     printf("Please enter a palette type.\n");
                     break;
@@ -72,17 +72,18 @@ int main(void){
                     paletteArray = getPalette(paintArray, &paletteN, paletteT, NULL);
                     printf("\nPalette for %s with no property specified\n", paletteT);
                     printf("---> Contains %i paints\n", paletteN);
-                    printf("------------------------------------------------------------\n");
+                    printf("----------------------------------------------------------------------\n");
                     err = printArray(paletteArray, paletteN);
                     if(err==1){
                         printf("Error: Function [printArray] was unsuccessful.\n");
                         exit(EXIT_FAILURE);
+                    }
                 }
                 else{
                     paletteArray = getPalette(paintArray, &paletteN, paletteT, paletteP);
                     printf("\nPalette for %s with %s\n", paletteT, paletteP);
                     printf("---> Contains %i paints\n", paletteN);
-                    printf("------------------------------------------------------------\n");
+                    printf("----------------------------------------------------------------------\n");
                     err = printArray(paletteArray, paletteN);
                     if(err==1){
                         printf("Error: Function [printArray] was unsuccessful.\n");
@@ -135,12 +136,14 @@ int main(void){
 
         }
 
-
-        
-        printf("0) Quit\n1) Enter a Palette type\n2) Enter a Palette Property\n3) Print Palette Choice\n4) Help\n");
-        printf("\nChoose one of the following: ");
+        printf("----------------------------------------------------------------------\n");
+        // printf("menuN = %i\n", menuN);
+        printf("0) Quit\n1) Enter a Palette Type\n2) Enter a Palette Property\n3) Print Palette Choice\n4) Help\n");
+        printf("\nChoose one of the above: ");
         menuN = (getc(stdin) - '0');
-
+        // menuN = scanf("%d", &menuN);
+        // printf("menuN = %i\n", menuN);
+        printf("----------------------------------------------------------------------\n");
     }
 
 
