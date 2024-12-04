@@ -912,6 +912,8 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
     // paletteType: full = 0, triad = 1, complimentary = 2, split_complimentary = 3
     // propertyType: NULL = -1, transparency = 0, staining = 1, blossom = 2
 
+    char typeCopy[strlen(type)+1];
+    char propertiesCopy[strlen(properties)+1];
     char* token;
     char* token2;
     int paletteType;
@@ -926,6 +928,9 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
     paint_t* paletteArray = NULL;
     int colors[13] = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
     // extra -1 value in array to signal end of array when all 12 paint colors loaded in
+
+    strcpy(typeCopy, type);
+    strcpy(propertiesCopy, properties);
     
     // check input and return NULL pointer for failure
     // MOVE ERROR CHECKS TO HELPER FUNCTIONS
@@ -937,7 +942,7 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
     }
 
     // check type parameter
-    token = strtok(type, ":"); // should return the palette type
+    token = strtok(typeCopy, ":"); // should return the palette type
     if(strcmp(token, "full")==0){
         paletteType = 0;
     }
@@ -999,7 +1004,7 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
 
     // check properties parameter
     if(properties!=NULL){ // properties is allowed to be NULL
-        token2 = strtok(properties, ":"); // should return the property type
+        token2 = strtok(propertiesCopy, ":"); // should return the property type
         if(strcmp(token2, "transparency")==0){
             propertyType = 0;
         }

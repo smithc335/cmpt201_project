@@ -58,16 +58,39 @@ int main(void){
                 printf("Printing Palette Choice");
                 break;
             case(4):
-                printf("Valid Palette Types:\n");
+                printf("\nPlease format palette type as [type]:[color] and\nproperty as [property]:[number].\n");
+                printf("----------------------------------------------------------------------\n");
+                printf("Valid Palette Type Entries\n");
+                printf("----------------------------------------------------------------------\n");
+                printf("Choices for Palette Type:\n");
                 printf("\t-> full\n");
                 printf("\t-> triad\n");
                 printf("\t-> complimentary\n");
                 printf("\t-> split_complimentary\n");
 
-                printf("Valid Palette Properties:\n");
+                printf("\nChoices for Starting Palette Color:\n");
+                printf("\t-> red\n");
+                printf("\t-> red_orange\n");
+                printf("\t-> orange\n");
+                printf("\t-> yellow_orange\n");
+                printf("\t-> yellow\n");
+                printf("\t-> yellow_green\n");
+                printf("\t-> green\n");
+                printf("\t-> blue_green\n");
+                printf("\t-> blue\n");
+                printf("\t-> blue_violet\n");
+                printf("\t-> violet\n");
+                printf("\t-> red_violet\n");
+
+                printf("\n----------------------------------------------------------------------\n");
+                printf("Valid Palette Property Entries:\n");
+                printf("----------------------------------------------------------------------\n");
+                printf("Choices for Property Type:\n");
                 printf("\t-> transparency\n");
                 printf("\t-> staining\n");
                 printf("\t-> blossom\n");
+
+                printf("\nProperty Number can be any integer in the range [0-4] inclusive.\n\n");
                 break;
             default:
                 printf("Invalid menu option\n");
