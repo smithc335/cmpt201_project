@@ -4,17 +4,7 @@
 CC=gcc
 CFLAGS=-Wall -std=c11
 
-project: test_palette.o pigment.o
-	$(CC) $(CFLAGS) $^ -o $@
-	mv *.o obj
-	mv $@ bin
-
-test_colour: test_colour.o pigment.o
-	$(CC) $(CFLAGS) $^ -o $@
-	mv *.o obj
-	mv $@ bin
-
-paintProgram: paintProgram.o pigment.o
+project: paintProgram.o pigment.o
 	$(CC) $(CFLAGS) $^ -o $@
 	mv *.o obj
 	mv $@ bin

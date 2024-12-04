@@ -52,9 +52,18 @@ int main(void){
         case(3):
             printf("Printing Palette Choice");
             break;
-        case(4);
-            printf("Valid Palette Types: ");
-            printf("Valid Palette Properties: ");
+        case(4):
+            printf("Valid Palette Types:\n");
+            printf("\t-> full\n");
+            printf("\t-> triad\n");
+            printf("\t-> complimentary\n");
+            printf("\t-> split_complimentary\n");
+
+            printf("Valid Palette Properties:\n");
+            printf("\t-> transparency\n");
+            printf("\t-> staining\n");
+            printf("\t-> blossom\n");
+
             break;
     }
 
