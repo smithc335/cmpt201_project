@@ -769,12 +769,6 @@ paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour){ // MATT
             if(arrNum == capacity){
 
                 capacity = (capacity) * 2; 
-                //Checking if realloc succeeds with a temp pointer.
-                // paint_t* tempArray = realloc(hueRange, (capacity) * sizeof(paint_t));
-                // if(tempArray == NULL){
-                //     printf("Error: Realloc Failed.\n");
-                //     return (NULL);
-                // }
                 hueRange = realloc(hueRange, (capacity) * sizeof(paint_t)); // CLAIRE CHANGED
             }                
 
@@ -786,8 +780,6 @@ paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour){ // MATT
             }
 
             else{
-                // #define RED_ORANGE_MIN 345 
-                // #define RED_ORANGE_MAX 14
                 if ( ((pp[i].hueAngle >= hueMin) && (pp[i].hueAngle <= 359)) || ((pp[i].hueAngle >= 1) && (pp[i].hueAngle <= hueMax)) ){
 
                     hueRange[arrNum] = pp[i];
@@ -808,12 +800,6 @@ paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour){ // MATT
                 //Checking if array has reach capacity.
                 if(arrNum == capacity){
                     capacity = (capacity) * 2; 
-                    //Checking if realloc succeeds with a temp pointer.
-                    // paint_t* tempArray = realloc(hueRange, (capacity) * sizeof(paint_t));
-                    // if(tempArray == NULL){
-                    //     printf("Error: Realloc Failed.\n");
-                    //     return (NULL);
-                    // }
                     hueRange = realloc(hueRange, (capacity) * sizeof(paint_t)); // CLAIRE CHANGED
                 }
                 hueRange[arrNum] = pp[i];
@@ -1297,23 +1283,21 @@ int isValidPropertyInput(char* input){ // CLAIRE
 
 
 
-int getTypeInput(char* paletteTypeCopy, char* paletteType){ // helper for case 1
+void getTypeInput(char* paletteTypeCopy, char* paletteType){ // helper for case 1
 
     strcpy(paletteTypeCopy, paletteType); // for reverting back if entry is invalid
     printf("\nEnter Palette Type: ");
     scanf("%s", paletteType);
 
-    return (0);
 } 
 
 
 
-int getPropertyInput(char* palettePropertyCopy, char* paletteProperty) { // helper for case 2
+void getPropertyInput(char* palettePropertyCopy, char* paletteProperty) { // helper for case 2
     strcpy(palettePropertyCopy, paletteProperty); // for reverting back if entry is invalid
     printf("\nEnter Palette Property: ");
     scanf("%s", paletteProperty);
 
-    return (0);
 }
 
 // helper for case 3

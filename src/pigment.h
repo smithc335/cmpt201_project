@@ -184,19 +184,42 @@ paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* 
 
 
 /*******************************************************************************
-* Purpose: 
+* Purpose: To create a dynamic sub array of paint values based on a colour 
+		   definition. The various colour or hue types (ex. Blue, Blue-Green)
+		   are defined around min and max values. See the README for an 
+		   explanation on the colour or hue min and max ranges that define 
+		   each colour type. 
 * Parameters:
+		paint_t* pp - The full paint array which contains all the different types 
+					  of paints.
+		int* n - The number of elements within the pp array. 
+		colour_t colour - The colour defining what paints are to be stored in a
+						  sub array of paint types.
 *		
-* Returns: 
+* Returns: A pointer to the stored memory which contains the sub array of paints 
+		   that belong within the colour or hue type definition.
 *******************************************************************************/
 paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour); // MATT
 
 
 /*******************************************************************************
-* Purpose: 
-* Parameters:
+* Purpose: To print the colour type selected and the data values related to each 
+		   paint type within that colour min and max range. See README for colour 
+		   or hue min and max value explanation. As this fuction is primarily 
+		   used for testing, it frees the sub array as new arrays may be made 
+		   subsequnetly. Furthermore, the subNum is set back to fullNum to assist 
+		   the getPaintHue() function. 
+* Parameters: 
+		paint_t* subArr - The array that stores the paints within the selected
+						  colour and subsequent hue min and max range.  
+		int *subNum - The number of elements within the subArr array. 
+		int fullNum - The number of elements within the full paint array which
+					  contains all the different types of paints. 
+		colour_t colour - The colour defining what paints are stored in the 
+						  subArr array. Used to convey this in print statement. 
 *		
-* Returns: 
+* Returns: 0 if it succeeded and 1 if it failed. ie. if the colour selcted was 
+		   incorrect. 
 *******************************************************************************/
 int printHue(paint_t* subArr, int *subNum, int fullNum, colour_t colour); // MATT
 
@@ -265,21 +288,29 @@ int isValidPropertyInput(char* input); // CLAIRE
 
 
 /*******************************************************************************
-* Purpose: 
-* Parameters:
+* Purpose: To accept a user input to set the palette type. Makes a copy of the 
+		   previous entry before accepting the new input.
+* Parameters: 
+		char* paletteTypeCopy - The array that stores the previous entry or value 
+								stored in paletteType. 
+		char* paletteType - The array that accepts the new input.
 *		
-* Returns: 
+* Returns: None
 *******************************************************************************/
-int getTypeInput(char* paletteTypeCopy, char* paletteType); // helper for case 1 
+void getTypeInput(char* paletteTypeCopy, char* paletteType); // helper for case 1 
 
 
 /*******************************************************************************
-* Purpose: 
-* Parameters:
+* Purpose: To accept a user input to set the palette property. Makes a copy of the 
+		   previous entry before accepting the new input.
+* Parameters: 
+		char* palettePropertyCopy - The array that stores the previous entry or value 
+								    stored in paletteProperty. 
+		char* paletteProperty - The array that accepts the new input.
 *		
-* Returns: Return 
+* Returns: None
 *******************************************************************************/
-int getPropertyInput(char* palettePropertyCopy, char* paletteProperty); // helper for case 2
+void getPropertyInput(char* palettePropertyCopy, char* paletteProperty); // helper for case 2
 
 
 /*******************************************************************************
