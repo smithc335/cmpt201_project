@@ -270,16 +270,16 @@ int isValidPropertyInput(char* input); // CLAIRE
 *		
 * Returns: 
 *******************************************************************************/
-// helper for case 1
+int getTypeInput(char* paletteTypeCopy, char* paletteType); // helper for case 1 
 
 
 /*******************************************************************************
 * Purpose: 
 * Parameters:
 *		
-* Returns: 
+* Returns: Return 
 *******************************************************************************/
-// helper for case 2
+int getPropertyInput(char* palettePropertyCopy, char* paletteProperty); // helper for case 2
 
 
 /*******************************************************************************

@@ -52,9 +52,8 @@ int main(void){
     while(menuChoice != 0){
         switch(menuChoice){
             case(1):
-                strcpy(paletteTypeCopy, paletteType); // for reverting back if entry is invalid
-                printf("\nEnter Palette Type: ");
-                scanf("%s", paletteType);
+                
+                getTypeInput(paletteTypeCopy, paletteType);
 
                 err = isValidTypeInput(paletteType);
                 if(err==1){
@@ -64,9 +63,7 @@ int main(void){
                 break;
 
             case(2):
-                strcpy(palettePropertyCopy, paletteProperty); // for reverting back if entry is invalid
-                printf("\nEnter Palette Property: ");
-                scanf("%s", paletteProperty);
+                getPropertyInput(palettePropertyCopy, paletteProperty);
 
                 err = isValidPropertyInput(paletteProperty);
                 if(err==1){

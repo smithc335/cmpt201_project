@@ -1297,13 +1297,24 @@ int isValidPropertyInput(char* input){ // CLAIRE
 
 
 
-// helper for case 1
+int getTypeInput(char* paletteTypeCopy, char* paletteType){ // helper for case 1
+
+    strcpy(paletteTypeCopy, paletteType); // for reverting back if entry is invalid
+    printf("\nEnter Palette Type: ");
+    scanf("%s", paletteType);
+
+    return (0);
+} 
 
 
 
-// helper for case 2
+int getPropertyInput(char* palettePropertyCopy, char* paletteProperty) { // helper for case 2
+    strcpy(palettePropertyCopy, paletteProperty); // for reverting back if entry is invalid
+    printf("\nEnter Palette Property: ");
+    scanf("%s", paletteProperty);
 
-
+    return (0);
+}
 
 // helper for case 3
 
