@@ -199,7 +199,7 @@ paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* 
 * Returns: A pointer to the stored memory which contains the sub array of paints 
 		   that belong within the colour or hue type definition.
 *******************************************************************************/
-paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour); // MATT
+paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour);
 
 
 /*******************************************************************************
@@ -221,7 +221,7 @@ paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour); // MATT
 * Returns: 0 if it succeeded and 1 if it failed. ie. if the colour selcted was 
 		   incorrect. 
 *******************************************************************************/
-int printHue(paint_t* subArr, int *subNum, int fullNum, colour_t colour); // MATT
+int printHue(paint_t* subArr, int *subNum, int fullNum, colour_t colour);
 
 
 /*******************************************************************************
@@ -270,7 +270,7 @@ int isValidPropertyInput(char* input); // CLAIRE
 *		
 * Returns: None
 *******************************************************************************/
-void getTypeInput(char* paletteTypeCopy, char* paletteType); // helper for case 1 
+void getTypeInput(char* paletteTypeCopy, char* paletteType);
 
 
 /*******************************************************************************
@@ -283,7 +283,7 @@ void getTypeInput(char* paletteTypeCopy, char* paletteType); // helper for case 
 *		
 * Returns: None
 *******************************************************************************/
-void getPropertyInput(char* palettePropertyCopy, char* paletteProperty); // helper for case 2
+void getPropertyInput(char* palettePropertyCopy, char* paletteProperty);
 
 
 /*******************************************************************************

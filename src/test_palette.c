@@ -10,27 +10,27 @@ int main(void){
     char paintFilename[] = "../data/paints.dat";
 	paint_t* paintArray = NULL;
 	int paintN;
-
-    paintArray = loadPaintData(paintFilename, paintArray, &paintN);
-
-    // Tests for getPalette (CLAIRE)
-    printf("------------------------------------------------------------\n");
-	printf("Tests for getPalette:\n");
-	printf("------------------------------------------------------------\n");
-
     paint_t* paletteArray = NULL;
     char type1[] = "triad:red_orange";
     char type2[] = "complimentary:blue_green";
     char type3[] = "split_complimentary:violet";
     char type4[] = "full:blue";
-    char type5[] = "triad:red"; // blue_violet works, green and red_violet don't (fixed by changing realloc in Matt's function)
+    char type5[] = "triad:red";
     char property1[] = "transparency:2";
     char property2[] = "staining:1";
     char property3[] = "blossom:4";
     char property4[] = "transparency:0";
     char* property5 = NULL;
-    int paletteN = paintN; // will be overwritten by size of paletteArray after function is over
+    int paletteN;
     int err;
+
+    paintArray = loadPaintData(paintFilename, paintArray, &paintN);
+    paletteN = paintN; // will be overwritten by size of paletteArray after function is over
+
+    // Tests for getPalette
+    printf("------------------------------------------------------------\n");
+	printf("Tests for getPalette:\n");
+	printf("------------------------------------------------------------\n");
     
     paletteArray = getPalette(paintArray, &paletteN, type1, property1);
     printf("\nPalette for %s with %s\n", type1, property1);

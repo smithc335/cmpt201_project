@@ -50,7 +50,6 @@ int main(void){
     while(menuChoice != 0){
         switch(menuChoice){
             case(1):
-                
                 getTypeInput(paletteTypeCopy, paletteType);
 
                 err = isValidTypeInput(paletteType);

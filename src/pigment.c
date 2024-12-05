@@ -666,7 +666,6 @@ paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* 
             default:
                 printf("Error: Incorrect value inputted");
                 return (NULL);
-
         }
 
         i++;
@@ -675,13 +674,11 @@ paint_t* getPaintValue(paint_t* pp, int npp, char* name, gValue_t getType, int* 
     return (paintArray);
 }
 
-
 /*******************************************************************************
 * MILESTONE 3 FUNCTIONS
 *******************************************************************************/
 
-
-paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour){ // MATT
+paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour){
 
     paint_t* hueRange = NULL;
     int capacity = 10;
@@ -762,65 +759,55 @@ paint_t* getPaintHue(paint_t* pp, int* n, colour_t colour){ // MATT
     }
 
     if (colour == RED_ORANGE){
-
         for (int i = 0; i < *n; i++){
-
             //Checking if array has reach capacity.
             if(arrNum == capacity){
-
                 capacity = (capacity) * 2; 
-                hueRange = realloc(hueRange, (capacity) * sizeof(paint_t)); // CLAIRE CHANGED
+                hueRange = realloc(hueRange, (capacity) * sizeof(paint_t));
             }                
 
             //Checking if hue equals 0 or 360 as they can be used interchangeably.
             if( (pp[i].hueAngle == 0) || (pp[i].hueAngle == 360) ){
-
                 hueRange[arrNum] = pp[i];
                 arrNum++;
             }
-
             else{
                 if ( ((pp[i].hueAngle >= hueMin) && (pp[i].hueAngle <= 359)) || ((pp[i].hueAngle >= 1) && (pp[i].hueAngle <= hueMax)) ){
-
                     hueRange[arrNum] = pp[i];
                     arrNum++;
                 }
             }
         }
-        
     }
-
     //If the color is anything other than RED_ORANGE.
     else{
-
         for (int i = 0; i < *n; i++){
-
             if ( (pp[i].hueAngle >= hueMin) && (pp[i].hueAngle <= hueMax) ){
-
                 //Checking if array has reach capacity.
                 if(arrNum == capacity){
                     capacity = (capacity) * 2; 
-                    hueRange = realloc(hueRange, (capacity) * sizeof(paint_t)); // CLAIRE CHANGED
+                    hueRange = realloc(hueRange, (capacity) * sizeof(paint_t));
                 }
                 hueRange[arrNum] = pp[i];
                 arrNum++;
             }
         }
     }
+
     *n = arrNum;
 
     return (hueRange);
 }
 
 
-int printHue(paint_t* subArr, int *subNum, int fullNum, colour_t colour){ // MATT
+int printHue(paint_t* subArr, int *subNum, int fullNum, colour_t colour){
 
     if(subArr == NULL){
         printf("Error: Array parameter is empty.\n");
         return (1);
     }
 
-        //Printing the color genre name for confirmation.
+    //Printing the color genre name for confirmation.
     switch (colour){
         case (0):
             printf("\nPrinting Red Paints\n");
@@ -874,9 +861,9 @@ int printHue(paint_t* subArr, int *subNum, int fullNum, colour_t colour){ // MAT
             printf("\nError: Color not recognized.\n");
             return(1);
     }
+
     printf("Number of paints within selected color: %d\n", *subNum);
     printf("------------------------------------------------------------\n");
-
     for (int i = 0; i < *subNum; i++){
         printf("%s, %s, %s, ", subArr[i].ciName, subArr[i].marketingName, subArr[i].manufacturer);
         printf("%i, %i, %i, ", subArr[i].transparency, subArr[i].staining, subArr[i].valueRange);
@@ -893,7 +880,7 @@ int printHue(paint_t* subArr, int *subNum, int fullNum, colour_t colour){ // MAT
 }
 
 
-paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIRE
+paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){
 
     // paletteType: full = 0, triad = 1, complimentary = 2, split_complimentary = 3
     // propertyType: NULL = -1, transparency = 0, staining = 1, blossom = 2
@@ -1104,7 +1091,7 @@ paint_t* getPalette(paint_t* pp, int* n, char* type, char* properties){ // CLAIR
 }
 
 
-int printArray(paint_t* pArray, int n){ // CLAIRE
+int printArray(paint_t* pArray, int n){
 
     if(pArray==NULL){
         printf("Error: Passed in empty array.\n");
@@ -1122,7 +1109,7 @@ int printArray(paint_t* pArray, int n){ // CLAIRE
 }
 
 
-int isValidTypeInput(char* input){ // CLAIRE
+int isValidTypeInput(char* input){
 
     char inputCopy[strlen(input)+1];
     char* token;
@@ -1180,7 +1167,7 @@ int isValidTypeInput(char* input){ // CLAIRE
 }
 
 
-int isValidPropertyInput(char* input){ // CLAIRE
+int isValidPropertyInput(char* input){
 
     char inputCopy[strlen(input)+1];
     int inputValue;
@@ -1218,22 +1205,19 @@ int isValidPropertyInput(char* input){ // CLAIRE
 }
 
 
-
-void getTypeInput(char* paletteTypeCopy, char* paletteType){ // helper for case 1
+void getTypeInput(char* paletteTypeCopy, char* paletteType){
 
     strcpy(paletteTypeCopy, paletteType); // for reverting back if entry is invalid
     printf("\nEnter Palette Type: ");
     scanf("%s", paletteType);
-
 } 
 
 
+void getPropertyInput(char* palettePropertyCopy, char* paletteProperty) {
 
-void getPropertyInput(char* palettePropertyCopy, char* paletteProperty) { // helper for case 2
     strcpy(palettePropertyCopy, paletteProperty); // for reverting back if entry is invalid
     printf("\nEnter Palette Property: ");
     scanf("%s", paletteProperty);
-
 }
 
 
