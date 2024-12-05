@@ -3,10 +3,10 @@ Claire Smith and Matt Beaulieu
 
 # COMPILATION
 
-To compile the test file, type "make" or "make project" in the commandline
-while in the main project directory. To run the tests, type "./project"
-into the commandline while in the bin directory. This will display several
-test cases using functions implemented in the pigment.c file. 
+To compile the main program file, type "make" or "make project" in the 
+commandline while in the main project directory. To run the program, type 
+"./project" into the commandline while in the bin directory. This will display
+the Paints Program using functions implemented in the pigment.c file. 
 
 The "make" or "make project" commands will create executables and object files.
 Executables are placed in the bin directory and object files are placed in the
@@ -58,4 +58,4 @@ orange, yellow-orange, yellow, yellow-green, green, blue-green, blue,
 blue-violet, violet, and red-violet are defined. The min and max ranges are 
 based on a 15 degree window on either side of the aforementioned colours 
 respective of their placement on the colour wheel. Min and max ranges are 
-exclusive of eachother to prevent overlapping complications. 
+exclusive of each other to prevent overlapping complications. 
