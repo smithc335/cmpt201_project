@@ -1265,7 +1265,7 @@ void printHelpPage(){
 
     printf("\nPAINT PROGRAM HELP PAGE\n");
     printf("--------------------------------------------------------------------------------\n");
-    printf("Please format palette type as [type]:[color] and\nproperty as [property]:[value].\n\n");
+    printf("Please format palette type as [type]:[color] and\nproperty as [property]:[value] in all lowercase.\n\n");
     printf("--------------------------------------------------------------------------------\n");
     printf("Valid Palette Type Entries\n");
     printf("--------------------------------------------------------------------------------\n");
