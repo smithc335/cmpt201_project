@@ -1,6 +1,10 @@
 // Claire Smith and Matt Beaulieu
 // Project Header File
 
+#ifndef PIGMENT_H
+#define PIGMENT_H
+
+
 #define RED_MIN 315
 #define RED_MAX 344
 #define RED_ORANGE_MIN 345 
@@ -82,6 +86,9 @@ typedef enum{
 	VIOLET,        // 10
 	RED_VIOLET     // 11
 } colour_t;
+
+#endif 
+
 
 /*******************************************************************************
 * Purpose: To open a file that contains pigment information and assign pigment
